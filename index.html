@@ -146,6 +146,17 @@
             .mobile-w-full {
                 width: 100% !important;
             }
+            
+            /* Mobile menu items */
+            .mobile-menu-item {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            .mobile-menu-icon {
+                font-size: 1rem !important;
+                width: 1.5rem !important;
+            }
         }
         
         /* Mobile Menu Overlay */
@@ -168,6 +179,21 @@
         .table-container {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Quotation Print Styles */
+        .quotation-header {
+            border-bottom: 2px solid #1e293b;
+            margin-bottom: 1.5rem;
+        }
+        
+        .quotation-line {
+            border-top: 1px solid #cbd5e1;
+            margin: 0.5rem 0;
+        }
+        
+        .quotation-section {
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -193,52 +219,52 @@
         </div>
         
         <nav class="flex-1 py-4 overflow-y-auto">
-            <button onclick="switchTab('customers'); closeMobileMenu();" class="tab-btn w-full flex items-center px-4 lg:px-6 py-3 transition-colors relative group border-l-4" data-tab="customers">
-                <i class="fas fa-users w-5 text-center text-base lg:text-lg"></i>
-                <span class="ml-3 lg:ml-4 text-sm lg:text-base font-medium">ลูกค้า</span>
+            <button onclick="switchTab('customers'); closeMobileMenu();" class="tab-btn w-full flex items-center px-4 lg:px-6 py-3 mobile-menu-item transition-colors relative group border-l-4" data-tab="customers">
+                <i class="fas fa-users mobile-menu-icon text-center"></i>
+                <span class="ml-3 lg:ml-4 text-sm lg:text-base font-medium">Customer</span>
                 <span id="customer-badge" class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold hidden">0</span>
             </button>
             
-            <button onclick="switchTab('products'); closeMobileMenu();" class="tab-btn w-full flex items-center px-4 lg:px-6 py-3 transition-colors relative group border-l-4" data-tab="products">
-                <i class="fas fa-box w-5 text-center text-base lg:text-lg"></i>
-                <span class="ml-3 lg:ml-4 text-sm lg:text-base font-medium">สินค้า</span>
+            <button onclick="switchTab('products'); closeMobileMenu();" class="tab-btn w-full flex items-center px-4 lg:px-6 py-3 mobile-menu-item transition-colors relative group border-l-4" data-tab="products">
+                <i class="fas fa-box mobile-menu-icon text-center"></i>
+                <span class="ml-3 lg:ml-4 text-sm lg:text-base font-medium">Product</span>
             </button>
             
-            <button onclick="switchTab('packages'); closeMobileMenu();" class="tab-btn w-full flex items-center px-4 lg:px-6 py-3 transition-colors relative group border-l-4" data-tab="packages">
-                <i class="fas fa-boxes w-5 text-center text-base lg:text-lg"></i>
-                <span class="ml-3 lg:ml-4 text-sm lg:text-base font-medium">แพ็กเกจ</span>
+            <button onclick="switchTab('packages'); closeMobileMenu();" class="tab-btn w-full flex items-center px-4 lg:px-6 py-3 mobile-menu-item transition-colors relative group border-l-4" data-tab="packages">
+                <i class="fas fa-boxes mobile-menu-icon text-center"></i>
+                <span class="ml-3 lg:ml-4 text-sm lg:text-base font-medium">Package</span>
             </button>
             
-            <button onclick="switchTab('orders'); closeMobileMenu();" class="tab-btn w-full flex items-center px-4 lg:px-6 py-3 transition-colors relative group border-l-4" data-tab="orders">
-                <i class="fas fa-shopping-cart w-5 text-center text-base lg:text-lg"></i>
-                <span class="ml-3 lg:ml-4 text-sm lg:text-base font-medium">รายการสั่งซื้อ</span>
+            <button onclick="switchTab('orders'); closeMobileMenu();" class="tab-btn w-full flex items-center px-4 lg:px-6 py-3 mobile-menu-item transition-colors relative group border-l-4" data-tab="orders">
+                <i class="fas fa-shopping-cart mobile-menu-icon text-center"></i>
+                <span class="ml-3 lg:ml-4 text-sm lg:text-base font-medium">Order</span>
                 <span id="order-badge" class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold hidden">0</span>
             </button>
             
-            <button onclick="switchTab('quotations'); closeMobileMenu();" class="tab-btn w-full flex items-center px-4 lg:px-6 py-3 transition-colors relative group border-l-4" data-tab="quotations">
-                <i class="fas fa-file-invoice-dollar w-5 text-center text-base lg:text-lg"></i>
-                <span class="ml-3 lg:ml-4 text-sm lg:text-base font-medium">ใบเสนอราคา</span>
+            <button onclick="switchTab('quotations'); closeMobileMenu();" class="tab-btn w-full flex items-center px-4 lg:px-6 py-3 mobile-menu-item transition-colors relative group border-l-4" data-tab="quotations">
+                <i class="fas fa-file-invoice-dollar mobile-menu-icon text-center"></i>
+                <span class="ml-3 lg:ml-4 text-sm lg:text-base font-medium">Quotation</span>
             </button>
         </nav>
         
         <div class="p-3 lg:p-4 border-t border-white/10 space-y-2 bg-black/10">
             <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1 px-1">คำสั่งหลัก</p>
             <button onclick="saveData()" class="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg text-sm font-semibold shadow-md transition-all active:scale-95">
-                <i class="fas fa-save text-sm"></i> <span class="mobile-text-base">บันทึก</span>
+                <i class="fas fa-save text-sm"></i> <span class="mobile-text-base">Save</span>
             </button>
             
             <div class="grid grid-cols-2 gap-2">
                 <button onclick="exportData()" class="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-400 text-white py-2 rounded-lg text-xs font-semibold shadow-md transition-all active:scale-95">
-                    <i class="fas fa-download text-sm"></i> <span class="mobile-text-base">ส่งออก</span>
+                    <i class="fas fa-download text-sm"></i> <span class="mobile-text-base">Export</span>
                 </button>
                 <button onclick="document.getElementById('import-file').click()" class="flex items-center justify-center gap-2 bg-indigo-500 hover:bg-indigo-400 text-white py-2 rounded-lg text-xs font-semibold shadow-md transition-all active:scale-95">
-                    <i class="fas fa-upload text-sm"></i> <span class="mobile-text-base">นำเข้า</span>
+                    <i class="fas fa-upload text-sm"></i> <span class="mobile-text-base">Import</span>
                 </button>
                 <input type="file" id="import-file" accept=".json" class="hidden" onchange="importData(event)">
             </div>
             
             <button onclick="clearData()" class="w-full flex items-center justify-center gap-2 bg-rose-600 hover:bg-rose-700 text-white py-2 rounded-lg text-xs font-semibold shadow-md transition-all active:scale-95">
-                <i class="fas fa-trash text-sm"></i> <span class="mobile-text-base">ล้างข้อมูลทั้งหมด</span>
+                <i class="fas fa-trash text-sm"></i> <span class="mobile-text-base">Clear All</span>
             </button>
             
             <div class="pt-2">
@@ -251,7 +277,7 @@
         <!-- Close Mobile Menu Button -->
         <div class="lg:hidden p-4 border-t border-white/10">
             <button onclick="closeMobileMenu()" class="w-full flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-lg text-sm font-semibold">
-                <i class="fas fa-times text-sm"></i> ปิดเมนู
+                <i class="fas fa-times text-sm"></i> Close Menu
             </button>
         </div>
     </div>
@@ -262,10 +288,10 @@
             <div class="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4">
                 <div>
                     <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">MCOT Phitsanulok FM 106.25</p>
-                    <h1 id="page-title" class="text-2xl lg:text-4xl font-black text-slate-900 tracking-tight capitalize mobile-text-lg">ระบบจัดการแพ็กเกจ</h1>
+                    <h1 id="page-title" class="text-2xl lg:text-4xl font-black text-slate-900 tracking-tight capitalize mobile-text-lg">Package Management System</h1>
                 </div>
                 <div class="text-[10px] text-slate-400 font-mono text-right italic">
-                    Last saved: <span id="last-saved">ไม่เคยบันทึก</span>
+                    Last saved: <span id="last-saved">Not saved yet</span>
                 </div>
             </div>
         </header>
@@ -280,11 +306,11 @@
                             <div class="bg-blue-100 p-2 rounded-lg text-blue-600">
                                 <i class="fas fa-briefcase text-xl"></i>
                             </div>
-                            <h2 class="text-lg lg:text-xl font-bold">รายชื่อลูกค้า (<span id="customer-count">0</span>)</h2>
+                            <h2 class="text-lg lg:text-xl font-bold">Customer List (<span id="customer-count">0</span>)</h2>
                         </div>
                         <div class="relative w-full md:w-64">
                             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                            <input type="text" id="customer-search" placeholder="ค้นหาชื่อหรือบริษัท..." class="w-full pl-10 pr-4 py-2 bg-white rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="text" id="customer-search" placeholder="Search company or name..." class="w-full pl-10 pr-4 py-2 bg-white rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                     </div>
                     
@@ -292,10 +318,10 @@
                         <table class="w-full text-left border-collapse min-w-[600px]">
                             <thead class="bg-slate-50">
                                 <tr>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">บริษัท / ผู้ติดต่อ</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">ประเภท</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">การติดต่อ</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">จัดการ</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Company / Contact</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Type</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Contact Info</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="customer-list" class="divide-y divide-slate-100">
@@ -312,56 +338,56 @@
                             <i class="fas fa-user-plus text-xl"></i>
                         </div>
                         <div>
-                            <h2 class="text-lg lg:text-xl font-bold">เพิ่มลูกค้าใหม่</h2>
-                            <p class="text-sm text-slate-500">กรอกข้อมูลผู้ติดต่อและบริษัทเพื่อเริ่มการเสนอราคา</p>
+                            <h2 class="text-lg lg:text-xl font-bold">Add New Customer</h2>
+                            <p class="text-sm text-slate-500">Fill in contact and company information to start quotation</p>
                         </div>
                     </div>
                     
                     <form id="add-customer-form" class="p-4 lg:p-8 space-y-4 lg:space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">ชื่อองค์กร <span class="text-red-500">*</span></label>
-                                <input type="text" id="customer-company" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="ชื่อบริษัท/หน่วยงาน" required>
+                                <label class="text-sm font-semibold text-slate-700">Company Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="customer-company" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="Company/Organization" required>
                             </div>
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">ประเภทองค์กร</label>
+                                <label class="text-sm font-semibold text-slate-700">Organization Type</label>
                                 <select id="customer-type" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100">
-                                    <option value="เอกชน">เอกชน</option>
-                                    <option value="ราชการ">ราชการ</option>
-                                    <option value="รัฐวิสาหกิจ">รัฐวิสาหกิจ</option>
+                                    <option value="เอกชน">Private</option>
+                                    <option value="ราชการ">Government</option>
+                                    <option value="รัฐวิสาหกิจ">State Enterprise</option>
                                 </select>
                             </div>
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">หมวดหมู่ธุรกิจ</label>
-                                <input type="text" id="customer-category" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="เช่น อาหาร, ก่อสร้าง">
+                                <label class="text-sm font-semibold text-slate-700">Business Category</label>
+                                <input type="text" id="customer-category" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="e.g. Food, Construction">
                             </div>
                         </div>
                         
                         <div class="space-y-1.5">
                             <label class="text-sm font-semibold text-slate-700 flex items-center gap-2">
-                                <i class="fas fa-map-marker-alt text-blue-500"></i> ที่อยู่หน่วยงาน
+                                <i class="fas fa-map-marker-alt text-blue-500"></i> Company Address
                             </label>
-                            <textarea id="customer-address" class="w-full px-3 lg:px-4 py-2 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100 h-24 lg:h-20 resize-none" placeholder="บ้านเลขที่, ถนน, ตำบล, อำเภอ, จังหวัด..."></textarea>
+                            <textarea id="customer-address" class="w-full px-3 lg:px-4 py-2 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100 h-24 lg:h-20 resize-none" placeholder="House number, Street, Sub-district, District, Province..."></textarea>
                         </div>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">ชื่อผู้ติดต่อ <span class="text-red-500">*</span></label>
-                                <input type="text" id="customer-name" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="คุณ..." required>
+                                <label class="text-sm font-semibold text-slate-700">Contact Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="customer-name" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="Mr./Ms...." required>
                             </div>
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">เบอร์โทรศัพท์ <span class="text-red-500">*</span></label>
+                                <label class="text-sm font-semibold text-slate-700">Phone Number <span class="text-red-500">*</span></label>
                                 <input type="tel" id="customer-phone" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="0xx-xxxxxxx" required>
                             </div>
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">อีเมล</label>
+                                <label class="text-sm font-semibold text-slate-700">Email</label>
                                 <input type="email" id="customer-email" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="example@mail.com">
                             </div>
                         </div>
                         
                         <div class="flex justify-end pt-2">
                             <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 lg:px-8 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-bold shadow-lg transition-all active:scale-95 flex items-center gap-2 mobile-w-full lg:w-auto">
-                                <i class="fas fa-user-plus"></i> บันทึกข้อมูลลูกค้า
+                                <i class="fas fa-user-plus"></i> Save Customer
                             </button>
                         </div>
                     </form>
@@ -379,11 +405,11 @@
                             <div class="bg-blue-100 p-2 rounded-lg text-blue-600">
                                 <i class="fas fa-box text-xl"></i>
                             </div>
-                            <h2 class="text-lg lg:text-xl font-bold">รายการสินค้า (<span id="product-count">0</span>)</h2>
+                            <h2 class="text-lg lg:text-xl font-bold">Product List (<span id="product-count">0</span>)</h2>
                         </div>
                         <div class="relative w-full md:w-64">
                             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                            <input type="text" id="product-search" placeholder="ค้นหาสินค้า..." class="w-full pl-10 pr-4 py-2 bg-white rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="text" id="product-search" placeholder="Search product..." class="w-full pl-10 pr-4 py-2 bg-white rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                     </div>
                     
@@ -391,12 +417,12 @@
                         <table class="w-full text-left border-collapse min-w-[800px]">
                             <thead class="bg-slate-50">
                                 <tr>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider w-12 text-center">ลำดับ</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">รหัสสินค้า</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">สินค้า</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">ประเภท</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">ราคา</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">จัดการ</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider w-12 text-center">No.</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Product Code</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Product Name</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Type</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Price</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="product-list" class="divide-y divide-slate-100">
@@ -413,8 +439,8 @@
                             <i id="product-form-icon" class="fas fa-plus text-xl"></i>
                         </div>
                         <div>
-                            <h2 id="product-form-title" class="text-lg lg:text-xl font-bold">เพิ่มสินค้าใหม่</h2>
-                            <p class="text-sm text-slate-500">เพิ่มสินค้าและบริการสำหรับการเสนอราคา</p>
+                            <h2 id="product-form-title" class="text-lg lg:text-xl font-bold">Add New Product</h2>
+                            <p class="text-sm text-slate-500">Add products and services for quotation</p>
                         </div>
                     </div>
                     
@@ -424,56 +450,56 @@
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">ประเภทสินค้า <span class="text-red-500">*</span></label>
+                                <label class="text-sm font-semibold text-slate-700">Product Type <span class="text-red-500">*</span></label>
                                 <select id="product-type" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" onchange="updateProductCode()">
-                                    <option value="">-- เลือกประเภท --</option>
-                                    <option value="onAir">On Air (ออกอากาศ)</option>
-                                    <option value="online">Online (ออนไลน์)</option>
-                                    <option value="production">Production (ผลิต)</option>
+                                    <option value="">-- Select Type --</option>
+                                    <option value="onAir">On Air (Broadcast)</option>
+                                    <option value="online">Online</option>
+                                    <option value="production">Production</option>
                                 </select>
                             </div>
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">รหัสสินค้า</label>
+                                <label class="text-sm font-semibold text-slate-700">Product Code</label>
                                 <input type="text" id="product-code" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" readonly>
                             </div>
                         </div>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">ชื่อสินค้า <span class="text-red-500">*</span></label>
-                                <input type="text" id="product-name" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="ชื่อสินค้าหรือบริการ" required>
+                                <label class="text-sm font-semibold text-slate-700">Product Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="product-name" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="Product/Service Name" required>
                             </div>
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">ราคา (บาท) <span class="text-red-500">*</span></label>
+                                <label class="text-sm font-semibold text-slate-700">Price (THB) <span class="text-red-500">*</span></label>
                                 <input type="number" id="product-price" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="0.00" min="0" step="0.01" required>
                             </div>
                         </div>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                             <div class="space-y-1.5">
-                                <label class="text-sm font-semibold text-slate-700">โปรโมชัน</label>
+                                <label class="text-sm font-semibold text-slate-700">Promotion</label>
                                 <select id="product-promotion" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100">
-                                    <option value="ไม่มี">ไม่มีโปรโมชัน</option>
-                                    <option value="มี">มีโปรโมชัน</option>
+                                    <option value="ไม่มี">No Promotion</option>
+                                    <option value="มี">Has Promotion</option>
                                 </select>
                             </div>
                             <div id="promotion-detail-container" class="space-y-1.5 hidden">
-                                <label class="text-sm font-semibold text-slate-700">รายละเอียดโปรโมชัน</label>
-                                <input type="text" id="product-promotion-detail" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="เช่น ซื้อ 10 ครั้ง แถม 1 ครั้ง">
+                                <label class="text-sm font-semibold text-slate-700">Promotion Details</label>
+                                <input type="text" id="product-promotion-detail" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100" placeholder="e.g. Buy 10 get 1 free">
                             </div>
                         </div>
                         
                         <div class="space-y-1.5">
-                            <label class="text-sm font-semibold text-slate-700">หมายเหตุเพิ่มเติม</label>
-                            <textarea id="product-note" class="w-full px-3 lg:px-4 py-2 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100 h-24 lg:h-20 resize-none" placeholder="รายละเอียดเพิ่มเติมเกี่ยวกับสินค้า..."></textarea>
+                            <label class="text-sm font-semibold text-slate-700">Additional Notes</label>
+                            <textarea id="product-note" class="w-full px-3 lg:px-4 py-2 rounded-lg lg:rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-slate-100 h-24 lg:h-20 resize-none" placeholder="Additional details about the product..."></textarea>
                         </div>
                         
                         <div class="flex flex-col lg:flex-row justify-end gap-3 pt-2">
                             <button type="button" id="cancel-edit-btn" onclick="resetProductForm()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2.5 rounded-lg font-bold shadow-lg transition-all hidden mobile-w-full lg:w-auto">
-                                ยกเลิกการแก้ไข
+                                Cancel Edit
                             </button>
                             <button type="submit" id="submit-product-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 lg:px-8 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-bold shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 mobile-w-full lg:w-auto">
-                                <i class="fas fa-plus"></i> เพิ่มสินค้า
+                                <i class="fas fa-plus"></i> Add Product
                             </button>
                         </div>
                     </form>
@@ -488,17 +514,17 @@
                     <div class="p-4 lg:p-6 border-b border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-slate-50">
                         <div class="flex items-center gap-3">
                             <i class="fas fa-boxes text-blue-600 text-xl"></i>
-                            <h2 class="text-lg lg:text-xl font-bold">แพ็กเกจสินค้า</h2>
+                            <h2 class="text-lg lg:text-xl font-bold">Package Management</h2>
                         </div>
                         <button onclick="showPackageForm()" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-lg lg:rounded-xl text-sm font-bold shadow-lg transition-all active:scale-95 mobile-w-full lg:w-auto">
-                            <i class="fas fa-plus"></i> สร้างแพ็กเกจใหม่
+                            <i class="fas fa-plus"></i> Create New Package
                         </button>
                     </div>
                     <div class="p-8 lg:p-12 text-center text-slate-400">
                         <i class="fas fa-boxes text-4xl lg:text-6xl opacity-20 mb-4"></i>
-                        <p class="text-lg lg:text-xl font-medium mb-2">ฟีเจอร์แพ็กเกจอยู่ระหว่างการพัฒนา</p>
-                        <p class="text-sm lg:text-base">สามารถใช้ระบบสินค้าและรายการสั่งซื้อได้ตามปกติ</p>
-                        <p class="text-xs lg:text-sm mt-4 text-slate-500">เวอร์ชั่นต่อไปจะเพิ่มฟีเจอร์การสร้างแพ็กเกจสินค้าแบบผสม</p>
+                        <p class="text-lg lg:text-xl font-medium mb-2">Package Feature Under Development</p>
+                        <p class="text-sm lg:text-base">You can use Product and Order systems normally</p>
+                        <p class="text-xs lg:text-sm mt-4 text-slate-500">Next version will add package creation features</p>
                     </div>
                 </div>
             </div>
@@ -513,16 +539,16 @@
                         <div class="bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                             <div class="p-4 lg:p-6 border-b border-slate-100 flex items-center gap-3 bg-slate-50">
                                 <i class="fas fa-plus text-blue-600 text-xl"></i>
-                                <h2 class="text-lg lg:text-xl font-bold">สร้างรายการสั่งซื้อใหม่</h2>
+                                <h2 class="text-lg lg:text-xl font-bold">Create New Order</h2>
                             </div>
                             
                             <div class="p-4 lg:p-8 space-y-6 lg:space-y-8">
                                 <!-- Customer Selection -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 items-end">
                                     <div class="space-y-1.5">
-                                        <label class="text-sm font-semibold text-slate-700">เลือกลูกค้า</label>
+                                        <label class="text-sm font-semibold text-slate-700">Select Customer</label>
                                         <select id="order-customer" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500 bg-slate-100 transition-all">
-                                            <option value="">-- เลือกลูกค้า --</option>
+                                            <option value="">-- Select Customer --</option>
                                             <!-- Customers will be populated here -->
                                         </select>
                                     </div>
@@ -530,7 +556,7 @@
                                         <div class="flex items-center gap-2 p-3 bg-blue-50 rounded-lg lg:rounded-xl border border-blue-100">
                                             <i class="fas fa-building text-blue-500"></i>
                                             <div>
-                                                <p class="text-[10px] text-blue-400 uppercase font-black tracking-widest">ประเภทองค์กรอัตโนมัติ</p>
+                                                <p class="text-[10px] text-blue-400 uppercase font-black tracking-widest">Auto Organization Type</p>
                                                 <p id="selected-customer-type" class="text-sm font-bold text-blue-900"></p>
                                             </div>
                                         </div>
@@ -540,7 +566,7 @@
                                 <!-- Order Type & Product Selection -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                                     <div class="space-y-1.5">
-                                        <label class="text-sm font-semibold text-slate-700">ประเภทรายการ</label>
+                                        <label class="text-sm font-semibold text-slate-700">Order Type</label>
                                         <div class="grid grid-cols-3 gap-2 p-1 bg-slate-100 rounded-lg lg:rounded-xl">
                                             <button type="button" onclick="setOrderType('Produce')" id="order-type-produce" class="order-type-btn py-2 text-xs font-bold rounded-lg transition-all active">
                                                 Produce
@@ -554,9 +580,9 @@
                                         </div>
                                     </div>
                                     <div class="space-y-1.5">
-                                        <label class="text-sm font-semibold text-slate-700">สินค้า / บริการ</label>
+                                        <label class="text-sm font-semibold text-slate-700">Product / Service</label>
                                         <select id="order-product" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500 bg-slate-100 transition-all">
-                                            <option value="">-- เลือกรายการ --</option>
+                                            <option value="">-- Select Item --</option>
                                         </select>
                                     </div>
                                 </div>
@@ -565,10 +591,10 @@
                                 <div class="space-y-3">
                                     <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-2">
                                         <label class="text-sm font-semibold text-slate-700 flex items-center gap-2">
-                                            <i class="fas fa-clock text-blue-500"></i> ช่วงเวลาออกอากาศ
+                                            <i class="fas fa-clock text-blue-500"></i> Broadcast Time Slots
                                         </label>
                                         <span id="selected-slots-count" class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
-                                            เลือกแล้ว: 0 ครั้ง/วัน
+                                            Selected: 0 times/day
                                         </span>
                                     </div>
                                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2" id="time-slots-container">
@@ -580,16 +606,16 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 pt-4 border-t border-slate-100">
                                     <div class="space-y-4">
                                         <label class="text-sm font-semibold text-slate-700 flex items-center gap-2">
-                                            <i class="fas fa-calendar text-blue-500"></i> ระยะเวลาออกอากาศ
+                                            <i class="fas fa-calendar text-blue-500"></i> Broadcast Duration
                                         </label>
                                         
                                         <div class="grid grid-cols-2 gap-4">
                                             <div class="space-y-1">
-                                                <span class="text-[10px] text-slate-400 uppercase font-bold">วันเริ่ม</span>
+                                                <span class="text-[10px] text-slate-400 uppercase font-bold">Start Date</span>
                                                 <input type="date" id="order-start-date" class="w-full px-3 py-2 rounded-lg lg:rounded-xl border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500 bg-slate-100">
                                             </div>
                                             <div class="space-y-1">
-                                                <span class="text-[10px] text-slate-400 uppercase font-bold">วันสิ้นสุด</span>
+                                                <span class="text-[10px] text-slate-400 uppercase font-bold">End Date</span>
                                                 <input type="date" id="order-end-date" class="w-full px-3 py-2 rounded-lg lg:rounded-xl border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500 bg-slate-100">
                                             </div>
                                         </div>
@@ -597,16 +623,16 @@
                                     
                                     <div class="space-y-4">
                                         <div class="space-y-1.5">
-                                            <label class="text-sm font-semibold text-slate-700">วันออกอากาศในสัปดาห์</label>
+                                            <label class="text-sm font-semibold text-slate-700">Broadcast Days (Weekly)</label>
                                             <div class="flex flex-wrap gap-2" id="weekdays-container">
                                                 <!-- Weekdays will be generated here -->
                                             </div>
                                         </div>
                                         <div class="space-y-1.5">
-                                            <label class="text-sm font-semibold text-slate-700">การชำระเงิน</label>
+                                            <label class="text-sm font-semibold text-slate-700">Payment Method</label>
                                             <select id="order-payment-type" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500 bg-slate-100 transition-all">
-                                                <option value="หลังออกอากาศ">ชำระหลังออกอากาศ</option>
-                                                <option value="ก่อนออกอากาศ">ชำระก่อนออกอากาศ (ลดเพิ่ม 5%)</option>
+                                                <option value="หลังออกอากาศ">Pay After Broadcast</option>
+                                                <option value="ก่อนออกอากาศ">Pay Before Broadcast (Extra 5% discount)</option>
                                             </select>
                                         </div>
                                     </div>
@@ -614,8 +640,8 @@
 
                                 <!-- Note -->
                                 <div class="space-y-1.5">
-                                    <label class="text-sm font-semibold text-slate-700">หมายเหตุ/ข้อความแถม</label>
-                                    <textarea id="order-note" class="w-full px-3 lg:px-4 py-2 lg:py-3 rounded-lg lg:rounded-xl border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500 resize-none bg-slate-100" placeholder="ระบุข้อความแถม..." rows="2"></textarea>
+                                    <label class="text-sm font-semibold text-slate-700">Notes/Additional Messages</label>
+                                    <textarea id="order-note" class="w-full px-3 lg:px-4 py-2 lg:py-3 rounded-lg lg:rounded-xl border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500 resize-none bg-slate-100" placeholder="Specify additional messages..." rows="2"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -626,31 +652,31 @@
                         <div class="bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-200 overflow-hidden lg:sticky lg:top-8">
                             <div class="p-4 lg:p-6 border-b border-slate-100 flex items-center gap-3 bg-slate-50">
                                 <i class="fas fa-calculator text-emerald-600 text-xl"></i>
-                                <h2 class="text-lg lg:text-xl font-bold">สรุปการคำนวณ</h2>
+                                <h2 class="text-lg lg:text-xl font-bold">Calculation Summary</h2>
                             </div>
                             
                             <div class="p-4 lg:p-6 space-y-4" id="calculation-summary">
                                 <div class="py-8 lg:py-12 flex flex-col items-center justify-center text-slate-300 gap-3 text-center">
                                     <i class="fas fa-calculator text-3xl lg:text-4xl opacity-20"></i>
-                                    <p class="text-xs">ระบุข้อมูลลูกค้า วันออกอากาศ<br/>และเลือกสินค้าเพื่อคำนวณราคา</p>
+                                    <p class="text-xs">Specify customer, broadcast schedule<br/>and select product to calculate price</p>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Campaign Summary -->
                         <div class="bg-blue-900 rounded-xl lg:rounded-2xl p-4 lg:p-6 text-white shadow-xl border-l-4 border-yellow-500">
-                            <h3 class="text-xs font-bold opacity-70 uppercase tracking-widest mb-4">ยอดรวมแคมเปญปัจจุบัน</h3>
+                            <h3 class="text-xs font-bold opacity-70 uppercase tracking-widest mb-4">Current Campaign Total</h3>
                             <div class="space-y-3">
                                 <div class="flex justify-between text-sm">
-                                    <span>ราคารวมทั้งหมด:</span>
+                                    <span>Total Price:</span>
                                     <span id="campaign-total" class="font-mono">0 ฿</span>
                                 </div>
                                 <div class="flex justify-between text-sm text-emerald-400">
-                                    <span>ส่วนลดรวมสะสม:</span>
+                                    <span>Total Discount:</span>
                                     <span id="campaign-discount" class="font-mono">0 ฿</span>
                                 </div>
                                 <div class="pt-3 border-t border-white/10 flex justify-between items-center">
-                                    <span class="font-bold text-base lg:text-lg">สุทธิทั้งสิ้น:</span>
+                                    <span class="font-bold text-base lg:text-lg">Net Total:</span>
                                     <span id="campaign-net" class="text-xl lg:text-2xl font-black">0 ฿</span>
                                 </div>
                             </div>
@@ -661,23 +687,23 @@
                 <!-- Orders Table -->
                 <div class="bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                     <div class="p-4 lg:p-6 border-b border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-slate-50">
-                        <h2 class="text-lg lg:text-xl font-bold">รายการสั่งซื้อในแคมเปญ (<span id="orders-count">0</span>)</h2>
+                        <h2 class="text-lg lg:text-xl font-bold">Orders in Campaign (<span id="orders-count">0</span>)</h2>
                     </div>
                     <div class="table-container">
                         <table class="w-full text-left border-collapse min-w-[1000px]">
                             <thead class="bg-slate-100">
                                 <tr>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase">สินค้า / บริการ</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-center">จำนวนวัน</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-center">ความถี่</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-right">ส่วนลด</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-right font-black">ยอดสุทธิ</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-center">จัดการ</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase">Product / Service</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-center">Days</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-center">Frequency</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-right">Discount</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-right font-black">Net Amount</th>
+                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="orders-table-body" class="divide-y divide-slate-100">
                                 <tr>
-                                    <td colspan="6" class="px-6 py-12 text-center text-slate-400">ยังไม่มีรายการสั่งซื้อในแคมเปญนี้</td>
+                                    <td colspan="6" class="px-6 py-12 text-center text-slate-400">No orders in this campaign yet</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -694,69 +720,74 @@
                     <div class="p-4 lg:p-6 border-b border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-slate-50">
                         <div class="flex items-center gap-3">
                             <i class="fas fa-file-invoice-dollar text-blue-600 text-xl"></i>
-                            <h2 class="text-lg lg:text-xl font-bold">ตั้งค่าการออกเอกสาร</h2>
+                            <h2 class="text-lg lg:text-xl font-bold">Document Settings</h2>
                         </div>
                         <button onclick="printQuotation()" id="print-quotation-btn" class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-lg lg:rounded-xl text-sm font-bold shadow-lg transition-all active:scale-95 mobile-w-full lg:w-auto">
-                            <i class="fas fa-print"></i> พิมพ์ใบเสนอราคา
+                            <i class="fas fa-print"></i> Print Quotation
                         </button>
                     </div>
                     <div class="p-4 lg:p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                         <div class="space-y-1.5">
-                            <label class="text-sm font-semibold text-slate-700">เลือกลูกค้า</label>
+                            <label class="text-sm font-semibold text-slate-700">Select Customer</label>
                             <select id="quotation-customer" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500 bg-slate-100">
-                                <option value="">-- เลือกลูกค้า --</option>
+                                <option value="">-- Select Customer --</option>
                             </select>
                         </div>
                         <div class="space-y-1.5">
-                            <label class="text-sm font-semibold text-slate-700">ชื่อผู้เสนอราคา</label>
-                            <input type="text" id="staff-name" value="ฝ่ายขาย" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500 bg-slate-100">
+                            <label class="text-sm font-semibold text-slate-700">Sales Representative</label>
+                            <input type="text" id="staff-name" value="Sales Department" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500 bg-slate-100">
                         </div>
                         <div class="space-y-1.5">
-                            <label class="text-sm font-semibold text-slate-700">เบอร์ติดต่อผู้ขาย</label>
+                            <label class="text-sm font-semibold text-slate-700">Sales Contact Number</label>
                             <input type="text" id="staff-phone" value="055-287833" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500 bg-slate-100">
                         </div>
                     </div>
                 </div>
                 
                 <!-- Quotation Preview -->
-                <div id="quotation-preview" class="bg-white p-4 lg:p-6 xl:p-12 shadow-2xl rounded-sm border border-slate-200 max-w-5xl mx-auto text-slate-800 min-h-[1100px] flex flex-col font-['Sarabun'] hidden">
+                <div id="quotation-preview" class="bg-white p-4 lg:p-6 xl:p-8 shadow-2xl rounded-sm border border-slate-200 max-w-5xl mx-auto text-slate-800 min-h-[1100px] flex flex-col font-['Sarabun'] hidden">
                     <!-- Header -->
-                    <div class="flex flex-col items-center text-center border-b-4 border-slate-800 pb-4 lg:pb-6 mb-6 lg:mb-8">
-                        <h1 class="text-xl lg:text-2xl font-black text-blue-900 mb-1">MCOT Radio Network Phitsanulok</h1>
-                        <p class="text-base lg:text-lg font-bold">สถานีวิทยุกระจายเสียง อสมท จังหวัดพิษณุโลก F.M. 106.25 MHz.</p>
+                    <div class="quotation-header text-center mb-6">
+                        <h1 class="text-xl lg:text-2xl font-black text-blue-900 mb-1">ใบเสนอราคา</h1>
+                        <p class="text-base lg:text-lg font-bold">MCOT Radio Network Phitsanulok</p>
+                        <p class="text-sm">สถานีวิทยุกระจายเสียง อสมท จังหวัดพิษณุโลก F.M. 106.25 MHz.</p>
+                        <div class="quotation-line my-2"></div>
                         <p class="text-sm">บมจ.อสมท สาขาพิษณุโลก 1 สาขาที่ 00010</p>
                         <p class="text-sm">361/4 หมู่ที่ 2 ถนนบึงพระ-วัดหล่ม ต.บึงพระ อ.เมือง จ.พิษณุโลก 65000</p>
                         <p class="text-sm font-bold mt-1">โทร. 055-287833 | เลขประจำตัวผู้เสียภาษี 0107547000745</p>
+                        <div class="quotation-line my-2"></div>
                     </div>
                     
                     <!-- Customer Info -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-6 lg:mb-8 text-sm">
-                        <div class="space-y-1.5">
-                            <div class="flex">
-                                <span class="font-bold w-16 lg:w-20">เรียน:</span>
-                                <span id="quotation-company" class="font-black border-b border-dotted border-slate-400 flex-1"></span>
+                    <div class="quotation-section mb-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4 text-sm">
+                            <div class="space-y-2">
+                                <div class="flex items-start">
+                                    <span class="font-bold w-20">เรียน:</span>
+                                    <span id="quotation-company" class="font-black border-b border-dotted border-slate-400 flex-1 min-h-[1.5em]"></span>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="font-bold w-20">ที่อยู่:</span>
+                                    <span id="quotation-address" class="border-b border-dotted border-slate-400 flex-1 min-h-[1.5em]"></span>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="font-bold w-20">เบอร์โทร.:</span>
+                                    <span id="quotation-phone" class="border-b border-dotted border-slate-400 flex-1 min-h-[1.5em]"></span>
+                                </div>
                             </div>
-                            <div class="flex">
-                                <span class="font-bold w-16 lg:w-20">ที่อยู่:</span>
-                                <span id="quotation-address" class="border-b border-dotted border-slate-400 flex-1"></span>
-                            </div>
-                            <div class="flex">
-                                <span class="font-bold w-16 lg:w-20">เบอร์โทรศัพท์:</span>
-                                <span id="quotation-phone" class="border-b border-dotted border-slate-400 flex-1"></span>
-                            </div>
-                        </div>
-                        <div class="space-y-1.5 flex flex-col items-end">
-                            <div class="flex w-full justify-end">
-                                <span class="font-bold mr-2">วันที่:</span>
-                                <span class="font-bold border-b border-dotted border-slate-400 w-40 text-center">
-                                    <span id="quotation-date"></span>
-                                </span>
+                            <div class="space-y-2 flex flex-col items-end">
+                                <div class="flex w-full justify-end">
+                                    <span class="font-bold mr-2">วันที่:</span>
+                                    <span class="font-bold border-b border-dotted border-slate-400 w-40 text-center">
+                                        <span id="quotation-date"></span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Order Table -->
-                    <div class="flex-1 overflow-hidden mb-6 lg:mb-8">
+                    <div class="flex-1 overflow-hidden mb-6">
                         <div class="overflow-x-auto">
                             <table class="w-full text-xs border-collapse min-w-[600px]">
                                 <thead>
@@ -795,19 +826,18 @@
                     
                     <!-- Payment Details -->
                     <div class="mt-8 lg:mt-12 pt-6 lg:pt-8 border-t border-slate-300 text-xs">
-                        <h3 class="font-bold text-slate-800 mb-3 text-sm">รายละเอียดการชำระเงิน</h3>
+                        <h3 class="font-bold text-slate-800 mb-3 text-sm">เงื่อนไขและรายละเอียดการชำระเงิน</h3>
                         <div class="space-y-2">
-                            <p><strong>รัศมีการออกอากาศ:</strong> ครอบคลุมจังหวัดพิษณุโลก และเขตติดต่อ จังหวัดใกล้เคียงบางส่วน เช่น จังหวัดพิจิตร,สุโขทัย, อุตรดิตถ์ และเพชรบูรณ์</p>
                             <p><strong>เงื่อนไข:</strong></p>
                             <ul class="list-disc pl-5 ml-3 space-y-1">
-                                <li>ลูกค้ารายใหม่ชำระเงินก่อนออกอากาศ ในเวลาทำการ 09.00 น. – 15.00 น. (วันจันทร์ – วันศุกร์)</li>
-                                <li>ถ้าชำระหลัง เวลา 15.00 น. ถือว่าชำระในวันรุ่งขึ้น</li>
+                                <li>ลูกค้ารายใหม่ชำระเงินก่อนออกอากาศ ในเวลาทำการ เวลา 09.00 น. – 15.00 น. (วันจันทร์ – วันศุกร์)</li>
+                                <li>กรณีชำระหลัง เวลา 15.00 น. ถือว่าชำระในวันรุ่งขึ้น</li>
                             </ul>
                             <p><strong>รายละเอียดการชำระเงิน:</strong></p>
                             <ul class="list-disc pl-5 ml-3 space-y-1">
                                 <li><strong>ชำระเป็นเช็ค:</strong> สั่งจ่ายในนาม บมจ.อสมท</li>
                                 <li><strong>โอนเงินเข้าบัญชี:</strong> บมจ. อสมท บัญชีเลขที่ 015-1-05842-3 ธนาคารกรุงไทย สาขาสิงห์คอมเพล็กซ์</li>
-                                <li><strong>ชำระเป็นเงินสด:</strong> ที่ฝ่ายการเงิน บมจ. อสมท สาขาพิษณุโลก 1 ในเวลาทำการ 09.00 น. – 15.00 น.</li>
+                                <li><strong>ชำระเป็นเงินสด:</strong> ที่ฝ่ายการเงิน บมจ. อสมท สาขาพิษณุโลก 1 ในเวลาทำการ เวลา 09.00 น. – 15.00 น. (วันจันทร์ – วันศุกร์)</li>
                                 <li><strong>หนังสือรับรองการหักภาษี ณ ที่จ่าย ออกในนาม:</strong> บมจ.อสมท 63/1 ถ.พระราม 9 แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพฯ 10310 เลขประจำตัวผู้เสียภาษี 0107547000745</li>
                             </ul>
                         </div>
@@ -817,7 +847,7 @@
                     <div class="mt-8 lg:mt-12 mb-8 lg:mb-12 flex justify-end">
                         <div class="text-center w-56 lg:w-64 space-y-8 lg:space-y-12">
                             <div class="border-b border-slate-300 pb-1">
-                                <p class="text-sm font-bold text-slate-800">ผู้เสนอราคา: <span id="quotation-staff-name">ฝ่ายขาย</span></p>
+                                <p class="text-sm font-bold text-slate-800">ผู้เสนอราคา: <span id="quotation-staff-name">Sales Department</span></p>
                             </div>
                             <div class="space-y-1">
                                 <p class="text-xs">(....................................................................)</p>
@@ -830,8 +860,8 @@
                 <!-- Empty State -->
                 <div id="quotation-empty" class="bg-white rounded-xl lg:rounded-2xl p-12 lg:p-24 text-center text-slate-400 border border-slate-200 shadow-sm flex flex-col items-center gap-4">
                     <i class="fas fa-file-invoice-dollar text-4xl lg:text-6xl opacity-10"></i>
-                    <p class="text-base lg:text-lg font-medium">กรุณาเลือกลูกค้าเพื่อแสดงตัวอย่างใบเสนอราคา</p>
-                    <p class="text-sm">ใบเสนอราคาจะถูกสร้างขึ้นอัตโนมัติตามรายการที่เลือก</p>
+                    <p class="text-base lg:text-lg font-medium">Please select a customer to preview quotation</p>
+                    <p class="text-sm">Quotation will be automatically generated based on selected items</p>
                 </div>
             </div>
         </div>
@@ -889,6 +919,10 @@
             note: ''
         };
         
+        // ========== AUTO SAVE SETTINGS ==========
+        const AUTO_SAVE_INTERVAL = 15 * 60 * 1000; // 15 นาที
+        let autoSaveTimer = null;
+        
         // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', function() {
             loadData();
@@ -896,8 +930,8 @@
             switchTab('customers');
             updateBadges();
             
-            // Auto-save every 30 seconds
-            setInterval(saveData, 30000);
+            // Auto-save every 15 minutes
+            setupAutoSave();
             
             // Initialize orders tab
             initializeOrdersTab();
@@ -908,6 +942,20 @@
             // Check and update product code numbers
             updateProductCodeNumbers();
         });
+        
+        // ========== AUTO SAVE FUNCTION ==========
+        function setupAutoSave() {
+            if (autoSaveTimer) {
+                clearInterval(autoSaveTimer);
+            }
+            
+            autoSaveTimer = setInterval(function() {
+                if (systemData.customers.length > 0 || systemData.products.length > 0 || systemData.orders.length > 0) {
+                    saveData();
+                    console.log('Auto-saved at ' + new Date().toLocaleTimeString());
+                }
+            }, AUTO_SAVE_INTERVAL);
+        }
         
         // ========== MOBILE MENU FUNCTIONS ==========
         function setupMobileMenu() {
@@ -924,6 +972,14 @@
                     document.body.style.overflow = 'hidden';
                 });
             }
+            
+            // Add event listeners to all mobile menu items
+            document.querySelectorAll('.mobile-menu-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Prevent event bubbling
+                    e.stopPropagation();
+                });
+            });
         }
         
         function closeMobileMenu() {
@@ -1213,13 +1269,13 @@
         
         function getTabTitle(tabName) {
             const titles = {
-                'customers': 'ลูกค้า',
-                'products': 'สินค้า',
-                'packages': 'แพ็กเกจ',
-                'orders': 'รายการสั่งซื้อ',
-                'quotations': 'ใบเสนอราคา'
+                'customers': 'Customer Management',
+                'products': 'Product Management',
+                'packages': 'Package Management',
+                'orders': 'Order Management',
+                'quotations': 'Quotation Management'
             };
-            return titles[tabName] || 'ระบบจัดการแพ็กเกจ';
+            return titles[tabName] || 'Package Management System';
         }
         
         // ========== CUSTOMER MANAGEMENT ==========
@@ -1302,7 +1358,7 @@
                                 customer.type === 'รัฐวิสาหกิจ' ? 'bg-cyan-100 text-cyan-700' :
                                 'bg-emerald-100 text-emerald-700'
                             }">
-                                ${customer.type}
+                                ${customer.type === 'เอกชน' ? 'Private' : customer.type === 'ราชการ' ? 'Government' : 'State Enterprise'}
                             </span>
                         </td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
@@ -1414,9 +1470,9 @@
             }
             
             // Update form title and button
-            document.getElementById('product-form-title').textContent = 'แก้ไขสินค้า';
+            document.getElementById('product-form-title').textContent = 'Edit Product';
             document.getElementById('product-form-icon').className = 'fas fa-edit text-xl';
-            document.getElementById('submit-product-btn').innerHTML = '<i class="fas fa-save"></i> บันทึกการแก้ไข';
+            document.getElementById('submit-product-btn').innerHTML = '<i class="fas fa-save"></i> Save Changes';
             document.getElementById('cancel-edit-btn').classList.remove('hidden');
             
             // Scroll to form
@@ -1439,9 +1495,9 @@
             document.getElementById('promotion-detail-container').classList.add('hidden');
             
             // Reset form title and button
-            document.getElementById('product-form-title').textContent = 'เพิ่มสินค้าใหม่';
+            document.getElementById('product-form-title').textContent = 'Add New Product';
             document.getElementById('product-form-icon').className = 'fas fa-plus text-xl';
-            document.getElementById('submit-product-btn').innerHTML = '<i class="fas fa-plus"></i> เพิ่มสินค้า';
+            document.getElementById('submit-product-btn').innerHTML = '<i class="fas fa-plus"></i> Add Product';
             document.getElementById('cancel-edit-btn').classList.add('hidden');
             
             // Reset product code
@@ -1509,7 +1565,7 @@
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
                             <div class="font-bold text-blue-600">${product.price.toLocaleString()} ฿</div>
                             ${product.promotion === 'มี' && product.promotionDetail ? 
-                                `<div class="text-xs text-emerald-600 font-bold">โปรโมชัน: ${product.promotionDetail}</div>` : ''}
+                                `<div class="text-xs text-emerald-600 font-bold">Promotion: ${product.promotionDetail}</div>` : ''}
                         </td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4 text-right">
                             <div class="flex items-center justify-end gap-2">
@@ -1683,7 +1739,7 @@
             const select = document.getElementById('order-customer');
             if (!select) return;
             
-            select.innerHTML = '<option value="">-- เลือกลูกค้า --</option>';
+            select.innerHTML = '<option value="">-- Select Customer --</option>';
             
             systemData.customers.forEach(customer => {
                 const option = document.createElement('option');
@@ -1697,7 +1753,7 @@
             const select = document.getElementById('order-product');
             if (!select) return;
             
-            select.innerHTML = '<option value="">-- เลือกรายการ --</option>';
+            select.innerHTML = '<option value="">-- Select Item --</option>';
             
             let availableItems = [];
             
@@ -1744,7 +1800,10 @@
             
             if (selectedCustomer) {
                 display.classList.remove('hidden');
-                typeText.textContent = selectedCustomer.type;
+                const typeDisplay = selectedCustomer.type === 'เอกชน' ? 'Private' : 
+                                   selectedCustomer.type === 'ราชการ' ? 'Government' : 
+                                   'State Enterprise';
+                typeText.textContent = typeDisplay;
             } else {
                 display.classList.add('hidden');
             }
@@ -1753,7 +1812,7 @@
         function updateSelectedSlotsCount() {
             const countElement = document.getElementById('selected-slots-count');
             if (countElement) {
-                countElement.textContent = `เลือกแล้ว: ${currentOrder.selectedSlots.length} ครั้ง/วัน`;
+                countElement.textContent = `Selected: ${currentOrder.selectedSlots.length} times/day`;
             }
         }
         
@@ -1850,7 +1909,7 @@
                 summaryElement.innerHTML = `
                     <div class="py-8 lg:py-12 flex flex-col items-center justify-center text-slate-300 gap-3 text-center">
                         <i class="fas fa-calculator text-3xl lg:text-4xl opacity-20"></i>
-                        <p class="text-xs">ระบุข้อมูลลูกค้า วันออกอากาศ<br/>และเลือกสินค้าเพื่อคำนวณราคา</p>
+                        <p class="text-xs">Specify customer, broadcast schedule<br/>and select product to calculate price</p>
                     </div>
                 `;
                 return;
@@ -1868,19 +1927,19 @@
             summaryElement.innerHTML = `
                 <div class="space-y-3 pb-4 border-b border-slate-100">
                     <div class="flex justify-between text-sm">
-                        <span class="text-slate-500">จำนวนวันออกอากาศ:</span>
-                        <span class="font-bold">${result.totalDays} วัน</span>
+                        <span class="text-slate-500">Broadcast Days:</span>
+                        <span class="font-bold">${result.totalDays} days</span>
                     </div>
                     <div class="flex justify-between text-sm">
-                        <span class="text-slate-500">จำนวนครั้งต่อวัน:</span>
-                        <span class="font-bold text-blue-600">${result.timesPerDay} ครั้ง</span>
+                        <span class="text-slate-500">Times per Day:</span>
+                        <span class="font-bold text-blue-600">${result.timesPerDay} times</span>
                     </div>
                     <div class="flex justify-between text-sm">
-                        <span class="text-slate-500">ระยะเวลาแคมเปญ:</span>
-                        <span class="font-bold text-slate-900">${result.totalMonths.toFixed(1)} เดือน</span>
+                        <span class="text-slate-500">Campaign Duration:</span>
+                        <span class="font-bold text-slate-900">${result.totalMonths.toFixed(1)} months</span>
                     </div>
                     <div class="flex justify-between text-sm">
-                        <span class="text-slate-500">ราคาก่อนหักส่วนลด:</span>
+                        <span class="text-slate-500">Price Before Discount:</span>
                         <span class="font-bold">${result.baseTotal.toLocaleString()} ฿</span>
                     </div>
                 </div>
@@ -1889,14 +1948,14 @@
                     ${discountExplanation}
                     <div class="flex justify-between text-sm text-emerald-600">
                         <span class="flex items-center gap-1 font-bold">
-                            <i class="fas fa-tag text-xs"></i> ส่วนลดเงื่อนไข (${result.conditionDiscountPercent}%):
+                            <i class="fas fa-tag text-xs"></i> Condition Discount (${result.conditionDiscountPercent}%):
                         </span>
                         <span class="font-bold">- ${(result.baseTotal * result.conditionDiscountPercent / 100).toLocaleString()} ฿</span>
                     </div>
                     ${result.paymentDiscountPercent > 0 ? `
                     <div class="flex justify-between text-sm text-emerald-600">
                         <span class="flex items-center gap-1 font-bold">
-                            <i class="fas fa-credit-card text-xs"></i> ส่วนลดจ่ายล่วงหน้า (${result.paymentDiscountPercent}%):
+                            <i class="fas fa-credit-card text-xs"></i> Advance Payment Discount (${result.paymentDiscountPercent}%):
                         </span>
                         <span class="font-bold">- ${((result.baseTotal - (result.baseTotal * result.conditionDiscountPercent / 100)) * result.paymentDiscountPercent / 100).toLocaleString()} ฿</span>
                     </div>
@@ -1905,7 +1964,7 @@
 
                 <div class="space-y-2 pt-2">
                     <div class="flex justify-between text-sm">
-                        <span class="text-slate-500">ราคาหลังส่วนลด:</span>
+                        <span class="text-slate-500">Price After Discount:</span>
                         <span class="font-bold text-slate-900">${result.priceAfterDiscount.toLocaleString()} ฿</span>
                     </div>
                     <div class="flex justify-between text-sm">
@@ -1913,13 +1972,13 @@
                         <span class="font-bold text-slate-900">${result.vatAmount.toLocaleString()} ฿</span>
                     </div>
                     <div class="flex justify-between items-center pt-2">
-                        <span class="text-lg font-bold text-blue-900">ยอดสุทธิ:</span>
+                        <span class="text-lg font-bold text-blue-900">Net Total:</span>
                         <span class="text-2xl font-black text-blue-600">${result.netTotal.toLocaleString()} ฿</span>
                     </div>
                 </div>
 
                 <button onclick="addOrderToCampaign()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 lg:py-4 rounded-lg lg:rounded-xl font-bold shadow-lg hover:shadow-blue-200 transition-all flex items-center justify-center gap-2 mt-4">
-                    <i class="fas fa-plus"></i> เพิ่มรายการเข้าแคมเปญ
+                    <i class="fas fa-plus"></i> Add to Campaign
                 </button>
             `;
         }
@@ -2001,7 +2060,7 @@
             if (systemData.orders.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="px-6 py-12 text-center text-slate-400">ยังไม่มีรายการสั่งซื้อในแคมเปญนี้</td>
+                        <td colspan="6" class="px-6 py-12 text-center text-slate-400">No orders in this campaign yet</td>
                     </tr>
                 `;
                 return;
@@ -2020,8 +2079,8 @@
                         </div>
                         ${order.note ? `<div class="text-xs text-blue-600 mt-1">* ${order.note}</div>` : ''}
                     </td>
-                    <td class="px-4 lg:px-6 py-3 lg:py-4 text-center font-medium">${order.totalDays} วัน</td>
-                    <td class="px-4 lg:px-6 py-3 lg:py-4 text-center font-medium">${order.timesPerDay} ครั้ง/วัน</td>
+                    <td class="px-4 lg:px-6 py-3 lg:py-4 text-center font-medium">${order.totalDays} days</td>
+                    <td class="px-4 lg:px-6 py-3 lg:py-4 text-center font-medium">${order.timesPerDay} times/day</td>
                     <td class="px-4 lg:px-6 py-3 lg:py-4 text-right">
                         <div class="text-emerald-600 font-bold">- ${order.totalDiscountAmount.toLocaleString()}</div>
                         <div class="text-[10px] text-slate-500 mt-1">
@@ -2083,7 +2142,7 @@
             const select = document.getElementById('quotation-customer');
             if (!select) return;
             
-            select.innerHTML = '<option value="">-- เลือกลูกค้า --</option>';
+            select.innerHTML = '<option value="">-- Select Customer --</option>';
             
             systemData.customers.forEach(customer => {
                 const option = document.createElement('option');
@@ -2261,7 +2320,7 @@
                 const date = new Date(systemData.settings.lastSave);
                 lastSavedEl.textContent = `${date.toLocaleDateString('th-TH')} ${date.toLocaleTimeString('th-TH')}`;
             } else {
-                lastSavedEl.textContent = 'ไม่เคยบันทึก';
+                lastSavedEl.textContent = 'Not saved yet';
             }
         }
         
@@ -2297,7 +2356,7 @@
         }
         
         function showPackageForm() {
-            alert('ฟีเจอร์แพ็กเกจอยู่ระหว่างการพัฒนา\n\nแผนพัฒนาเวอร์ชั่นต่อไป:\n1. การสร้างแพ็กเกจสินค้าแบบผสม\n2. ระบบจัดการแพ็กเกจแบบครบวงจร\n3. ฟีเจอร์การคำนวณราคาแพ็กเกจอัตโนมัติ');
+            alert('Package feature is under development.\n\nNext version development plan:\n1. Mixed product package creation\n2. Comprehensive package management system\n3. Automatic package pricing calculation feature');
         }
     </script>
 </body>
