@@ -225,6 +225,34 @@
             width: 100% !important;
         }
         
+        /* Sidebar Toggle Button */
+        .sidebar-toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            background: #1c5bb8;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            display: none;
+        }
+        
+        .sidebar-toggle-btn:hover {
+            background: #0d3b66;
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 1024px) {
+            .sidebar-toggle-btn {
+                display: block;
+            }
+        }
+        
         /* Product Categories */
         .product-category-tab {
             transition: all 0.2s;
@@ -289,9 +317,42 @@
         .form-hidden {
             display: none !important;
         }
+        
+        /* Desktop Sidebar Toggle */
+        .desktop-sidebar-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: #1c5bb8;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+            font-weight: bold;
+        }
+        
+        .desktop-sidebar-toggle:hover {
+            background: #0d3b66;
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 1024px) {
+            .desktop-sidebar-toggle {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
+    <!-- Sidebar Toggle Button (Desktop) -->
+    <button id="desktop-sidebar-toggle" class="desktop-sidebar-toggle no-print" onclick="toggleSidebar()">
+        <i class="fas fa-angle-double-left" id="sidebar-toggle-icon"></i> ซ่อนเมนู
+    </button>
+    
     <!-- Mobile Menu Button -->
     <div class="lg:hidden fixed top-4 left-4 z-40">
         <button id="mobile-menu-btn" class="bg-[#1c5bb8] text-white p-3 rounded-xl shadow-lg">
@@ -303,7 +364,7 @@
     <div id="mobile-menu-overlay" class="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
     
     <!-- Navigation Sidebar -->
-    <div id="sidebar" class="fixed left-0 top-0 h-screen w-64 mcot-gradient text-white z-50 no-print lg:block hidden transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+    <div id="sidebar" class="fixed left-0 top-0 h-screen w-64 mcot-gradient text-white z-50 no-print lg:block transform transition-transform duration-300">
         <div class="p-4 lg:p-6 flex flex-col items-center border-b border-white/10">
             <div class="bg-white p-2 lg:p-3 rounded-2xl mb-3 lg:mb-4 shadow-xl">
                 <i class="fas fa-broadcast-tower text-[#1c5bb8] text-3xl lg:text-4xl"></i>
@@ -349,9 +410,6 @@
         <div class="p-3 lg:p-4 border-t border-white/10 space-y-2 bg-black/10">
             <div class="flex justify-between items-center mb-2">
                 <p class="text-[10px] font-bold text-white/40 uppercase tracking-widest px-1">คำสั่งหลัก</p>
-                <button onclick="toggleSidebar()" class="text-white/60 hover:text-white transition-colors">
-                    <i class="fas fa-angle-double-left" id="sidebar-toggle-icon"></i>
-                </button>
             </div>
             <button onclick="saveData()" class="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg text-sm font-semibold shadow-md transition-all active:scale-95">
                 <i class="fas fa-save text-sm"></i> <span class="mobile-text-base">Save</span>
@@ -520,7 +578,7 @@
         <!-- Products Tab -->
         <div id="products-tab" class="tab-content animate-fadeIn hidden">
             <div class="space-y-6 lg:space-y-8">
-                <!-- Product Categories -->
+                <!-- Product List -->
                 <div class="bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                     <div class="p-4 lg:p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50">
                         <div class="flex items-center gap-3">
@@ -766,10 +824,10 @@
                             </div>
                             
                             <div class="flex flex-wrap gap-2 mb-3">
-                                <button type="button" onclick="filterPackageCategory('all')" class="package-cat-btn px-4 py-2 text-sm font-bold rounded-lg bg-blue-600 text-white">ทั้งหมด</button>
-                                <button type="button" onclick="filterPackageCategory('onAir')" class="package-cat-btn px-4 py-2 text-sm font-bold rounded-lg bg-slate-100 text-slate-700">On Air</button>
-                                <button type="button" onclick="filterPackageCategory('online')" class="package-cat-btn px-4 py-2 text-sm font-bold rounded-lg bg-slate-100 text-slate-700">Online</button>
-                                <button type="button" onclick="filterPackageCategory('production')" class="package-cat-btn px-4 py-2 text-sm font-bold rounded-lg bg-slate-100 text-slate-700">Production</button>
+                                <button type="button" onclick="filterPackageCategory('all')" id="package-cat-all" class="package-cat-btn px-4 py-2 text-sm font-bold rounded-lg bg-blue-600 text-white">ทั้งหมด</button>
+                                <button type="button" onclick="filterPackageCategory('onAir')" id="package-cat-onAir" class="package-cat-btn px-4 py-2 text-sm font-bold rounded-lg bg-slate-100 text-slate-700">On Air</button>
+                                <button type="button" onclick="filterPackageCategory('online')" id="package-cat-online" class="package-cat-btn px-4 py-2 text-sm font-bold rounded-lg bg-slate-100 text-slate-700">Online</button>
+                                <button type="button" onclick="filterPackageCategory('production')" id="package-cat-production" class="package-cat-btn px-4 py-2 text-sm font-bold rounded-lg bg-slate-100 text-slate-700">Production</button>
                             </div>
                             
                             <div class="bg-slate-50 rounded-lg lg:rounded-xl p-4 max-h-96 overflow-y-auto">
@@ -1317,62 +1375,74 @@
         
         // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-            setupEventListeners();
-            switchTab('customers');
-            updateBadges();
-            
-            // Auto-save every 15 minutes
-            setupAutoSave();
-            
-            // Initialize orders tab
-            initializeOrdersTab();
-            
-            // Setup mobile menu
-            setupMobileMenu();
-            
-            // Check and update product code numbers
-            updateProductCodeNumbers();
-            
-            // Update package counter
-            updatePackageCounter();
+            // Check if elements exist before using them
+            setTimeout(() => {
+                loadData();
+                setupEventListeners();
+                switchTab('customers');
+                updateBadges();
+                
+                // Auto-save every 15 minutes
+                setupAutoSave();
+                
+                // Initialize orders tab
+                initializeOrdersTab();
+                
+                // Setup mobile menu
+                setupMobileMenu();
+                
+                // Check and update product code numbers
+                updateProductCodeNumbers();
+                
+                // Update package counter
+                updatePackageCounter();
+                
+                // Restore sidebar state
+                restoreSidebarState();
+            }, 100); // Small delay to ensure DOM is ready
         });
-        
-        // ========== AUTO SAVE FUNCTION ==========
-        function setupAutoSave() {
-            if (autoSaveTimer) {
-                clearInterval(autoSaveTimer);
-            }
-            
-            autoSaveTimer = setInterval(function() {
-                if (systemData.customers.length > 0 || systemData.products.length > 0 || systemData.orders.length > 0 || systemData.packages.length > 0) {
-                    saveData();
-                    console.log('Auto-saved at ' + new Date().toLocaleTimeString());
-                }
-            }, AUTO_SAVE_INTERVAL);
-        }
         
         // ========== SIDEBAR FUNCTIONS ==========
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const mainContent = document.getElementById('main-content');
             const icon = document.getElementById('sidebar-toggle-icon');
+            const toggleBtn = document.getElementById('desktop-sidebar-toggle');
             
-            if (sidebar.classList.contains('lg:block')) {
-                if (sidebar.classList.contains('sidebar-hidden')) {
-                    sidebar.classList.remove('sidebar-hidden');
-                    mainContent.classList.remove('main-content-expanded');
-                    icon.classList.remove('fa-angle-double-right');
-                    icon.classList.add('fa-angle-double-left');
-                    systemData.settings.sidebarHidden = false;
-                } else {
+            if (!sidebar || !mainContent || !icon || !toggleBtn) return;
+            
+            if (sidebar.classList.contains('sidebar-hidden')) {
+                sidebar.classList.remove('sidebar-hidden');
+                mainContent.classList.remove('main-content-expanded');
+                icon.classList.remove('fa-angle-double-right');
+                icon.classList.add('fa-angle-double-left');
+                toggleBtn.innerHTML = '<i class="fas fa-angle-double-left" id="sidebar-toggle-icon"></i> ซ่อนเมนู';
+                systemData.settings.sidebarHidden = false;
+            } else {
+                sidebar.classList.add('sidebar-hidden');
+                mainContent.classList.add('main-content-expanded');
+                icon.classList.remove('fa-angle-double-left');
+                icon.classList.add('fa-angle-double-right');
+                toggleBtn.innerHTML = '<i class="fas fa-angle-double-right" id="sidebar-toggle-icon"></i> แสดงเมนู';
+                systemData.settings.sidebarHidden = true;
+            }
+            saveData();
+        }
+        
+        function restoreSidebarState() {
+            if (systemData.settings.sidebarHidden) {
+                const sidebar = document.getElementById('sidebar');
+                const mainContent = document.getElementById('main-content');
+                const icon = document.getElementById('sidebar-toggle-icon');
+                const toggleBtn = document.getElementById('desktop-sidebar-toggle');
+                
+                if (sidebar && mainContent && icon && toggleBtn) {
                     sidebar.classList.add('sidebar-hidden');
                     mainContent.classList.add('main-content-expanded');
                     icon.classList.remove('fa-angle-double-left');
                     icon.classList.add('fa-angle-double-right');
-                    systemData.settings.sidebarHidden = true;
+                    toggleBtn.innerHTML = '<i class="fas fa-angle-double-right" id="sidebar-toggle-icon"></i> แสดงเมนู';
                 }
-                saveData();
             }
         }
         
@@ -1384,9 +1454,9 @@
             
             if (mobileMenuBtn && mobileMenuOverlay && sidebar) {
                 mobileMenuBtn.addEventListener('click', function() {
-                    sidebar.classList.remove('hidden');
+                    sidebar.classList.remove('hidden', 'sidebar-hidden');
                     sidebar.classList.add('slide-in');
-                    sidebar.classList.remove('-translate-x-full', 'sidebar-hidden');
+                    sidebar.classList.remove('-translate-x-full');
                     mobileMenuOverlay.classList.add('mobile-menu-open');
                     document.body.style.overflow = 'hidden';
                 });
@@ -1417,77 +1487,81 @@
         // ========== FORM TOGGLE FUNCTIONS ==========
         function toggleCustomerForm() {
             const form = document.getElementById('customer-form-container');
-            form.classList.toggle('form-hidden');
-            if (!form.classList.contains('form-hidden')) {
-                resetCustomerForm();
-                form.scrollIntoView({ behavior: 'smooth' });
+            if (form) {
+                form.classList.toggle('form-hidden');
+                if (!form.classList.contains('form-hidden')) {
+                    resetCustomerForm();
+                    form.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         }
         
         function hideCustomerForm() {
-            document.getElementById('customer-form-container').classList.add('form-hidden');
-            resetCustomerForm();
+            const form = document.getElementById('customer-form-container');
+            if (form) {
+                form.classList.add('form-hidden');
+                resetCustomerForm();
+            }
         }
         
         function toggleProductForm() {
             const form = document.getElementById('product-form-container');
-            form.classList.toggle('form-hidden');
-            if (!form.classList.contains('form-hidden')) {
-                resetProductForm();
-                form.scrollIntoView({ behavior: 'smooth' });
+            if (form) {
+                form.classList.toggle('form-hidden');
+                if (!form.classList.contains('form-hidden')) {
+                    resetProductForm();
+                    form.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         }
         
         function hideProductForm() {
-            document.getElementById('product-form-container').classList.add('form-hidden');
-            resetProductForm();
+            const form = document.getElementById('product-form-container');
+            if (form) {
+                form.classList.add('form-hidden');
+                resetProductForm();
+            }
         }
         
         function togglePackageForm() {
             const form = document.getElementById('package-form-container');
-            form.classList.toggle('form-hidden');
-            if (!form.classList.contains('form-hidden')) {
-                resetPackageForm();
-                form.scrollIntoView({ behavior: 'smooth' });
+            if (form) {
+                form.classList.toggle('form-hidden');
+                if (!form.classList.contains('form-hidden')) {
+                    resetPackageForm();
+                    form.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         }
         
         function hidePackageForm() {
-            document.getElementById('package-form-container').classList.add('form-hidden');
-            resetPackageForm();
+            const form = document.getElementById('package-form-container');
+            if (form) {
+                form.classList.add('form-hidden');
+                resetPackageForm();
+            }
         }
         
         // ========== DATA MANAGEMENT ==========
         function loadData() {
-            const saved = localStorage.getItem('mcot_package_v4_data');
-            if (saved) {
-                try {
+            try {
+                const saved = localStorage.getItem('mcot_package_v4_data');
+                if (saved) {
                     systemData = JSON.parse(saved);
-                    updateLastSaved();
-                    renderAll();
-                } catch (e) {
-                    console.error("Error loading data:", e);
-                    alert("เกิดข้อผิดพลาดในการโหลดข้อมูล");
+                } else {
+                    addSampleData();
                 }
-            } else {
+                updateLastSaved();
+                renderAll();
+            } catch (e) {
+                console.error("Error loading data:", e);
+                // Silent fail - don't show alert
                 addSampleData();
-            }
-            
-            // Restore sidebar state
-            if (systemData.settings.sidebarHidden) {
-                const sidebar = document.getElementById('sidebar');
-                const mainContent = document.getElementById('main-content');
-                const icon = document.getElementById('sidebar-toggle-icon');
-                if (sidebar && mainContent && icon) {
-                    sidebar.classList.add('sidebar-hidden');
-                    mainContent.classList.add('main-content-expanded');
-                    icon.classList.remove('fa-angle-double-left');
-                    icon.classList.add('fa-angle-double-right');
-                }
             }
         }
         
         function addSampleData() {
+            // Sample customers
             systemData.customers = [
                 {
                     id: 'CUST-1',
@@ -1581,7 +1655,6 @@
             
             updatePackageCounter();
             saveData();
-            renderAll();
         }
         
         function updateProductCodeNumbers() {
@@ -1703,15 +1776,18 @@
             closeMobileMenu();
             
             document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.add('hidden');
+                if (tab) tab.classList.add('hidden');
             });
             
             document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('border-[#f9a826]', 'bg-white/15');
-                btn.classList.add('border-transparent');
+                if (btn) {
+                    btn.classList.remove('border-[#f9a826]', 'bg-white/15');
+                    btn.classList.add('border-transparent');
+                }
             });
             
-            document.getElementById(`${tabName}-tab`).classList.remove('hidden');
+            const tabElement = document.getElementById(`${tabName}-tab`);
+            if (tabElement) tabElement.classList.remove('hidden');
             
             const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabName}"]`);
             if (activeBtn) {
@@ -1719,7 +1795,8 @@
                 activeBtn.classList.remove('border-transparent');
             }
             
-            document.getElementById('page-title').textContent = getTabTitle(tabName);
+            const titleElement = document.getElementById('page-title');
+            if (titleElement) titleElement.textContent = getTabTitle(tabName);
             
             if (tabName === 'customers') {
                 renderCustomers();
@@ -1761,6 +1838,19 @@
                 'report': 'Report Management'
             };
             return titles[tabName] || 'ระบบจัดการแพ็กเกจ';
+        }
+        
+        // ========== AUTO SAVE FUNCTION ==========
+        function setupAutoSave() {
+            if (autoSaveTimer) {
+                clearInterval(autoSaveTimer);
+            }
+            
+            autoSaveTimer = setInterval(function() {
+                if (systemData.customers.length > 0 || systemData.products.length > 0 || systemData.orders.length > 0 || systemData.packages.length > 0) {
+                    saveData();
+                }
+            }, AUTO_SAVE_INTERVAL);
         }
         
         // ========== CUSTOMER MANAGEMENT ==========
@@ -1827,7 +1917,6 @@
             document.getElementById('submit-customer-btn').innerHTML = '<i class="fas fa-save"></i> บันทึกการแก้ไข';
             document.getElementById('cancel-edit-customer-btn').classList.remove('hidden');
             
-            // Show and scroll to form
             const form = document.getElementById('customer-form-container');
             form.classList.remove('form-hidden');
             form.scrollIntoView({ behavior: 'smooth' });
@@ -1853,13 +1942,17 @@
         }
         
         function renderCustomers() {
-            const searchTerm = document.getElementById('customer-search').value.toLowerCase();
+            const searchInput = document.getElementById('customer-search');
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            
             const filteredCustomers = systemData.customers.filter(customer => 
                 customer.company.toLowerCase().includes(searchTerm) || 
                 customer.name.toLowerCase().includes(searchTerm)
             );
             
             const customerList = document.getElementById('customer-list');
+            if (!customerList) return;
+            
             customerList.innerHTML = '';
             
             if (filteredCustomers.length === 0) {
@@ -1879,8 +1972,8 @@
                     row.className = 'hover:bg-slate-50 transition-colors';
                     row.innerHTML = `
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
-                            <div class="font-bold text-slate-900">${customer.company}</div>
-                            <div class="text-sm text-slate-500">${customer.name}</div>
+                            <div class="font-bold text-slate-900">${escapeHtml(customer.company)}</div>
+                            <div class="text-sm text-slate-500">${escapeHtml(customer.name)}</div>
                         </td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
                             <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase ${
@@ -1894,11 +1987,11 @@
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
                             <div class="flex flex-col gap-1">
                                 <div class="flex items-center gap-2 text-sm text-slate-600">
-                                    <i class="fas fa-phone text-slate-400 text-sm"></i> ${customer.phone}
+                                    <i class="fas fa-phone text-slate-400 text-sm"></i> ${escapeHtml(customer.phone)}
                                 </div>
                                 ${customer.email ? `
                                     <div class="flex items-center gap-2 text-sm text-slate-600">
-                                        <i class="fas fa-envelope text-slate-400 text-sm"></i> ${customer.email}
+                                        <i class="fas fa-envelope text-slate-400 text-sm"></i> ${escapeHtml(customer.email)}
                                     </div>
                                 ` : ''}
                             </div>
@@ -1918,7 +2011,9 @@
                 });
             }
             
-            document.getElementById('customer-count').textContent = systemData.customers.length;
+            const countElement = document.getElementById('customer-count');
+            if (countElement) countElement.textContent = systemData.customers.length;
+            
             populateOrderCustomerSelect();
             populateQuotationCustomerSelect();
         }
@@ -1927,10 +2022,11 @@
         function filterProductCategory(category) {
             currentProductCategory = category;
             
-            // Update tab styles
             document.querySelectorAll('.product-category-tab').forEach(tab => {
-                tab.classList.remove('bg-blue-600', 'text-white');
-                tab.classList.add('bg-slate-100', 'text-slate-700');
+                if (tab) {
+                    tab.classList.remove('bg-blue-600', 'text-white');
+                    tab.classList.add('bg-slate-100', 'text-slate-700');
+                }
             });
             
             const activeTab = document.getElementById(`cat-${category === 'all' ? 'all' : category}`);
@@ -1943,17 +2039,24 @@
         }
         
         function updateProductCode() {
-            const productType = document.getElementById('product-type').value;
-            if (productType && productTypeCodes[productType]) {
-                const productCode = generateProductCode(productType);
-                document.getElementById('product-code').value = productCode;
+            const productType = document.getElementById('product-type');
+            if (!productType) return;
+            
+            const type = productType.value;
+            if (type && productTypeCodes[type]) {
+                const productCode = generateProductCode(type);
+                const codeInput = document.getElementById('product-code');
+                if (codeInput) codeInput.value = productCode;
             } else {
-                document.getElementById('product-code').value = '';
+                const codeInput = document.getElementById('product-code');
+                if (codeInput) codeInput.value = '';
             }
         }
         
         function insertSampleLink(type) {
             const input = document.getElementById('product-sample-link');
+            if (!input) return;
+            
             if (type === 'youtube') {
                 input.value = 'https://youtube.com/watch?v=';
             } else if (type === 'tiktok') {
@@ -1967,22 +2070,28 @@
         function addProduct(event) {
             if (event) event.preventDefault();
             
-            const name = document.getElementById('product-name').value;
-            const price = document.getElementById('product-price').value;
-            const type = document.getElementById('product-type').value;
+            const name = document.getElementById('product-name');
+            const price = document.getElementById('product-price');
+            const type = document.getElementById('product-type');
+            
+            if (!name || !price || !type) return;
+            
+            const nameVal = name.value;
+            const priceVal = price.value;
+            const typeVal = type.value;
             const productId = document.getElementById('product-id').value;
             
-            if (!name || !price || !type) {
+            if (!nameVal || !priceVal || !typeVal) {
                 showNotification('กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน', 'error');
                 return;
             }
             
             const productData = {
                 id: productId || `PROD-${Date.now()}`,
-                code: document.getElementById('product-code').value || generateProductCode(type),
-                name: name,
-                type: type,
-                price: parseFloat(price),
+                code: document.getElementById('product-code').value || generateProductCode(typeVal),
+                name: nameVal,
+                type: typeVal,
+                price: parseFloat(priceVal),
                 promotion: document.getElementById('product-promotion').value,
                 promotionDetail: document.getElementById('product-promotion').value === 'มี' ? 
                     document.getElementById('product-promotion-detail').value : undefined,
@@ -2048,32 +2157,49 @@
         }
         
         function resetProductForm() {
-            document.getElementById('add-product-form').reset();
-            document.getElementById('product-id').value = '';
-            document.getElementById('product-code').value = '';
-            document.getElementById('promotion-detail-container').classList.add('hidden');
+            const form = document.getElementById('add-product-form');
+            if (form) form.reset();
             
-            document.getElementById('product-form-title').textContent = 'เพิ่มสินค้าใหม่';
-            document.getElementById('product-form-icon').className = 'fas fa-plus text-xl';
-            document.getElementById('submit-product-btn').innerHTML = '<i class="fas fa-plus"></i> เพิ่มสินค้า';
-            document.getElementById('cancel-edit-btn').classList.add('hidden');
+            const productId = document.getElementById('product-id');
+            if (productId) productId.value = '';
+            
+            const productCode = document.getElementById('product-code');
+            if (productCode) productCode.value = '';
+            
+            const promotionContainer = document.getElementById('promotion-detail-container');
+            if (promotionContainer) promotionContainer.classList.add('hidden');
+            
+            const title = document.getElementById('product-form-title');
+            if (title) title.textContent = 'เพิ่มสินค้าใหม่';
+            
+            const icon = document.getElementById('product-form-icon');
+            if (icon) icon.className = 'fas fa-plus text-xl';
+            
+            const submitBtn = document.getElementById('submit-product-btn');
+            if (submitBtn) submitBtn.innerHTML = '<i class="fas fa-plus"></i> เพิ่มสินค้า';
+            
+            const cancelBtn = document.getElementById('cancel-edit-btn');
+            if (cancelBtn) cancelBtn.classList.add('hidden');
             
             updateProductCode();
         }
         
         function renderProducts() {
-            const searchTerm = document.getElementById('product-search').value.toLowerCase();
+            const searchInput = document.getElementById('product-search');
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            
             let filteredProducts = systemData.products.filter(product => 
                 product.name.toLowerCase().includes(searchTerm) ||
                 product.code.toLowerCase().includes(searchTerm)
             );
             
-            // Filter by category
             if (currentProductCategory !== 'all') {
                 filteredProducts = filteredProducts.filter(p => p.type === currentProductCategory);
             }
             
             const productList = document.getElementById('product-list');
+            if (!productList) return;
+            
             productList.innerHTML = '';
             
             if (filteredProducts.length === 0) {
@@ -2108,11 +2234,11 @@
                             ${index + 1}
                         </td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
-                            <div class="font-mono font-bold text-${typeColor}-600">${product.code || 'ไม่มีรหัส'}</div>
+                            <div class="font-mono font-bold text-${typeColor}-600">${escapeHtml(product.code || 'ไม่มีรหัส')}</div>
                         </td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
-                            <div class="font-bold text-slate-900">${product.name}</div>
-                            ${product.note ? `<div class="text-xs text-slate-500 mt-1">${product.note}</div>` : ''}
+                            <div class="font-bold text-slate-900">${escapeHtml(product.name)}</div>
+                            ${product.note ? `<div class="text-xs text-slate-500 mt-1">${escapeHtml(product.note)}</div>` : ''}
                         </td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
                             <div class="flex items-center gap-2">
@@ -2127,11 +2253,11 @@
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
                             <div class="font-bold text-blue-600">${product.price.toLocaleString()} ฿</div>
                             ${product.promotion === 'มี' && product.promotionDetail ? 
-                                `<div class="text-xs text-emerald-600 font-bold">โปรโมชัน: ${product.promotionDetail}</div>` : ''}
+                                `<div class="text-xs text-emerald-600 font-bold">โปรโมชัน: ${escapeHtml(product.promotionDetail)}</div>` : ''}
                         </td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
                             ${product.sampleLink ? 
-                                `<a href="${product.sampleLink}" target="_blank" class="text-blue-600 hover:underline text-sm flex items-center gap-1">
+                                `<a href="${escapeHtml(product.sampleLink)}" target="_blank" class="text-blue-600 hover:underline text-sm flex items-center gap-1">
                                     <i class="fas fa-play-circle"></i> ดูตัวอย่าง
                                 </a>` : 
                                 '<span class="text-slate-400 text-xs">ไม่มีตัวอย่าง</span>'
@@ -2152,7 +2278,9 @@
                 });
             }
             
-            document.getElementById('product-count').textContent = systemData.products.length;
+            const countElement = document.getElementById('product-count');
+            if (countElement) countElement.textContent = systemData.products.length;
+            
             populateOrderProductSelect();
         }
         
@@ -2161,12 +2289,17 @@
             currentPackageCategory = category;
             
             document.querySelectorAll('.package-cat-btn').forEach(btn => {
-                btn.classList.remove('bg-blue-600', 'text-white');
-                btn.classList.add('bg-slate-100', 'text-slate-700');
+                if (btn) {
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('bg-slate-100', 'text-slate-700');
+                }
             });
             
-            event.target.classList.remove('bg-slate-100', 'text-slate-700');
-            event.target.classList.add('bg-blue-600', 'text-white');
+            const activeTab = document.getElementById(`package-cat-${category === 'all' ? 'all' : category}`);
+            if (activeTab) {
+                activeTab.classList.remove('bg-slate-100', 'text-slate-700');
+                activeTab.classList.add('bg-blue-600', 'text-white');
+            }
             
             renderPackageProducts();
         }
@@ -2202,7 +2335,7 @@
                     <div class="flex items-center gap-3 flex-1">
                         <input type="checkbox" id="product-${product.id}" class="h-4 w-4 text-blue-600 rounded pointer-events-none" ${isSelected ? 'checked' : ''}>
                         <div class="flex-1">
-                            <div class="font-medium text-slate-900">${product.code} - ${product.name}</div>
+                            <div class="font-medium text-slate-900">${escapeHtml(product.code)} - ${escapeHtml(product.name)}</div>
                             <div class="text-sm text-slate-500">${product.type === 'onAir' ? 'On Air' : product.type === 'online' ? 'Online' : 'Production'}</div>
                         </div>
                         <div class="text-sm font-bold text-blue-600">
@@ -2228,7 +2361,7 @@
             }
             
             updateSelectedProductsCount();
-            renderPackageProducts(); // Re-render to update checkboxes and styles
+            renderPackageProducts();
             updateSelectedProductsSummary();
         }
         
@@ -2263,7 +2396,7 @@
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'flex justify-between text-sm';
                 itemDiv.innerHTML = `
-                    <span class="text-slate-700">${product.code} - ${product.name}</span>
+                    <span class="text-slate-700">${escapeHtml(product.code)} - ${escapeHtml(product.name)}</span>
                     <span class="font-bold text-slate-900">${product.price.toLocaleString()} ฿</span>
                 `;
                 listContainer.appendChild(itemDiv);
@@ -2284,14 +2417,16 @@
             const modal = document.getElementById('package-detail-modal');
             const modalContent = document.getElementById('modal-package-detail');
             
+            if (!modal || !modalContent) return;
+            
             let productsHtml = '';
             let totalPrice = 0;
             
             packageItem.products.forEach(product => {
                 productsHtml += `
                     <tr class="border-b">
-                        <td class="py-2">${product.code}</td>
-                        <td class="py-2">${product.name}</td>
+                        <td class="py-2">${escapeHtml(product.code)}</td>
+                        <td class="py-2">${escapeHtml(product.name)}</td>
                         <td class="py-2">${product.type === 'onAir' ? 'On Air' : product.type === 'online' ? 'Online' : 'Production'}</td>
                         <td class="py-2 text-right">${product.price.toLocaleString()} ฿</td>
                     </tr>
@@ -2307,18 +2442,18 @@
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <p class="text-sm text-slate-500">รหัสแพ็กเกจ</p>
-                            <p class="font-bold text-lg">${packageItem.code}</p>
+                            <p class="font-bold text-lg">${escapeHtml(packageItem.code)}</p>
                         </div>
                         <div>
                             <p class="text-sm text-slate-500">ชื่อแพ็กเกจ</p>
-                            <p class="font-bold text-lg">${packageItem.name}</p>
+                            <p class="font-bold text-lg">${escapeHtml(packageItem.name)}</p>
                         </div>
                     </div>
                     
                     ${packageItem.description ? `
                         <div>
                             <p class="text-sm text-slate-500">รายละเอียด</p>
-                            <p class="text-slate-700">${packageItem.description}</p>
+                            <p class="text-slate-700">${escapeHtml(packageItem.description)}</p>
                         </div>
                     ` : ''}
                     
@@ -2367,7 +2502,7 @@
                     ${packageItem.note ? `
                         <div class="bg-blue-50 p-3 rounded-lg">
                             <p class="text-sm text-slate-500">หมายเหตุ</p>
-                            <p class="text-slate-700">${packageItem.note}</p>
+                            <p class="text-slate-700">${escapeHtml(packageItem.note)}</p>
                         </div>
                     ` : ''}
                     
@@ -2385,19 +2520,27 @@
                 </div>
             `;
             
-            document.getElementById('modal-package-name').textContent = packageItem.name;
+            const modalTitle = document.getElementById('modal-package-name');
+            if (modalTitle) modalTitle.textContent = packageItem.name;
+            
             modal.classList.add('show');
         }
         
         function closePackageModal() {
-            document.getElementById('package-detail-modal').classList.remove('show');
+            const modal = document.getElementById('package-detail-modal');
+            if (modal) modal.classList.remove('show');
         }
         
         function addPackage(event) {
             if (event) event.preventDefault();
             
-            const name = document.getElementById('package-name').value;
-            const price = document.getElementById('package-price').value;
+            const nameInput = document.getElementById('package-name');
+            const priceInput = document.getElementById('package-price');
+            
+            if (!nameInput || !priceInput) return;
+            
+            const name = nameInput.value;
+            const price = priceInput.value;
             const packageId = document.getElementById('package-id').value;
             
             if (!name || !price) {
@@ -2491,28 +2634,40 @@
         }
         
         function resetPackageForm() {
-            document.getElementById('add-package-form').reset();
-            document.getElementById('package-id').value = '';
-            document.getElementById('package-code').value = generatePackageCode();
+            const form = document.getElementById('add-package-form');
+            if (form) form.reset();
+            
+            const packageId = document.getElementById('package-id');
+            if (packageId) packageId.value = '';
+            
+            const packageCode = document.getElementById('package-code');
+            if (packageCode) packageCode.value = generatePackageCode();
             
             selectedPackageProducts = [];
             
-            document.getElementById('package-form-title').textContent = 'สร้างแพ็กเกจใหม่';
-            document.getElementById('package-form-icon').className = 'fas fa-plus text-xl';
-            document.getElementById('submit-package-btn').innerHTML = '<i class="fas fa-plus"></i> สร้างแพ็กเกจ';
-            document.getElementById('cancel-edit-package-btn').classList.add('hidden');
+            const title = document.getElementById('package-form-title');
+            if (title) title.textContent = 'สร้างแพ็กเกจใหม่';
+            
+            const icon = document.getElementById('package-form-icon');
+            if (icon) icon.className = 'fas fa-plus text-xl';
+            
+            const submitBtn = document.getElementById('submit-package-btn');
+            if (submitBtn) submitBtn.innerHTML = '<i class="fas fa-plus"></i> สร้างแพ็กเกจ';
+            
+            const cancelBtn = document.getElementById('cancel-edit-package-btn');
+            if (cancelBtn) cancelBtn.classList.add('hidden');
             
             const summarySection = document.getElementById('selected-products-summary');
-            if (summarySection) {
-                summarySection.classList.add('hidden');
-            }
+            if (summarySection) summarySection.classList.add('hidden');
             
             updateSelectedProductsCount();
             renderPackageProducts();
         }
         
         function renderPackages() {
-            const searchTerm = document.getElementById('package-search')?.value.toLowerCase() || '';
+            const searchInput = document.getElementById('package-search');
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            
             const filteredPackages = systemData.packages.filter(pkg => 
                 pkg.name.toLowerCase().includes(searchTerm) ||
                 pkg.code.toLowerCase().includes(searchTerm)
@@ -2521,16 +2676,11 @@
             const packageList = document.getElementById('package-list');
             if (!packageList) return;
             
-            const emptyRow = document.getElementById('package-empty-row');
-            if (emptyRow) {
-                emptyRow.remove();
-            }
-            
             packageList.innerHTML = '';
             
             if (filteredPackages.length === 0) {
                 packageList.innerHTML = `
-                    <tr id="package-empty-row">
+                    <tr>
                         <td colspan="6" class="px-6 py-12 text-center text-slate-400">
                             <div class="flex flex-col items-center gap-2">
                                 <i class="fas fa-boxes text-4xl opacity-20"></i>
@@ -2553,11 +2703,11 @@
                             ${index + 1}
                         </td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
-                            <div class="font-mono font-bold text-purple-600">${pkg.code}</div>
+                            <div class="font-mono font-bold text-purple-600">${escapeHtml(pkg.code)}</div>
                         </td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4">
-                            <div class="font-bold text-slate-900">${pkg.name}</div>
-                            ${pkg.description ? `<div class="text-xs text-slate-500 mt-1">${pkg.description.substring(0, 50)}${pkg.description.length > 50 ? '...' : ''}</div>` : ''}
+                            <div class="font-bold text-slate-900">${escapeHtml(pkg.name)}</div>
+                            ${pkg.description ? `<div class="text-xs text-slate-500 mt-1">${escapeHtml(pkg.description.substring(0, 50))}${pkg.description.length > 50 ? '...' : ''}</div>` : ''}
                         </td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4 text-center font-medium">
                             ${totalProducts} รายการ
@@ -2585,7 +2735,9 @@
                 });
             }
             
-            document.getElementById('package-count')?.setAttribute('textContent', systemData.packages.length);
+            const countElement = document.getElementById('package-count');
+            if (countElement) countElement.textContent = systemData.packages.length;
+            
             updatePackageCounter();
         }
         
@@ -2603,8 +2755,11 @@
             const endDate = new Date();
             endDate.setDate(today.getDate() + 30);
             
-            document.getElementById('order-start-date').value = today.toISOString().split('T')[0];
-            document.getElementById('order-end-date').value = endDate.toISOString().split('T')[0];
+            const startDateInput = document.getElementById('order-start-date');
+            const endDateInput = document.getElementById('order-end-date');
+            
+            if (startDateInput) startDateInput.value = today.toISOString().split('T')[0];
+            if (endDateInput) endDateInput.value = endDate.toISOString().split('T')[0];
             
             currentOrder.startDate = today.toISOString().split('T')[0];
             currentOrder.endDate = endDate.toISOString().split('T')[0];
@@ -2775,13 +2930,11 @@
             currentOrder.selectedItemId = '';
             
             document.querySelectorAll('.order-type-btn').forEach(btn => {
-                btn.classList.remove('active');
+                if (btn) btn.classList.remove('active');
             });
             
             const activeBtn = document.getElementById(`order-type-${type.toLowerCase()}`);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-            }
+            if (activeBtn) activeBtn.classList.add('active');
             
             populateOrderProductSelect();
             updateOrderCalculation();
@@ -2790,6 +2943,8 @@
         function updateCustomerInfo() {
             const display = document.getElementById('customer-type-display');
             const typeText = document.getElementById('selected-customer-type');
+            
+            if (!display || !typeText) return;
             
             const selectedCustomer = systemData.customers.find(c => c.id === currentOrder.selectedCustomerId);
             
@@ -2981,7 +3136,7 @@
             }
             
             if (!selectedCustomer || !selectedItem) {
-                alert('กรุณาเลือกลูกค้าและสินค้าก่อนเพิ่มรายการ');
+                showNotification('กรุณาเลือกลูกค้าและสินค้าก่อนเพิ่มรายการ', 'error');
                 return;
             }
             
@@ -3060,11 +3215,11 @@
                 row.className = 'hover:bg-slate-50 transition-colors';
                 row.innerHTML = `
                     <td class="px-4 lg:px-6 py-3 lg:py-4">
-                        <div class="font-bold text-slate-800">${order.productCode ? order.productCode + ' - ' : ''}${order.productName}</div>
+                        <div class="font-bold text-slate-800">${escapeHtml(order.productCode ? order.productCode + ' - ' : '')}${escapeHtml(order.productName)}</div>
                         <div class="text-[10px] text-slate-400 mt-1 font-mono">
                             ${formatDate(order.startDate)} - ${formatDate(order.endDate)}
                         </div>
-                        ${order.note ? `<div class="text-xs text-blue-600 mt-1">* ${order.note}</div>` : ''}
+                        ${order.note ? `<div class="text-xs text-blue-600 mt-1">* ${escapeHtml(order.note)}</div>` : ''}
                     </td>
                     <td class="px-4 lg:px-6 py-3 lg:py-4 text-center font-medium">${order.totalDays} วัน</td>
                     <td class="px-4 lg:px-6 py-3 lg:py-4 text-center font-medium">${order.timesPerDay} ครั้ง/วัน</td>
@@ -3113,8 +3268,10 @@
             if (orderNote) orderNote.value = '';
             
             document.querySelectorAll('.time-slot-btn').forEach(btn => {
-                btn.classList.remove('selected', 'bg-blue-600', 'border-blue-600', 'text-white', 'shadow-md', 'scale-[1.02]');
-                btn.classList.add('bg-slate-50', 'border-slate-200', 'text-slate-600');
+                if (btn) {
+                    btn.classList.remove('selected', 'bg-blue-600', 'border-blue-600', 'text-white', 'shadow-md', 'scale-[1.02]');
+                    btn.classList.add('bg-slate-50', 'border-slate-200', 'text-slate-600');
+                }
             });
             
             updateSelectedSlotsCount();
@@ -3140,8 +3297,10 @@
             const customerId = document.getElementById('quotation-customer').value;
             
             if (!customerId) {
-                document.getElementById('quotation-preview').classList.add('hidden');
-                document.getElementById('quotation-empty').classList.remove('hidden');
+                const preview = document.getElementById('quotation-preview');
+                const empty = document.getElementById('quotation-empty');
+                if (preview) preview.classList.add('hidden');
+                if (empty) empty.classList.remove('hidden');
                 return;
             }
             
@@ -3149,8 +3308,10 @@
             const customerOrders = systemData.orders.filter(o => o.customerId === customerId);
             
             if (!customer || customerOrders.length === 0) {
-                document.getElementById('quotation-preview').classList.add('hidden');
-                document.getElementById('quotation-empty').classList.remove('hidden');
+                const preview = document.getElementById('quotation-preview');
+                const empty = document.getElementById('quotation-empty');
+                if (preview) preview.classList.add('hidden');
+                if (empty) empty.classList.remove('hidden');
                 return;
             }
             
@@ -3164,41 +3325,56 @@
                 total += order.netTotal;
             });
             
-            document.getElementById('quotation-company').textContent = customer.company;
-            document.getElementById('quotation-address').textContent = customer.address || '-';
-            document.getElementById('quotation-phone').textContent = customer.phone || '-';
-            document.getElementById('quotation-date').textContent = new Date().toLocaleDateString('th-TH', {
+            const companyEl = document.getElementById('quotation-company');
+            const addressEl = document.getElementById('quotation-address');
+            const phoneEl = document.getElementById('quotation-phone');
+            const dateEl = document.getElementById('quotation-date');
+            const staffEl = document.getElementById('quotation-staff-name');
+            const staffNameInput = document.getElementById('staff-name');
+            
+            if (companyEl) companyEl.textContent = customer.company;
+            if (addressEl) addressEl.textContent = customer.address || '-';
+            if (phoneEl) phoneEl.textContent = customer.phone || '-';
+            if (dateEl) dateEl.textContent = new Date().toLocaleDateString('th-TH', {
                 day: '2-digit',
                 month: 'long',
                 year: 'numeric'
             });
-            document.getElementById('quotation-staff-name').textContent = document.getElementById('staff-name').value;
+            if (staffEl) staffEl.textContent = staffNameInput ? staffNameInput.value : 'ฝ่ายขาย';
             
             const itemsContainer = document.getElementById('quotation-items');
-            itemsContainer.innerHTML = '';
+            if (itemsContainer) {
+                itemsContainer.innerHTML = '';
+                
+                customerOrders.forEach((order, index) => {
+                    const row = document.createElement('tr');
+                    row.className = 'border-b border-slate-200';
+                    row.innerHTML = `
+                        <td class="p-2 lg:p-3">
+                            <p class="font-bold text-slate-900">${index + 1}. ${escapeHtml(order.productCode ? order.productCode + ' - ' : '')}${escapeHtml(order.productName)}</p>
+                            ${order.note ? `<p class="text-[10px] text-blue-600 mt-0.5">* ${escapeHtml(order.note)}</p>` : ''}
+                        </td>
+                        <td class="p-2 lg:p-3 text-center font-bold">${order.totalDays}</td>
+                        <td class="p-2 lg:p-3 text-center font-bold">${order.timesPerDay}</td>
+                        <td class="p-2 lg:p-3 text-right font-mono font-bold">${(order.totalDays * order.timesPerDay).toLocaleString()}</td>
+                        <td class="p-2 lg:p-3 text-right font-black">${(order.netTotal - order.vatAmount).toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+                    `;
+                    itemsContainer.appendChild(row);
+                });
+            }
             
-            customerOrders.forEach((order, index) => {
-                const row = document.createElement('tr');
-                row.className = 'border-b border-slate-200';
-                row.innerHTML = `
-                    <td class="p-2 lg:p-3">
-                        <p class="font-bold text-slate-900">${index + 1}. ${order.productCode ? order.productCode + ' - ' : ''}${order.productName}</p>
-                        ${order.note ? `<p class="text-[10px] text-blue-600 mt-0.5">* ${order.note}</p>` : ''}
-                    </td>
-                    <td class="p-2 lg:p-3 text-center font-bold">${order.totalDays}</td>
-                    <td class="p-2 lg:p-3 text-center font-bold">${order.timesPerDay}</td>
-                    <td class="p-2 lg:p-3 text-right font-mono font-bold">${(order.totalDays * order.timesPerDay).toLocaleString()}</td>
-                    <td class="p-2 lg:p-3 text-right font-black">${(order.netTotal - order.vatAmount).toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
-                `;
-                itemsContainer.appendChild(row);
-            });
+            const beforeVatEl = document.getElementById('quotation-before-vat');
+            const vatEl = document.getElementById('quotation-vat');
+            const totalEl = document.getElementById('quotation-total');
             
-            document.getElementById('quotation-before-vat').textContent = `${beforeVat.toLocaleString(undefined, { minimumFractionDigits: 2 })} บาท`;
-            document.getElementById('quotation-vat').textContent = `${vat.toLocaleString(undefined, { minimumFractionDigits: 2 })} บาท`;
-            document.getElementById('quotation-total').textContent = `${total.toLocaleString(undefined, { minimumFractionDigits: 2 })} บาท`;
+            if (beforeVatEl) beforeVatEl.textContent = `${beforeVat.toLocaleString(undefined, { minimumFractionDigits: 2 })} บาท`;
+            if (vatEl) vatEl.textContent = `${vat.toLocaleString(undefined, { minimumFractionDigits: 2 })} บาท`;
+            if (totalEl) totalEl.textContent = `${total.toLocaleString(undefined, { minimumFractionDigits: 2 })} บาท`;
             
-            document.getElementById('quotation-preview').classList.remove('hidden');
-            document.getElementById('quotation-empty').classList.add('hidden');
+            const preview = document.getElementById('quotation-preview');
+            const empty = document.getElementById('quotation-empty');
+            if (preview) preview.classList.remove('hidden');
+            if (empty) empty.classList.add('hidden');
         }
         
         function printQuotation() {
@@ -3217,13 +3393,19 @@
         
         // ========== REPORT FUNCTIONS ==========
         function renderReport() {
-            document.getElementById('report-customer-count').textContent = systemData.customers.length;
-            document.getElementById('report-product-count').textContent = systemData.products.length;
-            document.getElementById('report-package-count').textContent = systemData.packages.length;
+            const customerCount = document.getElementById('report-customer-count');
+            const productCount = document.getElementById('report-product-count');
+            const packageCount = document.getElementById('report-package-count');
+            
+            if (customerCount) customerCount.textContent = systemData.customers.length;
+            if (productCount) productCount.textContent = systemData.products.length;
+            if (packageCount) packageCount.textContent = systemData.packages.length;
         }
         
         function printReport(type) {
             const printContainer = document.getElementById('print-report-container');
+            if (!printContainer) return;
+            
             let reportHtml = '';
             
             const today = new Date().toLocaleDateString('th-TH', {
@@ -3262,11 +3444,11 @@
                                 ${systemData.customers.map((customer, index) => `
                                     <tr>
                                         <td class="border border-slate-300 p-2 text-center">${index + 1}</td>
-                                        <td class="border border-slate-300 p-2">${customer.company}</td>
+                                        <td class="border border-slate-300 p-2">${escapeHtml(customer.company)}</td>
                                         <td class="border border-slate-300 p-2">${customer.type}</td>
-                                        <td class="border border-slate-300 p-2">${customer.name}</td>
-                                        <td class="border border-slate-300 p-2">${customer.phone}</td>
-                                        <td class="border border-slate-300 p-2">${customer.email || '-'}</td>
+                                        <td class="border border-slate-300 p-2">${escapeHtml(customer.name)}</td>
+                                        <td class="border border-slate-300 p-2">${escapeHtml(customer.phone)}</td>
+                                        <td class="border border-slate-300 p-2">${escapeHtml(customer.email || '-')}</td>
                                     </tr>
                                 `).join('')}
                             </tbody>
@@ -3316,14 +3498,14 @@
                                 ${systemData.products.map((product, index) => `
                                     <tr>
                                         <td class="border border-slate-300 p-2 text-center">${index + 1}</td>
-                                        <td class="border border-slate-300 p-2 font-mono">${product.code}</td>
-                                        <td class="border border-slate-300 p-2">${product.name}</td>
+                                        <td class="border border-slate-300 p-2 font-mono">${escapeHtml(product.code)}</td>
+                                        <td class="border border-slate-300 p-2">${escapeHtml(product.name)}</td>
                                         <td class="border border-slate-300 p-2">${
                                             product.type === 'onAir' ? 'On Air' : 
                                             product.type === 'online' ? 'Online' : 'Production'
                                         }</td>
                                         <td class="border border-slate-300 p-2 text-right">${product.price.toLocaleString()} ฿</td>
-                                        <td class="border border-slate-300 p-2">${product.promotion === 'มี' ? product.promotionDetail : 'ไม่มี'}</td>
+                                        <td class="border border-slate-300 p-2">${product.promotion === 'มี' ? escapeHtml(product.promotionDetail) : 'ไม่มี'}</td>
                                     </tr>
                                 `).join('')}
                             </tbody>
@@ -3363,8 +3545,8 @@
                                     return `
                                         <tr>
                                             <td class="border border-slate-300 p-2 text-center">${index + 1}</td>
-                                            <td class="border border-slate-300 p-2 font-mono">${pkg.code}</td>
-                                            <td class="border border-slate-300 p-2">${pkg.name}</td>
+                                            <td class="border border-slate-300 p-2 font-mono">${escapeHtml(pkg.code)}</td>
+                                            <td class="border border-slate-300 p-2">${escapeHtml(pkg.name)}</td>
                                             <td class="border border-slate-300 p-2 text-center">${totalProducts}</td>
                                             <td class="border border-slate-300 p-2 text-right">${pkg.price.toLocaleString()} ฿</td>
                                             <td class="border border-slate-300 p-2 text-right">${pkg.discount > 0 ? pkg.discount + '% (' + discountAmount.toLocaleString() + ' ฿)' : '-'}</td>
@@ -3388,6 +3570,16 @@
         }
         
         // ========== UTILITY FUNCTIONS ==========
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+        
         function setupEventListeners() {
             const addCustomerForm = document.getElementById('add-customer-form');
             if (addCustomerForm) {
@@ -3446,13 +3638,18 @@
                 }
             });
             
-            // Close modal when clicking outside
             window.addEventListener('click', function(event) {
                 const modal = document.getElementById('package-detail-modal');
                 if (event.target === modal) {
                     closePackageModal();
                 }
             });
+            
+            // Desktop sidebar toggle button
+            const desktopToggle = document.getElementById('desktop-sidebar-toggle');
+            if (desktopToggle) {
+                desktopToggle.addEventListener('click', toggleSidebar);
+            }
         }
         
         function renderAll() {
@@ -3481,11 +3678,13 @@
         
         function updateLastSaved() {
             const lastSavedEl = document.getElementById('last-saved');
-            if (systemData.settings.lastSave) {
-                const date = new Date(systemData.settings.lastSave);
-                lastSavedEl.textContent = `${date.toLocaleDateString('th-TH')} ${date.toLocaleTimeString('th-TH')}`;
-            } else {
-                lastSavedEl.textContent = 'ยังไม่เคยบันทึก';
+            if (lastSavedEl) {
+                if (systemData.settings.lastSave) {
+                    const date = new Date(systemData.settings.lastSave);
+                    lastSavedEl.textContent = `${date.toLocaleDateString('th-TH')} ${date.toLocaleTimeString('th-TH')}`;
+                } else {
+                    lastSavedEl.textContent = 'ยังไม่เคยบันทึก';
+                }
             }
         }
         
