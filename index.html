@@ -1312,7 +1312,30 @@
             document.getElementById('add-customer-form').reset();
             showNotification('เพิ่มลูกค้าเรียบร้อยแล้ว', 'success');
         }
-        
+        function editCustomer(id) {
+    const customer = systemData.customers.find(c => c.id === id);
+    if (!customer) return;
+    
+    document.getElementById('customer-id').value = customer.id;
+    document.getElementById('customer-company').value = customer.company;
+    document.getElementById('customer-type').value = customer.type;
+    document.getElementById('customer-category').value = customer.category || '';
+    document.getElementById('customer-address').value = customer.address || '';
+    document.getElementById('customer-name').value = customer.name;
+    document.getElementById('customer-phone').value = customer.phone;
+    document.getElementById('customer-email').value = customer.email || '';
+    document.getElementById('customer-note').value = customer.note || '';
+    
+    document.getElementById('customer-form-title').textContent = 'แก้ไขข้อมูลลูกค้า';
+    document.getElementById('customer-form-icon').className = 'fas fa-edit text-xl';
+    document.getElementById('submit-customer-btn').innerHTML = '<i class="fas fa-save"></i> บันทึกการแก้ไข';
+    document.getElementById('cancel-edit-customer-btn').classList.remove('hidden');
+
+    // Scroll ลงไปที่ฟอร์ม
+    document.getElementById('customer-form-container').scrollIntoView({ 
+        behavior: 'smooth' 
+    });
+}
         function deleteCustomer(id) {
             if (confirm("ลบข้อมูลลูกค้านี้?")) {
                 systemData.customers = systemData.customers.filter(c => c.id !== id);
@@ -2361,3 +2384,4 @@
     </script>
 </body>
 </html>
+
