@@ -87,20 +87,57 @@
             display: none;
         }
         
+    /* ปรับปรุงการแสดงผลปุ่มใน sidebar เวลาย่อ */
         #sidebar:not(.expanded) .menu-item {
             justify-content: center;
-            padding: 14px 0;
+            padding: 16px 0; /* เพิ่ม padding */
+            width: 64px;
+            min-width: 64px;
+            position: relative;
+            z-index: 51;
+        }
+         #sidebar:not(.expanded) .menu-item i {
+            margin: 0;
+            font-size: 1.4rem; /* ขยาย icon */
+            pointer-events: none;
         }
         
+        #sidebar:not(.expanded) .menu-item:active {
+            background: rgba(255, 255, 255, 0.25); /* เพิ่ม feedback ตอนกด */
+        }
+        
+        /* ปรับปรุงปุ่มคำสั่งหลักใน sidebar เวลาย่อ */
+        #sidebar:not(.expanded) .grid button {
+            width: 28px;
+            height: 28px;
+            padding: 0;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
+        #sidebar:not(.expanded) .grid button i {
+            margin: 0;
+            font-size: 1rem;
+        }
+        
+        #sidebar:not(.expanded) .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+        
+        #sidebar:not(.expanded) .grid .col-span-2 {
+            grid-column: span 1;
+        }
+
         #sidebar:not(.expanded) .menu-item i {
             margin: 0;
             font-size: 1.3rem;
+            pointer-events: none; /* ป้องกันการดักจับ event ที่ icon */
         }
         
-        #sidebar:not(.expanded) .sidebar-header h1,
-        #sidebar:not(.expanded) .sidebar-header p,
-        #sidebar:not(.expanded) .command-title,
-        #sidebar:not(.expanded) .footer-text {
+        #sidebar:not(.expanded) .menu-item span {
             display: none;
         }
         
@@ -131,6 +168,7 @@
                 width: 0;
                 transform: translateX(-100%);
                 box-shadow: none;
+                transition: transform 0.3s ease, width 0.3s ease;
             }
             #sidebar.expanded {
                 width: 85%;
@@ -158,6 +196,22 @@
                 cursor: pointer;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.15);
                 font-size: 1.2rem;
+                border: 2px solid white; /* เพิ่มขอบให้เห็นชัด */
+            }
+            
+            /* ปรับปุ่มใน sidebar ให้คลิกง่ายขึ้น */
+            #sidebar.expanded .menu-item {
+                padding: 15px 20px;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            /* ซ่อน overlay ตอนปิด */
+            .mobile-menu-overlay {
+                display: none;
+            }
+            .mobile-menu-open {
+                display: block;
             }
         }
 
@@ -1239,10 +1293,18 @@
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('mobile-menu-overlay');
             if (!sidebar || !overlay) return;
+            
+            // ตรวจสอบว่าเป็นมือถือเท่านั้น
             if (window.innerWidth < 769) {
-                sidebar.classList.add('expanded');
-                overlay.classList.add('mobile-menu-open');
-                document.body.style.overflow = 'hidden';
+                if (sidebar.classList.contains('expanded')) {
+                    sidebar.classList.remove('expanded');
+                    overlay.classList.remove('mobile-menu-open');
+                    document.body.style.overflow = 'auto';
+                } else {
+                    sidebar.classList.add('expanded');
+                    overlay.classList.add('mobile-menu-open');
+                    document.body.style.overflow = 'hidden'; // ป้องกันการ scroll ด้านหลัง
+                }
             }
         }
         
@@ -1250,6 +1312,7 @@
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('mobile-menu-overlay');
             if (!sidebar || !overlay) return;
+            
             if (window.innerWidth < 769) {
                 sidebar.classList.remove('expanded');
                 overlay.classList.remove('mobile-menu-open');
@@ -1258,18 +1321,38 @@
         }
         
         function setupMobileMenu() {
-            window.addEventListener('resize', function() {
-                const sidebar = document.getElementById('sidebar');
-                const overlay = document.getElementById('mobile-menu-overlay');
-                if (window.innerWidth >= 769) {
-                    if (sidebar) sidebar.classList.remove('expanded');
-                    if (overlay) overlay.classList.remove('mobile-menu-open');
-                    document.body.style.overflow = 'auto';
-                    loadSidebarState();
-                }
-            });
             const overlay = document.getElementById('mobile-menu-overlay');
-            if (overlay) overlay.addEventListener('click', closeMobileMenu);
+            if (overlay) {
+                overlay.addEventListener('click', closeMobileMenu);
+            }
+            
+            // ปรับปรุงการจัดการ resize
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    const sidebar = document.getElementById('sidebar');
+                    const overlay = document.getElementById('mobile-menu-overlay');
+                    if (window.innerWidth >= 769) {
+                        if (sidebar) {
+                            sidebar.classList.remove('expanded');
+                        }
+                        if (overlay) {
+                            overlay.classList.remove('mobile-menu-open');
+                        }
+                        document.body.style.overflow = 'auto';
+                        loadSidebarState(); // โหลดสถานะ desktop
+                    }
+                }, 250);
+            });
+            
+            // เพิ่ม touch event เพื่อความลื่นไหล
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            if (mobileBtn) {
+                mobileBtn.addEventListener('touchstart', function(e) {
+                    e.preventDefault(); // ป้องกันการ scroll ขณะกด
+                });
+            }
         }
         
         // ========== TAB ==========
