@@ -38,7 +38,7 @@
             background: linear-gradient(135deg, #0d3b66 0%, #1c5bb8 100%);
             color: white;
             z-index: 50;
-            transition: width 0.3s ease, transform 0.3s ease;
+            transition: width 0.3s ease;
             overflow: hidden;
             white-space: nowrap;
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
@@ -87,57 +87,20 @@
             display: none;
         }
         
-    /* ปรับปรุงการแสดงผลปุ่มใน sidebar เวลาย่อ */
         #sidebar:not(.expanded) .menu-item {
             justify-content: center;
-            padding: 16px 0; /* เพิ่ม padding */
-            width: 64px;
-            min-width: 64px;
-            position: relative;
-            z-index: 51;
-        }
-         #sidebar:not(.expanded) .menu-item i {
-            margin: 0;
-            font-size: 1.4rem; /* ขยาย icon */
-            pointer-events: none;
+            padding: 14px 0;
         }
         
-        #sidebar:not(.expanded) .menu-item:active {
-            background: rgba(255, 255, 255, 0.25); /* เพิ่ม feedback ตอนกด */
-        }
-        
-        /* ปรับปรุงปุ่มคำสั่งหลักใน sidebar เวลาย่อ */
-        #sidebar:not(.expanded) .grid button {
-            width: 28px;
-            height: 28px;
-            padding: 0;
-            justify-content: center;
-            margin: 0 auto;
-        }
-        
-        #sidebar:not(.expanded) .grid button i {
-            margin: 0;
-            font-size: 1rem;
-        }
-        
-        #sidebar:not(.expanded) .grid {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 100%;
-        }
-        
-        #sidebar:not(.expanded) .grid .col-span-2 {
-            grid-column: span 1;
-        }
-
         #sidebar:not(.expanded) .menu-item i {
             margin: 0;
             font-size: 1.3rem;
-            pointer-events: none; /* ป้องกันการดักจับ event ที่ icon */
         }
         
-        #sidebar:not(.expanded) .menu-item span {
+        #sidebar:not(.expanded) .sidebar-header h1,
+        #sidebar:not(.expanded) .sidebar-header p,
+        #sidebar:not(.expanded) .command-title,
+        #sidebar:not(.expanded) .footer-text {
             display: none;
         }
         
@@ -163,60 +126,117 @@
             width: calc(100% - 256px);
         }
         
+        /* ===== Mobile Menu ปรับปรุงใหม่ ===== */
         @media (max-width: 768px) {
+            /* ซ่อน Sidebar ปกติ */
             #sidebar {
-                width: 0;
                 transform: translateX(-100%);
-                box-shadow: none;
-                transition: transform 0.3s ease, width 0.3s ease;
+                width: 280px !important;
+                box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+                transition: transform 0.3s ease;
+                z-index: 1000;
             }
+            
             #sidebar.expanded {
-                width: 85%;
-                max-width: 300px;
-                transform: translateX(0);
-                box-shadow: 2px 0 15px rgba(0,0,0,0.2);
+                transform: translateX(0) !important;
             }
+            
             #main-content,
             #main-content.expanded {
                 margin-left: 0 !important;
                 width: 100% !important;
             }
-            .sidebar-trigger { display: none; }
+            
+            /* ซ่อนพื้นที่คลิกขอบ */
+            .sidebar-trigger { 
+                display: none; 
+            }
+            
+            /* ปุ่มเมนูมือถือ - ปรับให้ใหญ่ขึ้น กดง่าย */
             .mobile-menu-btn {
-                display: block !important;
+                display: flex !important;
                 position: fixed;
                 top: 16px;
                 left: 16px;
-                z-index: 101;
-                background: #1c5bb8;
+                z-index: 1001;
+                background: linear-gradient(135deg, #0d3b66 0%, #1c5bb8 100%);
                 color: white;
                 border: none;
-                border-radius: 10px;
-                padding: 12px 16px;
+                border-radius: 12px;
+                padding: 16px 18px;
                 cursor: pointer;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-                font-size: 1.2rem;
-                border: 2px solid white; /* เพิ่มขอบให้เห็นชัด */
+                box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+                font-size: 1.4rem;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s;
+                border: 2px solid rgba(255,255,255,0.2);
             }
             
-            /* ปรับปุ่มใน sidebar ให้คลิกง่ายขึ้น */
-            #sidebar.expanded .menu-item {
-                padding: 15px 20px;
-                width: 100%;
-                justify-content: flex-start;
+            .mobile-menu-btn:active {
+                transform: scale(0.95);
+                background: #1c5bb8;
             }
             
-            /* ซ่อน overlay ตอนปิด */
+            /* Overlay สำหรับปิดเมนู */
             .mobile-menu-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
                 display: none;
+                backdrop-filter: blur(3px);
             }
-            .mobile-menu-open {
-                display: block;
+            
+            .mobile-menu-overlay.active {
+                display: block !important;
+            }
+            
+            /* ปรับพื้นที่เนื้อหาหลัก */
+            #main-content {
+                padding-top: 70px !important;
+            }
+            
+            /* ปรับขนาดฟอนต์และ padding สำหรับมือถือ */
+            .mobile-text-sm { font-size: 0.875rem !important; }
+            .mobile-text-base { font-size: 1rem !important; }
+            .mobile-text-lg { font-size: 1.125rem !important; }
+            .mobile-p-3 { padding: 0.75rem !important; }
+            .mobile-p-4 { padding: 1rem !important; }
+            .mobile-mt-4 { margin-top: 1rem !important; }
+            .mobile-w-full { width: 100% !important; }
+            
+            /* ปุ่มต่างๆ ในมือถือ */
+            .btn-mobile {
+                width: 100%;
+                justify-content: center;
+                margin: 0.25rem 0;
+            }
+            
+            /* ตารางในมือถือ */
+            .table-container {
+                margin: 0 -0.5rem;
+                width: calc(100% + 1rem);
+            }
+            
+            /* การ์ดต่างๆ */
+            .card-mobile {
+                padding: 0.75rem !important;
+            }
+            
+            /* ปรับฟอร์ม */
+            input, select, textarea {
+                font-size: 16px !important; /* ป้องกัน zoom บน iOS */
             }
         }
 
         @media (min-width: 769px) {
-            .mobile-menu-btn { display: none !important; }
+            .mobile-menu-btn { 
+                display: none !important; 
+            }
         }
         
         .menu-item {
@@ -338,29 +358,6 @@
             color: #2563eb;
         }
         
-        @media (max-width: 768px) {
-            .mobile-full { margin-left: 0 !important; width: 100% !important; padding: 1rem !important; }
-            .mobile-text-lg { font-size: 1.125rem !important; }
-            .mobile-text-base { font-size: 1rem !important; }
-            .mobile-p-4 { padding: 1rem !important; }
-            .mobile-p-2 { padding: 0.5rem !important; }
-            .mobile-w-full { width: 100% !important; }
-            .mobile-menu-item { padding: 0.75rem 1rem !important; font-size: 0.875rem !important; }
-            .mobile-menu-icon { font-size: 1rem !important; width: 1.5rem !important; }
-        }
-        
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: none;
-        }
-        .mobile-menu-open { display: block; }
-        
         .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         
         .quotation-header { border-bottom: 2px solid #1e293b; margin-bottom: 1.5rem; }
@@ -414,7 +411,7 @@
     <!-- พื้นที่คลิกขอบซ้าย สำหรับ Desktop -->
     <div id="sidebar-trigger" class="sidebar-trigger" onclick="toggleSidebar()"></div>
     
-    <!-- ปุ่มเมนูมือถือ -->
+    <!-- ปุ่มเมนูมือถือ (ออกแบบใหม่) -->
     <button id="mobile-menu-btn" class="mobile-menu-btn" onclick="toggleMobileMenu()">
         <i class="fas fa-bars"></i>
     </button>
@@ -526,7 +523,7 @@
                                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                                 <input type="text" id="customer-search" placeholder="ค้นหาชื่อหรือบริษัท..." class="w-full pl-10 pr-4 py-2 bg-white rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
-                            <button onclick="toggleCustomerForm()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+                            <button onclick="toggleCustomerForm()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 mobile-w-full">
                                 <i class="fas fa-plus"></i> เพิ่มลูกค้า
                             </button>
                         </div>
@@ -623,7 +620,7 @@
                                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                                 <input type="text" id="product-search" placeholder="ค้นหาสินค้า..." class="w-full pl-10 pr-4 py-2 bg-white rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
-                            <button onclick="toggleProductForm()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+                            <button onclick="toggleProductForm()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 mobile-w-full">
                                 <i class="fas fa-plus"></i> เพิ่มสินค้า
                             </button>
                         </div>
@@ -745,7 +742,7 @@
                                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
                                 <input type="text" id="package-search" placeholder="ค้นหาแพ็กเกจ..." class="w-full pl-10 pr-4 py-2 bg-white rounded-lg border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
-                            <button onclick="togglePackageForm()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+                            <button onclick="togglePackageForm()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 mobile-w-full">
                                 <i class="fas fa-plus"></i> สร้างแพ็กเกจ
                             </button>
                         </div>
@@ -938,7 +935,7 @@
                             <textarea id="order-note" class="w-full px-3 lg:px-4 py-2 lg:py-3 rounded-lg lg:rounded-xl border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500 resize-none bg-slate-100" placeholder="ระบุข้อความแถม..." rows="2"></textarea>
                         </div>
                         <div class="flex justify-end">
-                            <button onclick="addOrderToCampaign()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold shadow-lg transition-all flex items-center gap-2">
+                            <button onclick="addOrderToCampaign()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold shadow-lg transition-all flex items-center gap-2 mobile-w-full justify-center">
                                 <i class="fas fa-plus"></i> เพิ่มรายการสั่งซื้อ
                             </button>
                         </div>
@@ -1120,10 +1117,10 @@
                             <i class="fas fa-chart-bar text-blue-600 text-xl"></i>
                             <h2 class="text-lg lg:text-xl font-bold">Report Management</h2>
                         </div>
-                        <div class="flex gap-2">
-                            <button onclick="printReport('customer')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2"><i class="fas fa-print"></i> พิมพ์รายงานลูกค้า</button>
-                            <button onclick="printReport('product')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2"><i class="fas fa-print"></i> พิมพ์รายงานสินค้า</button>
-                            <button onclick="printReport('package')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2"><i class="fas fa-print"></i> พิมพ์รายงานแพ็กเกจ</button>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="printReport('customer')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 mobile-w-full justify-center"><i class="fas fa-print"></i> พิมพ์รายงานลูกค้า</button>
+                            <button onclick="printReport('product')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 mobile-w-full justify-center"><i class="fas fa-print"></i> พิมพ์รายงานสินค้า</button>
+                            <button onclick="printReport('package')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 mobile-w-full justify-center"><i class="fas fa-print"></i> พิมพ์รายงานแพ็กเกจ</button>
                         </div>
                     </div>
                     <div class="p-6">
@@ -1224,9 +1221,8 @@
         let currentProductCategory = 'all';
         let isSidebarExpanded = false;
         
-                // ========== INIT ==========
+        // ========== INIT ==========
         document.addEventListener('DOMContentLoaded', function() {
-            // โหลดข้อมูลจาก localStorage โดยตรง
             try {
                 const saved = localStorage.getItem('mcot_package_v4_data');
                 if (saved) {
@@ -1241,7 +1237,6 @@
                 addSampleData();
             }
             
-            // อัพเดท UI
             setTimeout(() => {
                 updateLastSaved();
                 updateProductCodeNumbers();
@@ -1251,7 +1246,6 @@
                 switchTab('customers');
                 updateBadges();
                 setupAutoSave();
-                setupMobileMenu();
                 initializeOrdersTab();
                 renderAll();
             }, 100);
@@ -1294,17 +1288,14 @@
             const overlay = document.getElementById('mobile-menu-overlay');
             if (!sidebar || !overlay) return;
             
-            // ตรวจสอบว่าเป็นมือถือเท่านั้น
-            if (window.innerWidth < 769) {
-                if (sidebar.classList.contains('expanded')) {
-                    sidebar.classList.remove('expanded');
-                    overlay.classList.remove('mobile-menu-open');
-                    document.body.style.overflow = 'auto';
-                } else {
-                    sidebar.classList.add('expanded');
-                    overlay.classList.add('mobile-menu-open');
-                    document.body.style.overflow = 'hidden'; // ป้องกันการ scroll ด้านหลัง
-                }
+            if (sidebar.classList.contains('expanded')) {
+                sidebar.classList.remove('expanded');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            } else {
+                sidebar.classList.add('expanded');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
         }
         
@@ -1313,46 +1304,9 @@
             const overlay = document.getElementById('mobile-menu-overlay');
             if (!sidebar || !overlay) return;
             
-            if (window.innerWidth < 769) {
-                sidebar.classList.remove('expanded');
-                overlay.classList.remove('mobile-menu-open');
-                document.body.style.overflow = 'auto';
-            }
-        }
-        
-        function setupMobileMenu() {
-            const overlay = document.getElementById('mobile-menu-overlay');
-            if (overlay) {
-                overlay.addEventListener('click', closeMobileMenu);
-            }
-            
-            // ปรับปรุงการจัดการ resize
-            let resizeTimer;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(function() {
-                    const sidebar = document.getElementById('sidebar');
-                    const overlay = document.getElementById('mobile-menu-overlay');
-                    if (window.innerWidth >= 769) {
-                        if (sidebar) {
-                            sidebar.classList.remove('expanded');
-                        }
-                        if (overlay) {
-                            overlay.classList.remove('mobile-menu-open');
-                        }
-                        document.body.style.overflow = 'auto';
-                        loadSidebarState(); // โหลดสถานะ desktop
-                    }
-                }, 250);
-            });
-            
-            // เพิ่ม touch event เพื่อความลื่นไหล
-            const mobileBtn = document.getElementById('mobile-menu-btn');
-            if (mobileBtn) {
-                mobileBtn.addEventListener('touchstart', function(e) {
-                    e.preventDefault(); // ป้องกันการ scroll ขณะกด
-                });
-            }
+            sidebar.classList.remove('expanded');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
         
         // ========== TAB ==========
@@ -1360,10 +1314,13 @@
             closeMobileMenu();
             document.querySelectorAll('.tab-content').forEach(tab => tab?.classList.add('hidden'));
             document.querySelectorAll('.menu-item').forEach(btn => btn?.classList.remove('active'));
+            
             const tabElement = document.getElementById(`${tabName}-tab`);
             if (tabElement) tabElement.classList.remove('hidden');
+            
             const activeBtn = document.querySelector(`.menu-item[data-tab="${tabName}"]`);
             if (activeBtn) activeBtn.classList.add('active');
+            
             const titleElement = document.getElementById('page-title');
             if (titleElement) titleElement.textContent = getTabTitle(tabName);
             
@@ -1399,24 +1356,6 @@
         }
         
         // ========== DATA MANAGEMENT ==========
-        function loadData() {
-            try {
-                const saved = localStorage.getItem('mcot_package_v4_data');
-                if (saved) {
-                    systemData = JSON.parse(saved);
-                    if (!systemData.settings) systemData.settings = { lastSave: null, version: "4.0", sidebarExpanded: false };
-                    if (systemData.settings.sidebarExpanded === undefined) systemData.settings.sidebarExpanded = false;
-                } else {
-                    addSampleData();
-                }
-                updateLastSaved();
-                renderAll();
-            } catch (e) {
-                console.error("Error loading data:", e);
-                addSampleData();
-            }
-        }
-        
         function saveData() {
             systemData.settings.lastSave = new Date().toISOString();
             localStorage.setItem('mcot_package_v4_data', JSON.stringify(systemData));
@@ -1475,56 +1414,40 @@
                     }
                     
                     if (confirm("คุณแน่ใจหรือไม่ว่าต้องการนำเข้าข้อมูล?\n\nข้อมูลปัจจุบันจะถูกเขียนทับทั้งหมด")) {
-                        const oldData = JSON.parse(JSON.stringify(systemData));
+                        systemData = importedData;
                         
-                        try {
-                            systemData = importedData;
-                            
-                            // ตรวจสอบและซ่อมแซมข้อมูล
-                            if (!systemData.customers) systemData.customers = [];
-                            if (!systemData.products) systemData.products = [];
-                            if (!systemData.packages) systemData.packages = [];
-                            if (!systemData.orders) systemData.orders = [];
-                            if (!systemData.settings) {
-                                systemData.settings = { 
-                                    lastSave: new Date().toISOString(), 
-                                    version: "4.0", 
-                                    sidebarExpanded: false 
-                                };
-                            }
-                            
-                            // รีเซ็ตรหัสสินค้าและแพ็กเกจ
-                            updateProductCodeNumbers();
-                            updatePackageCounter();
-                            
-                            // จัดการ sidebar state
-                            if (systemData.settings.sidebarExpanded) {
-                                const sidebar = document.getElementById('sidebar');
-                                const mainContent = document.getElementById('main-content');
-                                if (sidebar && mainContent) {
-                                    sidebar.classList.add('expanded');
-                                    mainContent.classList.add('expanded');
-                                    isSidebarExpanded = true;
-                                }
-                            }
-                            
-                            // บันทึกข้อมูล
-                            saveData();
-                            
-                            // อัพเดทหน้าจอเฉพาะ tab ที่กำลังเปิดอยู่
-                            const activeTab = document.querySelector('.menu-item.active')?.getAttribute('data-tab') || 'customers';
-                            switchTab(activeTab);
-                            
-                            // อัพเดท badges
-                            updateBadges();
-                            
-                            showNotification('นำเข้าข้อมูลสำเร็จ', 'success');
-                            
-                        } catch (importError) {
-                            systemData = oldData;
-                            console.error('Import processing error:', importError);
-                            showNotification('เกิดข้อผิดพลาดในการนำเข้าข้อมูล', 'error');
+                        if (!systemData.customers) systemData.customers = [];
+                        if (!systemData.products) systemData.products = [];
+                        if (!systemData.packages) systemData.packages = [];
+                        if (!systemData.orders) systemData.orders = [];
+                        if (!systemData.settings) {
+                            systemData.settings = { 
+                                lastSave: new Date().toISOString(), 
+                                version: "4.0", 
+                                sidebarExpanded: false 
+                            };
                         }
+                        
+                        updateProductCodeNumbers();
+                        updatePackageCounter();
+                        
+                        if (systemData.settings.sidebarExpanded) {
+                            const sidebar = document.getElementById('sidebar');
+                            const mainContent = document.getElementById('main-content');
+                            if (sidebar && mainContent) {
+                                sidebar.classList.add('expanded');
+                                mainContent.classList.add('expanded');
+                                isSidebarExpanded = true;
+                            }
+                        }
+                        
+                        saveData();
+                        
+                        const activeTab = document.querySelector('.menu-item.active')?.getAttribute('data-tab') || 'customers';
+                        switchTab(activeTab);
+                        
+                        updateBadges();
+                        showNotification('นำเข้าข้อมูลสำเร็จ', 'success');
                     }
                 } catch (parseError) {
                     console.error('JSON parse error:', parseError);
@@ -1630,6 +1553,7 @@
             productTypeCodes[type].nextNumber++;
             return code;
         }
+        
         function generatePackageCode() {
             const codeNumber = packageCounter.toString().padStart(3, '0');
             const code = `PKG-${codeNumber}`;
@@ -1645,6 +1569,7 @@
                 if (!form.classList.contains('form-hidden')) { resetCustomerForm(); form.scrollIntoView({ behavior: 'smooth' }); }
             }
         }
+        
         function hideCustomerForm() { 
             const form = document.getElementById('customer-form-container');
             if (form) { form.classList.add('form-hidden'); resetCustomerForm(); }
@@ -1762,6 +1687,7 @@
                 if (!form.classList.contains('form-hidden')) { resetProductForm(); form.scrollIntoView({ behavior: 'smooth' }); }
             }
         }
+        
         function hideProductForm() { 
             const form = document.getElementById('product-form-container');
             if (form) { form.classList.add('form-hidden'); resetProductForm(); }
@@ -1934,6 +1860,7 @@
                 if (!form.classList.contains('form-hidden')) { resetPackageForm(); form.scrollIntoView({ behavior: 'smooth' }); }
             }
         }
+        
         function hidePackageForm() { 
             const form = document.getElementById('package-form-container');
             if (form) { form.classList.add('form-hidden'); resetPackageForm(); }
