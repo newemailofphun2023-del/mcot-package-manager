@@ -128,7 +128,6 @@
         
         /* ===== Mobile Menu ปรับปรุงใหม่ ===== */
         @media (max-width: 768px) {
-            /* ซ่อน Sidebar ปกติ */
             #sidebar {
                 transform: translateX(-100%);
                 width: 280px !important;
@@ -147,12 +146,10 @@
                 width: 100% !important;
             }
             
-            /* ซ่อนพื้นที่คลิกขอบ */
-            .sidebar-trigger { 
-                display: none; 
+            .sidebar-trigger {
+                display: none;
             }
             
-            /* ปุ่มเมนูมือถือ - ปรับให้ใหญ่ขึ้น กดง่าย */
             .mobile-menu-btn {
                 display: flex !important;
                 position: fixed;
@@ -178,7 +175,6 @@
                 background: #1c5bb8;
             }
             
-            /* Overlay สำหรับปิดเมนู */
             .mobile-menu-overlay {
                 position: fixed;
                 top: 0;
@@ -195,12 +191,10 @@
                 display: block !important;
             }
             
-            /* ปรับพื้นที่เนื้อหาหลัก */
             #main-content {
                 padding-top: 70px !important;
             }
             
-            /* ปรับขนาดฟอนต์และ padding สำหรับมือถือ */
             .mobile-text-sm { font-size: 0.875rem !important; }
             .mobile-text-base { font-size: 1rem !important; }
             .mobile-text-lg { font-size: 1.125rem !important; }
@@ -209,33 +203,29 @@
             .mobile-mt-4 { margin-top: 1rem !important; }
             .mobile-w-full { width: 100% !important; }
             
-            /* ปุ่มต่างๆ ในมือถือ */
             .btn-mobile {
                 width: 100%;
                 justify-content: center;
                 margin: 0.25rem 0;
             }
             
-            /* ตารางในมือถือ */
             .table-container {
                 margin: 0 -0.5rem;
                 width: calc(100% + 1rem);
             }
             
-            /* การ์ดต่างๆ */
             .card-mobile {
                 padding: 0.75rem !important;
             }
             
-            /* ปรับฟอร์ม */
             input, select, textarea {
-                font-size: 16px !important; /* ป้องกัน zoom บน iOS */
+                font-size: 16px !important;
             }
         }
 
         @media (min-width: 769px) {
-            .mobile-menu-btn { 
-                display: none !important; 
+            .mobile-menu-btn {
+                display: none !important;
             }
         }
         
@@ -254,12 +244,20 @@
             font-size: 0.95rem;
         }
         
-        .menu-item:hover { background: rgba(255, 255, 255, 0.15); }
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
         .menu-item.active {
             border-left-color: #f9a826;
             background: rgba(255, 255, 255, 0.2);
         }
-        .menu-item i { width: 24px; text-align: center; font-size: 1.1rem; }
+        
+        .menu-item i {
+            width: 24px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
         
         .sidebar-header {
             display: flex;
@@ -278,7 +276,10 @@
             transition: all 0.3s;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .logo i { font-size: 1.8rem; color: #1c5bb8; }
+        .logo i {
+            font-size: 1.8rem;
+            color: #1c5bb8;
+        }
         
         .command-title {
             font-size: 10px;
@@ -298,80 +299,189 @@
             line-height: 1.5;
         }
         
-        h1, h2, h3, h4, h5, h6 { font-family: 'Prompt', sans-serif; }
-        .mcot-gradient { background: linear-gradient(135deg, #0d3b66 0%, #1c5bb8 100%); }
-        .gold-border { border-color: #f9a826; }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Prompt', sans-serif;
+        }
         
-        .animate-fadeIn { animation: fadeIn 0.3s ease-in-out; }
+        .mcot-gradient {
+            background: linear-gradient(135deg, #0d3b66 0%, #1c5bb8 100%);
+        }
+        
+        .gold-border {
+            border-color: #f9a826;
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .slide-in { animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        
+        /* ปรับขนาดสำหรับพิมพ์ A4 แนวนอน */
         @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; font-size: 12pt; }
-            .print-only { display: block !important; }
+            @page {
+                size: A4 landscape;
+                margin: 1.5cm;
+            }
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                font-size: 11pt;
+            }
+            .print-only {
+                display: block !important;
+            }
             .print-report {
                 display: block !important;
                 width: 100%;
                 margin: 0;
-                padding: 0.5in;
+                padding: 0;
             }
             .print-report table {
                 width: 100%;
                 border-collapse: collapse;
                 page-break-inside: avoid;
+                font-size: 10pt;
             }
             .print-report th {
                 background-color: #e2e8f0 !important;
                 color: black !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+                padding: 6px 4px;
             }
-            .print-report h2 { color: #1e40af !important; }
+            .print-report td {
+                padding: 4px;
+            }
+            .print-report h2 {
+                color: #1e40af !important;
+                font-size: 16pt;
+                margin-bottom: 10px;
+            }
+            .print-report .credit {
+                font-size: 9pt;
+                color: #64748b;
+                margin-top: 15px;
+                text-align: center;
+            }
         }
         
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 3px;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         
-        .time-slot-btn { transition: all 0.2s; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        .time-slot-btn {
+            transition: all 0.2s;
+        }
+        
         .time-slot-btn.selected {
             transform: scale(1.02);
             box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
         }
-        .weekday-btn { transition: all 0.2s; }
-        .weekday-btn.selected { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+        
+        .weekday-btn {
+            transition: all 0.2s;
+        }
+        
+        .weekday-btn.selected {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
         .order-type-btn.active {
             background-color: white;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             color: #2563eb;
         }
         
-        .table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
         
-        .quotation-header { border-bottom: 2px solid #1e293b; margin-bottom: 1.5rem; }
-        .quotation-line { border-top: 1px solid #cbd5e1; margin: 0.5rem 0; }
-        .quotation-section { margin-bottom: 1rem; }
+        /* ปรับตารางไม่ให้เลื่อนซ้ายขวา */
+        .orders-table {
+            width: 100%;
+            table-layout: fixed;
+            font-size: 0.8rem;
+        }
+        .orders-table th, .orders-table td {
+            padding: 0.5rem;
+            word-wrap: break-word;
+        }
+        .orders-table th:nth-child(1) { width: 20%; }
+        .orders-table th:nth-child(2) { width: 8%; }
+        .orders-table th:nth-child(3) { width: 8%; }
+        .orders-table th:nth-child(4) { width: 8%; }
+        .orders-table th:nth-child(5) { width: 8%; }
+        .orders-table th:nth-child(6) { width: 8%; }
+        .orders-table th:nth-child(7) { width: 10%; }
+        .orders-table th:nth-child(8) { width: 10%; }
         
-        .product-category-tab { transition: all 0.2s; }
+        .quotation-header {
+            border-bottom: 2px solid #1e293b;
+            margin-bottom: 1.5rem;
+        }
+        
+        .quotation-line {
+            border-top: 1px solid #cbd5e1;
+            margin: 0.5rem 0;
+        }
+        
+        .quotation-section {
+            margin-bottom: 1rem;
+        }
+        
+        .product-category-tab {
+            transition: all 0.2s;
+        }
+        
         .product-category-tab.active {
             background-color: #2563eb;
             color: white;
             border-color: #2563eb;
         }
         
-        .package-product-item { transition: all 0.2s; }
+        .package-product-item {
+            transition: all 0.2s;
+        }
+        
         .package-product-item.selected {
             background-color: #eff6ff;
             border-color: #2563eb;
@@ -390,7 +500,11 @@
             align-items: center;
             justify-content: center;
         }
-        .modal.show { display: flex; }
+        
+        .modal.show {
+            display: flex;
+        }
+        
         .modal-content {
             background-color: white;
             border-radius: 1rem;
@@ -402,16 +516,65 @@
             animation: fadeIn 0.3s ease-out;
         }
         
-        .report-container { display: none; }
-        .report-container.print-active { display: block; }
-        .form-hidden { display: none !important; }
+        .report-container {
+            display: none;
+        }
+        
+        .report-container.print-active {
+            display: block;
+        }
+        
+        .form-hidden {
+            display: none !important;
+        }
+
+        /* Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #f97316;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- พื้นที่คลิกขอบซ้าย สำหรับ Desktop -->
     <div id="sidebar-trigger" class="sidebar-trigger" onclick="toggleSidebar()"></div>
     
-    <!-- ปุ่มเมนูมือถือ (ออกแบบใหม่) -->
+    <!-- ปุ่มเมนูมือถือ -->
     <button id="mobile-menu-btn" class="mobile-menu-btn" onclick="toggleMobileMenu()">
         <i class="fas fa-bars"></i>
     </button>
@@ -432,34 +595,40 @@
         <nav class="py-4 overflow-y-auto" style="height: calc(100vh - 180px);">
             <button onclick="switchTab('customers'); closeMobileMenu();" class="menu-item" data-tab="customers">
                 <i class="fas fa-users"></i>
-                <span class="sidebar-text">Customer</span>
+                <span class="sidebar-text">ลูกค้า</span>
                 <span id="customer-badge" class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold hidden sidebar-text">0</span>
             </button>
             
             <button onclick="switchTab('products'); closeMobileMenu();" class="menu-item" data-tab="products">
                 <i class="fas fa-box"></i>
-                <span class="sidebar-text">Product</span>
+                <span class="sidebar-text">สินค้า</span>
             </button>
             
             <button onclick="switchTab('packages'); closeMobileMenu();" class="menu-item" data-tab="packages">
                 <i class="fas fa-boxes"></i>
-                <span class="sidebar-text">Package</span>
+                <span class="sidebar-text">แพ็กเกจ</span>
             </button>
             
             <button onclick="switchTab('orders'); closeMobileMenu();" class="menu-item" data-tab="orders">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="sidebar-text">Order</span>
+                <span class="sidebar-text">สั่งซื้อ</span>
                 <span id="order-badge" class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold hidden sidebar-text">0</span>
             </button>
             
             <button onclick="switchTab('quotations'); closeMobileMenu();" class="menu-item" data-tab="quotations">
                 <i class="fas fa-file-invoice-dollar"></i>
-                <span class="sidebar-text">Quotation</span>
+                <span class="sidebar-text">ใบเสนอราคา</span>
+            </button>
+            
+            <!-- NEW: AI แนะนำแพ็กเกจ -->
+            <button onclick="switchTab('ai-package'); closeMobileMenu();" class="menu-item" data-tab="ai-package">
+                <i class="fas fa-robot"></i>
+                <span class="sidebar-text">AI แนะนำ</span>
             </button>
             
             <button onclick="switchTab('report'); closeMobileMenu();" class="menu-item" data-tab="report">
                 <i class="fas fa-chart-bar"></i>
-                <span class="sidebar-text">Report</span>
+                <span class="sidebar-text">รายงาน</span>
             </button>
         </nav>
         
@@ -467,24 +636,24 @@
             <p class="command-title sidebar-text">คำสั่งหลัก</p>
             <button onclick="saveData()" class="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg text-sm font-semibold shadow-md transition-all active:scale-95 mb-2">
                 <i class="fas fa-save"></i>
-                <span class="sidebar-text">Save</span>
+                <span class="sidebar-text">บันทึก</span>
             </button>
             
             <div class="grid grid-cols-2 gap-2 mb-2">
                 <button onclick="exportData()" class="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-400 text-white py-2 rounded-lg text-xs font-semibold shadow-md transition-all active:scale-95">
                     <i class="fas fa-download"></i>
-                    <span class="sidebar-text">Export</span>
+                    <span class="sidebar-text">ส่งออก</span>
                 </button>
                 <button onclick="document.getElementById('import-file').click()" class="flex items-center justify-center gap-2 bg-indigo-500 hover:bg-indigo-400 text-white py-2 rounded-lg text-xs font-semibold shadow-md transition-all active:scale-95">
                     <i class="fas fa-upload"></i>
-                    <span class="sidebar-text">Import</span>
+                    <span class="sidebar-text">นำเข้า</span>
                 </button>
                 <input type="file" id="import-file" accept=".json" class="hidden" onchange="importData(event)">
             </div>
             
             <button onclick="clearData()" class="w-full flex items-center justify-center gap-2 bg-rose-600 hover:bg-rose-700 text-white py-2 rounded-lg text-xs font-semibold shadow-md transition-all active:scale-95">
                 <i class="fas fa-trash"></i>
-                <span class="sidebar-text">Clear All</span>
+                <span class="sidebar-text">ล้างข้อมูล</span>
             </button>
             
             <div class="pt-2">
@@ -505,6 +674,7 @@
                 </div>
                 <div class="text-[10px] text-slate-400 font-mono text-right italic">
                     บันทึกล่าสุด: <span id="last-saved">ยังไม่เคยบันทึก</span>
+                    <span class="ml-2 text-xs text-slate-500">By Suraphun Inopas @ 2026</span>
                 </div>
             </div>
         </header>
@@ -517,6 +687,7 @@
                         <div class="flex items-center gap-3">
                             <div class="bg-blue-100 p-2 rounded-lg text-blue-600"><i class="fas fa-briefcase text-xl"></i></div>
                             <h2 class="text-lg lg:text-xl font-bold">รายชื่อลูกค้า (<span id="customer-count">0</span>)</h2>
+                            <span class="text-xs text-slate-400 ml-2">By Suraphun Inopas @ 2026</span>
                         </div>
                         <div class="flex gap-2">
                             <div class="relative w-full md:w-64">
@@ -614,6 +785,7 @@
                         <div class="flex items-center gap-3">
                             <div class="bg-blue-100 p-2 rounded-lg text-blue-600"><i class="fas fa-box text-xl"></i></div>
                             <h2 class="text-lg lg:text-xl font-bold">Product Management</h2>
+                            <span class="text-xs text-slate-400 ml-2">By Suraphun Inopas @ 2026</span>
                         </div>
                         <div class="flex gap-2">
                             <div class="relative w-full md:w-64">
@@ -736,6 +908,7 @@
                         <div class="flex items-center gap-3">
                             <div class="bg-blue-100 p-2 rounded-lg text-blue-600"><i class="fas fa-boxes text-xl"></i></div>
                             <h2 class="text-lg lg:text-xl font-bold">Package Management</h2>
+                            <span class="text-xs text-slate-400 ml-2">By Suraphun Inopas @ 2026</span>
                         </div>
                         <div class="flex gap-2">
                             <div class="relative w-full md:w-64">
@@ -857,11 +1030,15 @@
         <div id="orders-tab" class="tab-content animate-fadeIn hidden">
             <div class="space-y-6 lg:space-y-8">
                 <div class="bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                    <div class="p-4 lg:p-6 border-b border-slate-100 flex items-center gap-3 bg-slate-50">
-                        <i class="fas fa-plus text-blue-600 text-xl"></i>
-                        <h2 class="text-lg lg:text-xl font-bold">Order Management</h2>
+                    <div class="p-4 lg:p-6 border-b border-slate-100 flex items-center justify-between gap-3 bg-slate-50">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-plus text-blue-600 text-xl"></i>
+                            <h2 class="text-lg lg:text-xl font-bold">Order Management</h2>
+                        </div>
+                        <span class="text-xs text-slate-400">By Suraphun Inopas @ 2026</span>
                     </div>
                     <div class="p-4 lg:p-8 space-y-6 lg:space-y-8">
+                        <!-- ส่วนเลือกลูกค้า -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 items-end">
                             <div class="space-y-1.5">
                                 <label class="text-sm font-semibold text-slate-700">เลือกลูกค้า</label>
@@ -879,6 +1056,8 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- ส่วนประเภทและสินค้า -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                             <div class="space-y-1.5">
                                 <label class="text-sm font-semibold text-slate-700">ประเภทรายการ</label>
@@ -895,6 +1074,8 @@
                                 </select>
                             </div>
                         </div>
+                        
+                        <!-- ส่วนเวลา -->
                         <div class="space-y-3">
                             <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-2">
                                 <label class="text-sm font-semibold text-slate-700 flex items-center gap-2"><i class="fas fa-clock text-blue-500"></i> ช่วงเวลาออกอากาศ</label>
@@ -902,6 +1083,7 @@
                             </div>
                             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2" id="time-slots-container"></div>
                         </div>
+                        
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 pt-4 border-t border-slate-100">
                             <div class="space-y-4">
                                 <label class="text-sm font-semibold text-slate-700 flex items-center gap-2"><i class="fas fa-calendar text-blue-500"></i> ระยะเวลาออกอากาศ</label>
@@ -921,63 +1103,257 @@
                                     <label class="text-sm font-semibold text-slate-700">วันออกอากาศในสัปดาห์</label>
                                     <div class="flex flex-wrap gap-2" id="weekdays-container"></div>
                                 </div>
-                                <div class="space-y-1.5">
-                                    <label class="text-sm font-semibold text-slate-700">การชำระเงิน</label>
-                                    <select id="order-payment-type" class="w-full px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl border border-slate-200 outline-none focus:ring-2 focus:ring-blue-500 bg-slate-100 transition-all">
-                                        <option value="หลังออกอากาศ">ชำระหลังออกอากาศ</option>
-                                        <option value="ก่อนออกอากาศ">ชำระก่อนออกอากาศ (ลดเพิ่ม 5%)</option>
-                                    </select>
+                            </div>
+                        </div>
+                        
+                        <!-- ===== ส่วนลดพิเศษ (Special Discount) ===== -->
+                        <div class="bg-amber-50 p-4 rounded-xl border-2 border-amber-300 mt-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-gift text-amber-600 text-xl"></i>
+                                    <h4 class="font-bold text-amber-800">ส่วนลดพิเศษ (Special Discount)</h4>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="specialDiscountToggle" onchange="toggleSpecialDiscount()">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div id="specialDiscountPanel" class="hidden space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-amber-800 mb-1">เปอร์เซ็นต์ส่วนลด</label>
+                                    <input type="number" id="specialDiscountPercent" min="0" value="20" class="w-full px-4 py-2 rounded-lg border-2 border-amber-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200" onchange="calculateOrderTotal()">
+                                    <p class="text-xs text-amber-600 mt-1">* ไม่จำกัดเปอร์เซ็นต์</p>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-amber-800 mb-1">ผู้อนุมัติ</label>
+                                    <div class="space-y-2">
+                                        <label class="flex items-center gap-2 p-2 bg-white rounded-lg border border-amber-200">
+                                            <input type="radio" name="approverType" value="marketing" class="text-amber-600" onchange="showApproverInput()">
+                                            <span class="text-sm">การตลาด :</span>
+                                            <input type="text" id="marketingName" placeholder="ชื่อ-นามสกุล" class="flex-1 px-2 py-1 border-b border-amber-200 focus:border-amber-500 outline-none">
+                                        </label>
+                                        
+                                        <label class="flex items-center gap-2 p-2 bg-white rounded-lg border border-amber-200">
+                                            <input type="radio" name="approverType" value="station" class="text-amber-600" onchange="showApproverInput()">
+                                            <span class="text-sm">นายสถานี :</span>
+                                            <input type="text" id="stationName" placeholder="ชื่อ-นามสกุล" class="flex-1 px-2 py-1 border-b border-amber-200 focus:border-amber-500 outline-none">
+                                        </label>
+                                        
+                                        <label class="flex items-center gap-2 p-2 bg-white rounded-lg border border-amber-200">
+                                            <input type="radio" name="approverType" value="director" class="text-amber-600" onchange="showApproverInput()">
+                                            <span class="text-sm">ผู้อำนวยการ :</span>
+                                            <input type="text" id="directorName" placeholder="ชื่อ-นามสกุล" class="flex-1 px-2 py-1 border-b border-amber-200 focus:border-amber-500 outline-none">
+                                        </label>
+                                        
+                                        <label class="flex items-center gap-2 p-2 bg-white rounded-lg border border-amber-200">
+                                            <input type="radio" name="approverType" value="other" class="text-amber-600" onchange="showApproverInput()">
+                                            <span class="text-sm">อื่นๆ :</span>
+                                            <input type="text" id="otherApprover" placeholder="ระบุผู้อนุมัติ" class="flex-1 px-2 py-1 border-b border-amber-200 focus:border-amber-500 outline-none">
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-amber-800 mb-1">หมายเหตุ (ถ้ามี)</label>
+                                    <textarea id="specialDiscountNote" rows="2" class="w-full px-4 py-2 rounded-lg border-2 border-amber-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200" placeholder="เช่น อนุมัติทางโทรศัพท์..."></textarea>
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- ===== หน่วยงานราชการ ลด 40% (แยกจากส่วนลดเงื่อนไข) ===== -->
+                        <div class="bg-indigo-50 p-4 rounded-xl border-2 border-indigo-300">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-building text-indigo-600 text-xl"></i>
+                                    <div>
+                                        <h4 class="font-bold text-indigo-800">หน่วยงานราชการ ลด 40%</h4>
+                                        <p class="text-xs text-indigo-600" id="govDiscountStatus">✓ ระบบตรวจสอบอัตโนมัติเมื่อเลือกลูกค้าประเภทราชการ</p>
+                                    </div>
+                                </div>
+                                <div class="bg-indigo-100 px-3 py-1 rounded-full text-indigo-700 font-bold" id="govDiscountBadge">ไม่ใช้งาน</div>
+                            </div>
+                        </div>
+                        
+                        <!-- ส่วนลดเงื่อนไข (Condition Discount) - ไม่มี 40% แล้ว) -->
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i class="fas fa-tags text-blue-600"></i>
+                                <h4 class="font-bold text-blue-800">ส่วนลดเงื่อนไข</h4>
+                            </div>
+                            <select id="conditionDiscount" class="w-full px-4 py-2 rounded-lg border border-blue-200" onchange="calculateOrderTotal()">
+                                <option value="0">ไม่มีส่วนลด</option>
+                                <option value="20">ลด 20% (ลง 2 เดือน)</option>
+                                <option value="25">ลด 25% (ลง 3-5 เดือน)</option>
+                                <option value="30">ลด 30% (ลง 6 เดือนขึ้นไป)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- ส่วนลดจ่ายล่วงหน้า - เปลี่ยนเป็น 5% เหมือนเดิม (แต่ย้ายราชการออกแล้ว) -->
+                        <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-200">
+                            <label class="flex items-center justify-between cursor-pointer">
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-credit-card text-emerald-600"></i>
+                                    <span class="font-medium text-emerald-800">ส่วนลดจ่ายล่วงหน้า 5%</span>
+                                </div>
+                                <input type="checkbox" id="prepaymentDiscount" class="w-5 h-5 text-emerald-600" onchange="calculateOrderTotal()">
+                            </label>
+                        </div>
+                        
+                        <!-- ===== ภาษีหัก ณ ที่จ่าย (WHT) ===== -->
+                        <div class="bg-purple-50 p-4 rounded-lg border-2 border-purple-300">
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-percent text-purple-600"></i>
+                                    <h4 class="font-bold text-purple-800">ภาษีหัก ณ ที่จ่าย</h4>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="whtToggle" onchange="toggleWHT()">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div id="whtPanel" class="hidden">
+                                <label class="block text-sm font-medium text-purple-800 mb-1">อัตราภาษี (%)</label>
+                                <input type="number" id="whtPercent" min="0" max="100" step="0.1" value="3" class="w-full px-4 py-2 rounded-lg border-2 border-purple-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200" onchange="calculateOrderTotal()">
+                                <p class="text-xs text-purple-600 mt-1">* คำนวณจากยอดก่อน VAT</p>
+                            </div>
+                        </div>
+                        
                         <div class="space-y-1.5">
                             <label class="text-sm font-semibold text-slate-700">หมายเหตุ/ข้อความแถม</label>
                             <textarea id="order-note" class="w-full px-3 lg:px-4 py-2 lg:py-3 rounded-lg lg:rounded-xl border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500 resize-none bg-slate-100" placeholder="ระบุข้อความแถม..." rows="2"></textarea>
                         </div>
-                        <div class="flex justify-end">
-                            <button onclick="addOrderToCampaign()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold shadow-lg transition-all flex items-center gap-2 mobile-w-full justify-center">
-                                <i class="fas fa-plus"></i> เพิ่มรายการสั่งซื้อ
+                        
+                        <!-- สรุปการคำนวณ (เริ่มต้นเป็น 0.00) -->
+                        <div class="bg-slate-800 text-white p-6 rounded-xl">
+                            <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                                <i class="fas fa-calculator"></i> สรุปการคำนวณ
+                            </h3>
+                            
+                            <div class="space-y-3" id="calculationSummary">
+                                <div class="flex justify-between text-sm">
+                                    <span>ราคาสินค้า:</span>
+                                    <span class="font-mono" id="displayBasePrice">0 ฿</span>
+                                </div>
+                                
+                                <div id="summarySpecialDiscount" class="hidden">
+                                    <div class="flex justify-between text-sm text-amber-300">
+                                        <span>ส่วนลดพิเศษ <span id="displaySpecialPercent">0</span>%:</span>
+                                        <span class="font-mono" id="displaySpecialAmount">0 ฿</span>
+                                    </div>
+                                    <div class="text-xs text-amber-400 text-right" id="displayApprover"></div>
+                                </div>
+                                
+                                <div id="summaryGovDiscount" class="hidden">
+                                    <div class="flex justify-between text-sm text-indigo-300">
+                                        <span>ส่วนลดหน่วยงานราชการ 40%:</span>
+                                        <span class="font-mono" id="displayGovAmount">0 ฿</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between text-sm text-blue-300">
+                                    <span>ส่วนลดเงื่อนไข <span id="displayConditionPercent">0</span>%:</span>
+                                    <span class="font-mono" id="displayConditionAmount">0 ฿</span>
+                                </div>
+                                
+                                <div class="flex justify-between text-sm text-emerald-300" id="summaryPrepayment">
+                                    <span>ส่วนลดจ่ายล่วงหน้า 5%:</span>
+                                    <span class="font-mono" id="displayPrepaymentAmount">0 ฿</span>
+                                </div>
+                                
+                                <div class="border-t border-slate-600 my-2"></div>
+                                
+                                <div class="flex justify-between font-bold">
+                                    <span>รวมส่วนลด:</span>
+                                    <span class="font-mono" id="displayTotalDiscount">0 ฿</span>
+                                </div>
+                                
+                                <div class="flex justify-between">
+                                    <span>ราคาหลังส่วนลด:</span>
+                                    <span class="font-mono" id="displayAfterDiscount">0 ฿</span>
+                                </div>
+                                
+                                <div class="flex justify-between text-sm">
+                                    <span>VAT 7%:</span>
+                                    <span class="font-mono" id="displayVat">0 ฿</span>
+                                </div>
+                                
+                                <div class="flex justify-between text-sm">
+                                    <span>ราคารวม VAT:</span>
+                                    <span class="font-mono" id="displayTotalWithVat">0 ฿</span>
+                                </div>
+                                
+                                <div id="summaryWHT" class="hidden">
+                                    <div class="flex justify-between text-sm text-purple-300">
+                                        <span>หัก ณ ที่จ่าย <span id="displayWhtPercent">0</span>%:</span>
+                                        <span class="font-mono" id="displayWhtAmount">0 ฿</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="border-t border-slate-600 my-2"></div>
+                                
+                                <div class="flex justify-between text-xl font-black">
+                                    <span>ยอดสุทธิจ่ายจริง:</span>
+                                    <span class="font-mono text-yellow-400" id="displayNetTotal">0 ฿</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-end gap-3">
+                            <button onclick="resetOrderForm()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-bold">ล้างฟอร์ม</button>
+                            <button onclick="addOrderToCampaign()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-bold shadow-lg flex items-center gap-2">
+                                <i class="fas fa-save"></i> บันทึกรายการ
                             </button>
                         </div>
                     </div>
                 </div>
+                
+                <!-- ส่วนสรุปแคมเปญ -->
                 <div class="bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-200 overflow-hidden lg:sticky lg:top-8">
                     <div class="p-4 lg:p-6 border-b border-slate-100 flex items-center gap-3 bg-slate-50">
                         <i class="fas fa-calculator text-emerald-600 text-xl"></i>
-                        <h2 class="text-lg lg:text-xl font-bold">สรุปการคำนวณ</h2>
+                        <h2 class="text-lg lg:text-xl font-bold">สรุปการคำนวณแคมเปญ</h2>
+                        <span class="text-xs text-slate-400 ml-2">By Suraphun Inopas @ 2026</span>
                     </div>
-                    <div class="p-4 lg:p-6 space-y-4" id="calculation-summary">
-                        <div class="py-8 lg:py-12 flex flex-col items-center justify-center text-slate-300 gap-3 text-center">
-                            <i class="fas fa-calculator text-3xl lg:text-4xl opacity-20"></i>
-                            <p class="text-xs">ระบุข้อมูลลูกค้า วันออกอากาศ<br/>และเลือกสินค้าเพื่อคำนวณราคา</p>
-                        </div>
+                    <div class="p-4 lg:p-6 space-y-4" id="campaignSummary">
+                        <!-- จะแสดงด้วย JavaScript -->
                     </div>
                 </div>
+                
                 <div class="bg-blue-900 rounded-xl lg:rounded-2xl p-4 lg:p-6 text-white shadow-xl border-l-4 border-yellow-500">
                     <h3 class="text-xs font-bold opacity-70 uppercase tracking-widest mb-4">ยอดรวมแคมเปญปัจจุบัน</h3>
                     <div class="space-y-3">
                         <div class="flex justify-between text-sm"><span>ราคารวมทั้งหมด:</span><span id="campaign-total" class="font-mono">0 ฿</span></div>
                         <div class="flex justify-between text-sm text-emerald-400"><span>ส่วนลดรวมสะสม:</span><span id="campaign-discount" class="font-mono">0 ฿</span></div>
+                        <div class="flex justify-between text-sm text-purple-400"><span>ภาษีหัก ณ ที่จ่ายรวม:</span><span id="campaign-wht" class="font-mono">0 ฿</span></div>
                         <div class="pt-3 border-t border-white/10 flex justify-between items-center">
                             <span class="font-bold text-base lg:text-lg">สุทธิทั้งสิ้น:</span>
                             <span id="campaign-net" class="text-xl lg:text-2xl font-black">0 ฿</span>
                         </div>
                     </div>
                 </div>
+                
+                <!-- ตารางรายการสั่งซื้อ (ปรับไม่ให้เลื่อนซ้ายขวา) -->
                 <div class="bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                     <div class="p-4 lg:p-6 border-b border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-slate-50">
                         <h2 class="text-lg lg:text-xl font-bold">รายการสั่งซื้อในแคมเปญ (<span id="orders-count">0</span>)</h2>
+                        <span class="text-xs text-slate-400">By Suraphun Inopas @ 2026</span>
                     </div>
-                    <div class="table-container">
-                        <table class="w-full text-left border-collapse min-w-[1000px]">
+                    <div class="table-container overflow-x-hidden">
+                        <table class="w-full text-left border-collapse orders-table">
                             <thead class="bg-slate-100">
                                 <tr>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase">สินค้า / บริการ</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-center">จำนวนวัน</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-center">ความถี่</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-right">ส่วนลด</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-right font-black">ยอดสุทธิ</th>
-                                    <th class="px-4 lg:px-6 py-3 lg:py-4 text-[10px] font-bold text-slate-500 uppercase text-center">จัดการ</th>
+                                    <th class="px-2 py-2 text-[10px] font-bold text-slate-500 uppercase">สินค้า / บริการ</th>
+                                    <th class="px-2 py-2 text-[10px] font-bold text-slate-500 uppercase text-center">จำนวนวัน</th>
+                                    <th class="px-2 py-2 text-[10px] font-bold text-slate-500 uppercase text-center">ความถี่</th>
+                                    <th class="px-2 py-2 text-[10px] font-bold text-slate-500 uppercase text-right">ส่วนลดพิเศษ</th>
+                                    <th class="px-2 py-2 text-[10px] font-bold text-slate-500 uppercase text-right">ส่วนลดราชการ</th>
+                                    <th class="px-2 py-2 text-[10px] font-bold text-slate-500 uppercase text-right">ส่วนลดอื่น</th>
+                                    <th class="px-2 py-2 text-[10px] font-bold text-slate-500 uppercase text-right">ภาษีหัก</th>
+                                    <th class="px-2 py-2 text-[10px] font-bold text-slate-500 uppercase text-right font-black">ยอดสุทธิ</th>
+                                    <th class="px-2 py-2 text-[10px] font-bold text-slate-500 uppercase text-center">จัดการ</th>
                                 </tr>
                             </thead>
                             <tbody id="orders-table-body" class="divide-y divide-slate-100"></tbody>
@@ -987,7 +1363,7 @@
             </div>
         </div>
         
-        <!-- ========== QUOTATIONS TAB ========== -->
+        <!-- ========== QUOTATIONS TAB (ปรับปรุงตามที่ขอ) ========== -->
         <div id="quotations-tab" class="tab-content animate-fadeIn hidden">
             <div class="space-y-6 lg:space-y-8">
                 <div class="bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-200 overflow-hidden no-print">
@@ -995,6 +1371,7 @@
                         <div class="flex items-center gap-3">
                             <i class="fas fa-file-invoice-dollar text-blue-600 text-xl"></i>
                             <h2 class="text-lg lg:text-xl font-bold">Quotation Management</h2>
+                            <span class="text-xs text-slate-400">By Suraphun Inopas @ 2026</span>
                         </div>
                         <button onclick="printQuotation()" id="print-quotation-btn" class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-lg lg:rounded-xl text-sm font-bold shadow-lg transition-all active:scale-95 mobile-w-full lg:w-auto">
                             <i class="fas fa-print"></i> พิมพ์ใบเสนอราคา
@@ -1018,7 +1395,9 @@
                     </div>
                 </div>
                 
+                <!-- ตัวอย่างใบเสนอราคา (ปรับปรุง) -->
                 <div id="quotation-preview" class="bg-white p-4 lg:p-6 xl:p-8 shadow-2xl rounded-sm border border-slate-200 max-w-5xl mx-auto text-slate-800 min-h-[1100px] flex flex-col font-['Sarabun'] hidden">
+                    <!-- หัวใบเสนอราคา -->
                     <div class="quotation-header text-center mb-6">
                         <h1 class="text-xl lg:text-2xl font-black text-blue-900 mb-1">ใบเสนอราคา</h1>
                         <p class="text-base lg:text-lg font-bold">MCOT Radio Network Phitsanulok</p>
@@ -1029,6 +1408,7 @@
                         <p class="text-sm font-bold mt-1">โทร. 055-287833 | เลขประจำตัวผู้เสียภาษี 0107547000745</p>
                         <div class="quotation-line my-2"></div>
                     </div>
+                    
                     <div class="quotation-section mb-6">
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4 text-sm">
                             <div class="space-y-2">
@@ -1046,49 +1426,68 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- ตารางรายการ -->
                     <div class="flex-1 overflow-hidden mb-6">
                         <div class="overflow-x-auto">
-                            <table class="w-full text-xs border-collapse min-w-[600px]">
+                            <table class="w-full text-xs border-collapse min-w-[800px]">
                                 <thead>
                                     <tr class="bg-slate-200 border-y-2 border-slate-800">
                                         <th class="p-2 lg:p-3 text-left border-x border-slate-300">รายละเอียด</th>
                                         <th class="p-2 lg:p-3 text-center border-x border-slate-300 w-16 lg:w-24">จำนวนวัน</th>
                                         <th class="p-2 lg:p-3 text-center border-x border-slate-300 w-16 lg:w-20">ครั้ง/วัน</th>
                                         <th class="p-2 lg:p-3 text-right border-x border-slate-300 w-20 lg:w-28">ครั้งรวม</th>
-                                        <th class="p-2 lg:p-3 text-right border-x border-slate-300 w-24 lg:w-32">ยอดสุทธิ (บาท)</th>
+                                        <th class="p-2 lg:p-3 text-right border-x border-slate-300 w-24 lg:w-32">ราคาก่อน VAT</th>
+                                        <th class="p-2 lg:p-3 text-right border-x border-slate-300 w-20 lg:w-24">ภาษีหัก ณ ที่จ่าย</th>
+                                        <th class="p-2 lg:p-3 text-right border-x border-slate-300 w-24 lg:w-32">ยอดสุทธิ</th>
                                     </tr>
                                 </thead>
                                 <tbody id="quotation-items"></tbody>
                             </table>
                         </div>
                     </div>
+                    
+                    <!-- สรุปยอด -->
                     <div class="mt-6 lg:mt-8 flex justify-end">
-                        <div class="w-full lg:w-80 space-y-1">
+                        <div class="w-full lg:w-96 space-y-1">
                             <div class="flex justify-between text-sm py-1 border-b border-slate-100"><span class="font-bold">ยอดก่อน VAT รวม:</span><span id="quotation-before-vat" class="font-black">0 บาท</span></div>
                             <div class="flex justify-between text-sm py-1 border-b border-slate-100"><span class="font-bold">VAT 7% รวม:</span><span id="quotation-vat" class="font-black">0 บาท</span></div>
+                            <div class="flex justify-between text-sm py-1 border-b border-slate-100"><span class="font-bold">ภาษีหัก ณ ที่จ่ายรวม:</span><span id="quotation-wht" class="font-black">0 บาท</span></div>
                             <div class="flex justify-between items-center bg-slate-800 text-white p-3 rounded-lg mt-2 shadow-md">
-                                <span class="text-sm font-black">ยอดสุทธิรวม:</span>
+                                <span class="text-sm font-black">ยอดสุทธิจ่ายจริง:</span>
                                 <span id="quotation-total" class="text-lg lg:text-xl font-black">0 บาท</span>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- เงื่อนไขและรายละเอียดการชำระเงิน (ปรับตามที่ขอ) -->
                     <div class="mt-8 lg:mt-12 pt-6 lg:pt-8 border-t border-slate-300 text-xs">
-                        <h3 class="font-bold text-slate-800 mb-3 text-sm">เงื่อนไขและรายละเอียดการชำระเงิน</h3>
-                        <div class="space-y-2">
-                            <p><strong>เงื่อนไข:</strong></p>
-                            <ul class="list-disc pl-5 ml-3 space-y-1">
-                                <li>ลูกค้ารายใหม่ชำระเงินก่อนออกอากาศ ในเวลาทำการ เวลา 09.00 น. – 15.00 น. (วันจันทร์ – วันศุกร์)</li>
-                                <li>กรณีชำระหลัง เวลา 15.00 น. ถือว่าชำระในวันรุ่งขึ้น</li>
-                            </ul>
-                            <p><strong>รายละเอียดการชำระเงิน:</strong></p>
-                            <ul class="list-disc pl-5 ml-3 space-y-1">
-                                <li><strong>ชำระเป็นเช็ค:</strong> สั่งจ่ายในนาม บมจ.อสมท</li>
-                                <li><strong>โอนเงินเข้าบัญชี:</strong> บมจ. อสมท บัญชีเลขที่ 015-1-05842-3 ธนาคารกรุงไทย สาขาสิงห์คอมเพล็กซ์</li>
-                                <li><strong>ชำระเป็นเงินสด:</strong> ที่ฝ่ายการเงิน บมจ. อสมท สาขาพิษณุโลก 1 ในเวลาทำการ เวลา 09.00 น. – 15.00 น. (วันจันทร์ – วันศุกร์)</li>
-                                <li><strong>หนังสือรับรองการหักภาษี ณ ที่จ่าย ออกในนาม:</strong> บมจ.อสมท 63/1 ถ.พระราม 9 แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพฯ 10310 เลขประจำตัวผู้เสียภาษี 0107547000745</li>
-                            </ul>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- คอลัมน์ซ้าย: เงื่อนไข -->
+                            <div>
+                                <h3 class="font-bold text-slate-800 mb-3 text-sm">เงื่อนไข</h3>
+                                <ul class="list-disc pl-5 ml-3 space-y-1">
+                                    <li>ลูกค้ารายใหม่ชำระเงินก่อนออกอากาศ ในเวลาทำการ เวลา 09.00 น. – 15.00 น. (วันจันทร์ – วันศุกร์)</li>
+                                    <li>กรณีชำระหลัง เวลา 15.00 น. ถือว่าชำระในวันรุ่งขึ้น</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- คอลัมน์ขวา: รายละเอียดการชำระเงิน -->
+                            <div>
+                                <h3 class="font-bold text-slate-800 mb-3 text-sm">รายละเอียดการชำระเงิน</h3>
+                                <ul class="list-disc pl-5 ml-3 space-y-1">
+                                    <li><strong>ชำระเป็นเช็ค:</strong> สั่งจ่ายในนาม บมจ.อสมท</li>
+                                    <li><strong>โอนเงินเข้าบัญชี:</strong> บมจ. อสมท บัญชีเลขที่ 015-1-05842-3 ธนาคารกรุงไทย สาขาสิงห์คอมเพล็กซ์</li>
+                                    <li><strong>ชำระเป็นเงินสด:</strong> ที่ฝ่ายการเงิน บมจ. อสมท สาขาพิษณุโลก 1 ในเวลาทำการ เวลา 09.00 น. – 15.00 น. (วันจันทร์ – วันศุกร์)</li>
+                                    <li><strong>หนังสือรับรองการหักภาษี ณ ที่จ่าย ออกในนาม:</strong> บมจ.อสมท 63/1 ถ.พระราม 9 แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพฯ 10310 เลขประจำตัวผู้เสียภาษี 0107547000745</li>
+                                </ul>
+                            </div>
                         </div>
+                        
+                        <!-- เครดิตในการพิมพ์ -->
+                        <div class="text-center text-slate-500 text-[10px] mt-6 print-only">By Suraphun Inopas @ 2026</div>
                     </div>
+                    
                     <div class="mt-8 lg:mt-12 mb-8 lg:mb-12 flex justify-end">
                         <div class="text-center w-56 lg:w-64 space-y-8 lg:space-y-12">
                             <div class="border-b border-slate-300 pb-1"><p class="text-sm font-bold text-slate-800">ผู้เสนอราคา: <span id="quotation-staff-name">ฝ่ายขาย</span></p></div>
@@ -1108,43 +1507,166 @@
             </div>
         </div>
         
+        <!-- ========== AI PACKAGE TAB ========== -->
+        <div id="ai-package-tab" class="tab-content animate-fadeIn hidden">
+            <div class="bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-4 lg:p-6 border-b border-slate-100 flex items-center justify-between gap-3 bg-slate-50">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-robot text-purple-600 text-xl"></i>
+                        <h2 class="text-lg lg:text-xl font-bold">AI แนะนำแพ็กเกจ</h2>
+                    </div>
+                    <span class="text-xs text-slate-400">By Suraphun Inopas @ 2026</span>
+                </div>
+                
+                <div class="p-4 lg:p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- ฟอร์มกรอกข้อมูล -->
+                        <div class="space-y-4">
+                            <h3 class="font-bold text-lg">📝 กรอกข้อมูลลูกค้า</h3>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">ชื่อลูกค้า</label>
+                                <input type="text" id="aiCustomerName" placeholder="ชื่อลูกค้า" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">งบประมาณ (บาท)</label>
+                                <input type="number" id="aiBudget" value="0" min="0" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">วัตถุประสงค์</label>
+                                <select id="aiObjective" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500">
+                                    <option value="sales">เพิ่มยอดขาย</option>
+                                    <option value="brand">สร้างแบรนด์/ภาพลักษณ์</option>
+                                    <option value="event">ประชาสัมพันธ์กิจกรรม</option>
+                                    <option value="recruit">รับสมัครสมาชิก/พนักงาน</option>
+                                    <option value="other">อื่นๆ</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">กลุ่มเป้าหมาย</label>
+                                <select id="aiTarget" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500">
+                                    <option value="government">หน่วยงานราชการ/รัฐวิสาหกิจ</option>
+                                    <option value="business">เจ้าของกิจการ</option>
+                                    <option value="youth">วัยรุ่น/นักเรียน/นักศึกษา</option>
+                                    <option value="working">วัยทำงาน</option>
+                                    <option value="farmer">เกษตรกร</option>
+                                    <option value="housewife">แม่บ้าน</option>
+                                    <option value="general">ประชาชนทั่วไป</option>
+                                    <option value="other">อื่นๆ</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">ระยะเวลา (เดือน)</label>
+                                <input type="number" id="aiDuration" value="1" min="1" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            
+                            <button onclick="generateAIPackage()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg font-bold shadow-lg">
+                                <i class="fas fa-magic"></i> วิเคราะห์และสร้างแพ็กเกจ
+                            </button>
+                        </div>
+                        
+                        <!-- ผลลัพธ์ -->
+                        <div class="bg-purple-50 p-6 rounded-xl border-2 border-purple-200">
+                            <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                                <i class="fas fa-lightbulb text-purple-600"></i> ผลการวิเคราะห์
+                            </h3>
+                            
+                            <div id="aiResult" class="space-y-4 min-h-[350px]">
+                                <div class="text-center text-slate-400 py-8">
+                                    <i class="fas fa-robot text-4xl opacity-20 mb-2"></i>
+                                    <p>กรอกข้อมูลและกดปุ่มวิเคราะห์</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 text-center text-xs text-slate-400">
+                                By Suraphun Inopas @ 2026
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- ========== REPORT TAB ========== -->
         <div id="report-tab" class="tab-content animate-fadeIn hidden">
             <div class="space-y-6 lg:space-y-8">
                 <div class="bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-200 overflow-hidden no-print">
                     <div class="p-4 lg:p-6 border-b border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-slate-50">
                         <div class="flex items-center gap-3">
-                            <i class="fas fa-chart-bar text-blue-600 text-xl"></i>
-                            <h2 class="text-lg lg:text-xl font-bold">Report Management</h2>
+                            <i class="fas fa-chart-bar text-green-600 text-xl"></i>
+                            <h2 class="text-lg lg:text-xl font-bold">รายงาน</h2>
+                            <span class="text-xs text-slate-400">By Suraphun Inopas @ 2026</span>
                         </div>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="printReport('customer')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 mobile-w-full justify-center"><i class="fas fa-print"></i> พิมพ์รายงานลูกค้า</button>
-                            <button onclick="printReport('product')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 mobile-w-full justify-center"><i class="fas fa-print"></i> พิมพ์รายงานสินค้า</button>
-                            <button onclick="printReport('package')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 mobile-w-full justify-center"><i class="fas fa-print"></i> พิมพ์รายงานแพ็กเกจ</button>
+                            <button onclick="printReport('discount')" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+                                <i class="fas fa-print"></i> พิมพ์รายงานส่วนลด
+                            </button>
+                            <button onclick="printReport('wht')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+                                <i class="fas fa-print"></i> พิมพ์รายงานภาษี
+                            </button>
+                            <button onclick="printReport('customer')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+                                <i class="fas fa-print"></i> พิมพ์รายงานลูกค้า
+                            </button>
+                            <button onclick="printReport('product')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+                                <i class="fas fa-print"></i> พิมพ์รายงานสินค้า
+                            </button>
+                            <button onclick="printReport('package')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+                                <i class="fas fa-print"></i> พิมพ์รายงานแพ็กเกจ
+                            </button>
                         </div>
                     </div>
+                    
                     <div class="p-6">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                                <div class="flex items-center justify-between">
-                                    <div><p class="text-sm text-blue-600 font-bold">ลูกค้าทั้งหมด</p><p class="text-3xl font-black text-blue-800" id="report-customer-count">0</p></div>
-                                    <i class="fas fa-users text-4xl text-blue-300"></i>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- รายงานส่วนลดพิเศษ -->
+                            <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                                <h3 class="font-bold text-amber-800 mb-3">📊 รายงานส่วนลดพิเศษ</h3>
+                                <div class="space-y-2 max-h-60 overflow-y-auto" id="discountReport">
+                                    <!-- จะแสดงด้วย JavaScript -->
                                 </div>
-                                <button onclick="printReport('customer')" class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-sm font-bold">พิมพ์รายงาน</button>
                             </div>
-                            <div class="bg-emerald-50 p-4 rounded-lg border border-emerald-100">
-                                <div class="flex items-center justify-between">
-                                    <div><p class="text-sm text-emerald-600 font-bold">สินค้าทั้งหมด</p><p class="text-3xl font-black text-emerald-800" id="report-product-count">0</p></div>
-                                    <i class="fas fa-box text-4xl text-emerald-300"></i>
+                            
+                            <!-- รายงานภาษีหัก ณ ที่จ่าย -->
+                            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                                <h3 class="font-bold text-purple-800 mb-3">📊 รายงานภาษีหัก ณ ที่จ่าย</h3>
+                                <div class="space-y-2 max-h-60 overflow-y-auto" id="whtReport">
+                                    <!-- จะแสดงด้วย JavaScript -->
                                 </div>
-                                <button onclick="printReport('product')" class="mt-3 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-lg text-sm font-bold">พิมพ์รายงาน</button>
                             </div>
-                            <div class="bg-purple-50 p-4 rounded-lg border border-purple-100">
-                                <div class="flex items-center justify-between">
-                                    <div><p class="text-sm text-purple-600 font-bold">แพ็กเกจทั้งหมด</p><p class="text-3xl font-black text-purple-800" id="report-package-count">0</p></div>
-                                    <i class="fas fa-boxes text-4xl text-purple-300"></i>
+                            
+                            <!-- สถิติทั่วไป -->
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                <h3 class="font-bold text-blue-800 mb-3">📊 สถิติทั่วไป</h3>
+                                <div class="space-y-2">
+                                    <div class="bg-white p-3 rounded-lg border border-blue-100">
+                                        <div class="flex justify-between">
+                                            <span>ลูกค้าทั้งหมด:</span>
+                                            <span class="font-bold" id="report-customer-count">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg border border-blue-100">
+                                        <div class="flex justify-between">
+                                            <span>สินค้าทั้งหมด:</span>
+                                            <span class="font-bold" id="report-product-count">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg border border-blue-100">
+                                        <div class="flex justify-between">
+                                            <span>แพ็กเกจทั้งหมด:</span>
+                                            <span class="font-bold" id="report-package-count">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg border border-blue-100">
+                                        <div class="flex justify-between">
+                                            <span>คำสั่งซื้อทั้งหมด:</span>
+                                            <span class="font-bold" id="report-order-count">0</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button onclick="printReport('package')" class="mt-3 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg text-sm font-bold">พิมพ์รายงาน</button>
                             </div>
                         </div>
                     </div>
@@ -1166,7 +1688,8 @@
             settings: {
                 lastSave: null,
                 version: "4.0",
-                sidebarExpanded: false
+                sidebarExpanded: false,
+                lastTab: 'customers'  // เก็บหน้าที่ใช้งานล่าสุด
             }
         };
         
@@ -1221,14 +1744,21 @@
         let currentProductCategory = 'all';
         let isSidebarExpanded = false;
         
+        // ========== ฟังก์ชันจัดรูปแบบตัวเลข (เพิ่ม comma) ==========
+        function formatNumber(num) {
+            if (num === undefined || num === null) return '0.00';
+            return num.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        
         // ========== INIT ==========
         document.addEventListener('DOMContentLoaded', function() {
             try {
                 const saved = localStorage.getItem('mcot_package_v4_data');
                 if (saved) {
                     systemData = JSON.parse(saved);
-                    if (!systemData.settings) systemData.settings = { lastSave: null, version: "4.0", sidebarExpanded: false };
+                    if (!systemData.settings) systemData.settings = { lastSave: null, version: "4.0", sidebarExpanded: false, lastTab: 'customers' };
                     if (systemData.settings.sidebarExpanded === undefined) systemData.settings.sidebarExpanded = false;
+                    if (!systemData.settings.lastTab) systemData.settings.lastTab = 'customers';
                 } else {
                     addSampleData();
                 }
@@ -1243,7 +1773,8 @@
                 updatePackageCounter();
                 loadSidebarState();
                 setupEventListeners();
-                switchTab('customers');
+                // ไปที่หน้าที่เคยใช้งานล่าสุด
+                switchTab(systemData.settings.lastTab || 'customers');
                 updateBadges();
                 setupAutoSave();
                 initializeOrdersTab();
@@ -1324,12 +1855,16 @@
             const titleElement = document.getElementById('page-title');
             if (titleElement) titleElement.textContent = getTabTitle(tabName);
             
+            // บันทึกหน้าที่ใช้งานล่าสุด
+            systemData.settings.lastTab = tabName;
+            
             if (tabName === 'customers') { renderCustomers(); resetCustomerForm(); }
             if (tabName === 'products') { setTimeout(() => { renderProducts(); resetProductForm(); }, 100); }
             if (tabName === 'packages') { setTimeout(() => { renderPackages(); renderPackageProducts(); resetPackageForm(); }, 100); }
             if (tabName === 'orders') { setTimeout(() => { initializeOrdersTab(); }, 100); }
             if (tabName === 'quotations') { renderQuotations(); }
             if (tabName === 'report') { renderReport(); }
+            if (tabName === 'ai-package') { /* ไม่ต้องทำอะไร */ }
         }
         
         function getTabTitle(tabName) {
@@ -1339,7 +1874,8 @@
                 'packages': 'Package Management',
                 'orders': 'Order Management',
                 'quotations': 'Quotation Management',
-                'report': 'Report Management'
+                'report': 'Report Management',
+                'ai-package': 'AI แนะนำแพ็กเกจ'
             };
             return titles[tabName] || 'ระบบจัดการแพ็กเกจ';
         }
@@ -1424,7 +1960,8 @@
                             systemData.settings = { 
                                 lastSave: new Date().toISOString(), 
                                 version: "4.0", 
-                                sidebarExpanded: false 
+                                sidebarExpanded: false,
+                                lastTab: 'customers'
                             };
                         }
                         
@@ -1443,7 +1980,7 @@
                         
                         saveData();
                         
-                        const activeTab = document.querySelector('.menu-item.active')?.getAttribute('data-tab') || 'customers';
+                        const activeTab = systemData.settings.lastTab || 'customers';
                         switchTab(activeTab);
                         
                         updateBadges();
@@ -1470,7 +2007,8 @@
                     settings: {
                         lastSave: null,
                         version: "4.0",
-                        sidebarExpanded: false
+                        sidebarExpanded: false,
+                        lastTab: 'customers'
                     }
                 };
                 
@@ -1841,7 +2379,7 @@
                         <td class="px-4 lg:px-6 py-3 lg:py-4"><div class="font-mono font-bold text-${typeColor}-600">${escapeHtml(p.code || 'ไม่มีรหัส')}</div></td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4"><div class="font-bold text-slate-900">${escapeHtml(p.name)}</div>${p.note ? `<div class="text-xs text-slate-500 mt-1">${escapeHtml(p.note)}</div>` : ''}</td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4"><div class="flex items-center gap-2"><i class="fas ${p.type === 'onAir' ? 'fa-broadcast-tower text-blue-500' : p.type === 'online' ? 'fa-globe text-emerald-500' : 'fa-industry text-amber-500'}"></i><span class="text-sm text-slate-600">${typeText}</span></div></td>
-                        <td class="px-4 lg:px-6 py-3 lg:py-4"><div class="font-bold text-blue-600">${p.price.toLocaleString()} ฿</div>${p.promotion === 'มี' && p.promotionDetail ? `<div class="text-xs text-emerald-600 font-bold">โปรโมชัน: ${escapeHtml(p.promotionDetail)}</div>` : ''}</td>
+                        <td class="px-4 lg:px-6 py-3 lg:py-4"><div class="font-bold text-blue-600">${formatNumber(p.price)} ฿</div>${p.promotion === 'มี' && p.promotionDetail ? `<div class="text-xs text-emerald-600 font-bold">โปรโมชัน: ${escapeHtml(p.promotionDetail)}</div>` : ''}</td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4">${p.sampleLink ? `<a href="${escapeHtml(p.sampleLink)}" target="_blank" class="text-blue-600 hover:underline text-sm flex items-center gap-1"><i class="fas fa-play-circle"></i> ดูตัวอย่าง</a>` : '<span class="text-slate-400 text-xs">ไม่มีตัวอย่าง</span>'}</td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4 text-right"><div class="flex items-center justify-end gap-2"><button onclick="editProduct('${p.id}')" class="p-2 text-slate-400 hover:text-blue-600 transition-colors"><i class="fas fa-edit"></i></button><button onclick="deleteProduct('${p.id}')" class="p-2 text-slate-400 hover:text-red-600 transition-colors"><i class="fas fa-trash"></i></button></div></td>
                     `;
@@ -1891,7 +2429,7 @@
                 const div = document.createElement('div');
                 div.className = `package-product-item flex items-center justify-between p-3 rounded-lg border cursor-pointer ${isSelected ? 'selected bg-blue-50 border-blue-200' : 'bg-white border-slate-200 hover:bg-slate-50'}`;
                 div.onclick = () => togglePackageProduct(product.id);
-                div.innerHTML = `<div class="flex items-center gap-3 flex-1"><input type="checkbox" id="product-${product.id}" class="h-4 w-4 text-blue-600 rounded pointer-events-none" ${isSelected ? 'checked' : ''}><div class="flex-1"><div class="font-medium text-slate-900">${escapeHtml(product.code)} - ${escapeHtml(product.name)}</div><div class="text-sm text-slate-500">${product.type === 'onAir' ? 'On Air' : product.type === 'online' ? 'Online' : 'Production'}</div></div><div class="text-sm font-bold text-blue-600">${product.price.toLocaleString()} ฿</div></div>`;
+                div.innerHTML = `<div class="flex items-center gap-3 flex-1"><input type="checkbox" id="product-${product.id}" class="h-4 w-4 text-blue-600 rounded pointer-events-none" ${isSelected ? 'checked' : ''}><div class="flex-1"><div class="font-medium text-slate-900">${escapeHtml(product.code)} - ${escapeHtml(product.name)}</div><div class="text-sm text-slate-500">${product.type === 'onAir' ? 'On Air' : product.type === 'online' ? 'Online' : 'Production'}</div></div><div class="text-sm font-bold text-blue-600">${formatNumber(product.price)} ฿</div></div>`;
                 container.appendChild(div);
             });
             updateSelectedProductsCount();
@@ -1926,10 +2464,10 @@
                 totalPrice += p.price;
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'flex justify-between text-sm';
-                itemDiv.innerHTML = `<span class="text-slate-700">${escapeHtml(p.code)} - ${escapeHtml(p.name)}</span><span class="font-bold text-slate-900">${p.price.toLocaleString()} ฿</span>`;
+                itemDiv.innerHTML = `<span class="text-slate-700">${escapeHtml(p.code)} - ${escapeHtml(p.name)}</span><span class="font-bold text-slate-900">${formatNumber(p.price)} ฿</span>`;
                 listContainer.appendChild(itemDiv);
             });
-            totalPriceElement.textContent = `${totalPrice.toLocaleString()} ฿`;
+            totalPriceElement.textContent = formatNumber(totalPrice) + ' ฿';
             const packagePriceInput = document.getElementById('package-price');
             if (packagePriceInput && !packagePriceInput.value) packagePriceInput.value = totalPrice;
         }
@@ -1942,7 +2480,7 @@
             if (!modal || !modalContent) return;
             let productsHtml = ''; let totalPrice = 0;
             pkg.products.forEach(product => {
-                productsHtml += `<tr class="border-b"><td class="py-2">${escapeHtml(product.code)}</td><td class="py-2">${escapeHtml(product.name)}</td><td class="py-2">${product.type === 'onAir' ? 'On Air' : product.type === 'online' ? 'Online' : 'Production'}</td><td class="py-2 text-right">${product.price.toLocaleString()} ฿</td></tr>`;
+                productsHtml += `<tr class="border-b"><td class="py-2">${escapeHtml(product.code)}</td><td class="py-2">${escapeHtml(product.name)}</td><td class="py-2">${product.type === 'onAir' ? 'On Air' : product.type === 'online' ? 'Online' : 'Production'}</td><td class="py-2 text-right">${formatNumber(product.price)} ฿</td></tr>`;
                 totalPrice += product.price;
             });
             const discountAmount = pkg.price * (pkg.discount / 100);
@@ -1951,8 +2489,8 @@
                 <div class="space-y-4">
                     <div class="grid grid-cols-2 gap-4"><div><p class="text-sm text-slate-500">รหัสแพ็กเกจ</p><p class="font-bold text-lg">${escapeHtml(pkg.code)}</p></div><div><p class="text-sm text-slate-500">ชื่อแพ็กเกจ</p><p class="font-bold text-lg">${escapeHtml(pkg.name)}</p></div></div>
                     ${pkg.description ? `<div><p class="text-sm text-slate-500">รายละเอียด</p><p class="text-slate-700">${escapeHtml(pkg.description)}</p></div>` : ''}
-                    <div><p class="text-sm text-slate-500 mb-2">สินค้าในแพ็กเกจ (${pkg.products.length} รายการ)</p><div class="bg-slate-50 rounded-lg p-3 max-h-60 overflow-y-auto"><table class="w-full text-sm"><thead><tr class="text-slate-500 border-b"><th class="text-left py-2">รหัส</th><th class="text-left py-2">ชื่อสินค้า</th><th class="text-left py-2">ประเภท</th><th class="text-right py-2">ราคา</th></tr></thead><tbody>${productsHtml}</tbody><tfoot class="border-t font-bold"><tr><td colspan="3" class="py-2 text-right">ราคารวม:</td><td class="py-2 text-right">${totalPrice.toLocaleString()} ฿</td></tr></tfoot></table></div></div>
-                    <div class="grid grid-cols-2 gap-4 pt-4 border-t"><div><p class="text-sm text-slate-500">ราคาแพ็กเกจ</p><p class="font-bold text-lg text-blue-600">${pkg.price.toLocaleString()} ฿</p></div>${pkg.discount > 0 ? `<div><p class="text-sm text-slate-500">ส่วนลด</p><p class="font-bold text-lg text-emerald-600">${pkg.discount}% (${discountAmount.toLocaleString()} ฿)</p></div><div class="col-span-2"><p class="text-sm text-slate-500">ราคาสุทธิ</p><p class="font-bold text-2xl text-emerald-600">${finalPrice.toLocaleString()} ฿</p></div>` : ''}</div>
+                    <div><p class="text-sm text-slate-500 mb-2">สินค้าในแพ็กเกจ (${pkg.products.length} รายการ)</p><div class="bg-slate-50 rounded-lg p-3 max-h-60 overflow-y-auto"><table class="w-full text-sm"><thead><tr class="text-slate-500 border-b"><th class="text-left py-2">รหัส</th><th class="text-left py-2">ชื่อสินค้า</th><th class="text-left py-2">ประเภท</th><th class="text-right py-2">ราคา</th></tr></thead><tbody>${productsHtml}</tbody><tfoot class="border-t font-bold"><tr><td colspan="3" class="py-2 text-right">ราคารวม:</td><td class="py-2 text-right">${formatNumber(totalPrice)} ฿</td></tr></tfoot></table></div></div>
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t"><div><p class="text-sm text-slate-500">ราคาแพ็กเกจ</p><p class="font-bold text-lg text-blue-600">${formatNumber(pkg.price)} ฿</p></div>${pkg.discount > 0 ? `<div><p class="text-sm text-slate-500">ส่วนลด</p><p class="font-bold text-lg text-emerald-600">${pkg.discount}% (${formatNumber(discountAmount)} ฿)</p></div><div class="col-span-2"><p class="text-sm text-slate-500">ราคาสุทธิ</p><p class="font-bold text-2xl text-emerald-600">${formatNumber(finalPrice)} ฿</p></div>` : ''}</div>
                     ${pkg.note ? `<div class="bg-blue-50 p-3 rounded-lg"><p class="text-sm text-slate-500">หมายเหตุ</p><p class="text-slate-700">${escapeHtml(pkg.note)}</p></div>` : ''}
                     <div class="flex justify-end gap-3 pt-4"><button onclick="editPackage('${pkg.id}')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-bold"><i class="fas fa-edit"></i> แก้ไข</button><button onclick="deletePackage('${pkg.id}')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold"><i class="fas fa-trash"></i> ลบ</button><button onclick="closePackageModal()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm font-bold">ปิด</button></div>
                 </div>`;
@@ -2082,7 +2620,7 @@
                         <td class="px-4 lg:px-6 py-3 lg:py-4"><div class="font-mono font-bold text-purple-600">${escapeHtml(p.code)}</div></td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4"><div class="font-bold text-slate-900">${escapeHtml(p.name)}</div>${p.description ? `<div class="text-xs text-slate-500 mt-1">${escapeHtml(p.description.substring(0,50))}${p.description.length > 50 ? '...' : ''}</div>` : ''}</td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4 text-center font-medium">${totalProducts} รายการ</td>
-                        <td class="px-4 lg:px-6 py-3 lg:py-4"><div class="font-bold text-blue-600">${p.price.toLocaleString()} ฿</div>${p.discount > 0 ? `<div class="text-xs text-emerald-600 font-bold">ลด ${p.discount}% (${finalPrice.toLocaleString()} ฿)</div>` : ''}</td>
+                        <td class="px-4 lg:px-6 py-3 lg:py-4"><div class="font-bold text-blue-600">${formatNumber(p.price)} ฿</div>${p.discount > 0 ? `<div class="text-xs text-emerald-600 font-bold">ลด ${p.discount}% (${formatNumber(finalPrice)} ฿)</div>` : ''}</td>
                         <td class="px-4 lg:px-6 py-3 lg:py-4 text-right"><div class="flex items-center justify-end gap-2"><button onclick="showPackageDetail('${p.id}')" class="p-2 text-slate-400 hover:text-blue-600 transition-colors" title="ดูรายละเอียด"><i class="fas fa-eye"></i></button><button onclick="editPackage('${p.id}')" class="p-2 text-slate-400 hover:text-blue-600 transition-colors"><i class="fas fa-edit"></i></button><button onclick="deletePackage('${p.id}')" class="p-2 text-slate-400 hover:text-red-600 transition-colors"><i class="fas fa-trash"></i></button></div></td>
                     `;
                     packageList.appendChild(row);
@@ -2093,14 +2631,14 @@
             updatePackageCounter();
         }
         
-        // ========== ORDER ==========
+        // ========== ORDER (อัปเดต) ==========
         function initializeOrdersTab() {
             if (!document.getElementById('orders-tab')) return;
             generateTimeSlots();
             generateWeekdays();
             populateOrderCustomerSelect();
             populateOrderProductSelect();
-            updateOrderCalculation();
+            resetOrderForm(); // รีเซ็ตค่าเริ่มต้นให้เป็น 0.00
             const today = new Date();
             const endDate = new Date(); endDate.setDate(today.getDate() + 30);
             const startDateInput = document.getElementById('order-start-date');
@@ -2116,17 +2654,52 @@
         
         function setupOrderEventListeners() {
             const customerSelect = document.getElementById('order-customer');
-            if (customerSelect) customerSelect.addEventListener('change', function(e) { currentOrder.selectedCustomerId = e.target.value; updateCustomerInfo(); updateOrderCalculation(); });
+            if (customerSelect) customerSelect.addEventListener('change', function(e) { 
+                currentOrder.selectedCustomerId = e.target.value; 
+                updateCustomerInfo(); 
+                calculateOrderTotal(); 
+            });
             const productSelect = document.getElementById('order-product');
-            if (productSelect) productSelect.addEventListener('change', function(e) { currentOrder.selectedItemId = e.target.value; updateOrderCalculation(); });
+            if (productSelect) productSelect.addEventListener('change', function(e) { 
+                currentOrder.selectedItemId = e.target.value; 
+                calculateOrderTotal(); 
+            });
             const paymentType = document.getElementById('order-payment-type');
-            if (paymentType) paymentType.addEventListener('change', function(e) { currentOrder.paymentType = e.target.value; updateOrderCalculation(); });
+            if (paymentType) paymentType.addEventListener('change', function(e) { 
+                currentOrder.paymentType = e.target.value; 
+                calculateOrderTotal(); 
+            });
             const startDate = document.getElementById('order-start-date');
-            if (startDate) startDate.addEventListener('change', function(e) { currentOrder.startDate = e.target.value; updateOrderCalculation(); });
+            if (startDate) startDate.addEventListener('change', function(e) { 
+                currentOrder.startDate = e.target.value; 
+                calculateOrderTotal(); 
+            });
             const endDate = document.getElementById('order-end-date');
-            if (endDate) endDate.addEventListener('change', function(e) { currentOrder.endDate = e.target.value; updateOrderCalculation(); });
+            if (endDate) endDate.addEventListener('change', function(e) { 
+                currentOrder.endDate = e.target.value; 
+                calculateOrderTotal(); 
+            });
             const orderNote = document.getElementById('order-note');
             if (orderNote) orderNote.addEventListener('input', function(e) { currentOrder.note = e.target.value; });
+            
+            // เพิ่ม event listeners สำหรับ toggle ต่างๆ
+            const specialToggle = document.getElementById('specialDiscountToggle');
+            if (specialToggle) specialToggle.addEventListener('change', calculateOrderTotal);
+            
+            const whtToggle = document.getElementById('whtToggle');
+            if (whtToggle) whtToggle.addEventListener('change', calculateOrderTotal);
+            
+            const specialPercent = document.getElementById('specialDiscountPercent');
+            if (specialPercent) specialPercent.addEventListener('input', calculateOrderTotal);
+            
+            const whtPercent = document.getElementById('whtPercent');
+            if (whtPercent) whtPercent.addEventListener('input', calculateOrderTotal);
+            
+            const conditionDiscount = document.getElementById('conditionDiscount');
+            if (conditionDiscount) conditionDiscount.addEventListener('change', calculateOrderTotal);
+            
+            const prepaymentDiscount = document.getElementById('prepaymentDiscount');
+            if (prepaymentDiscount) prepaymentDiscount.addEventListener('change', calculateOrderTotal);
         }
         
         function generateTimeSlots() {
@@ -2150,7 +2723,7 @@
                         this.classList.add('selected', 'bg-blue-600', 'border-blue-600', 'text-white', 'shadow-md', 'scale-[1.02]');
                     }
                     updateSelectedSlotsCount();
-                    updateOrderCalculation();
+                    calculateOrderTotal();
                 });
                 container.appendChild(btn);
             });
@@ -2179,7 +2752,7 @@
                         this.classList.remove('bg-slate-100', 'border-slate-200', 'text-slate-400');
                         this.classList.add('bg-blue-600', 'border-blue-600', 'text-white', 'selected');
                     }
-                    updateOrderCalculation();
+                    calculateOrderTotal();
                 });
                 container.appendChild(btn);
             });
@@ -2209,7 +2782,8 @@
                 const opt = document.createElement('option');
                 opt.value = item.id;
                 const price = item.price || item.totalPrice || 0;
-                opt.textContent = `${item.code ? item.code + ' - ' : ''}${item.name} (${price.toLocaleString()} ฿)`;
+                opt.textContent = `${item.code ? item.code + ' - ' : ''}${item.name} (${formatNumber(price)} ฿)`;
+                opt.dataset.price = price;
                 select.appendChild(opt);
             });
         }
@@ -2221,18 +2795,48 @@
             const activeBtn = document.getElementById(`order-type-${type.toLowerCase()}`);
             if (activeBtn) activeBtn.classList.add('active');
             populateOrderProductSelect();
-            updateOrderCalculation();
+            calculateOrderTotal();
         }
         
         function updateCustomerInfo() {
             const display = document.getElementById('customer-type-display');
             const typeText = document.getElementById('selected-customer-type');
+            const govBadge = document.getElementById('govDiscountBadge');
+            const govStatus = document.getElementById('govDiscountStatus');
+            
             if (!display || !typeText) return;
+            
             const selected = systemData.customers.find(c => c.id === currentOrder.selectedCustomerId);
             if (selected) {
                 display.classList.remove('hidden');
                 typeText.textContent = selected.type === 'เอกชน' ? 'เอกชน' : selected.type === 'ราชการ' ? 'ราชการ' : 'รัฐวิสาหกิจ';
-            } else display.classList.add('hidden');
+                
+                // อัปเดตสถานะส่วนลดราชการ
+                if (selected.type === 'ราชการ') {
+                    if (govBadge) {
+                        govBadge.textContent = 'ใช้งาน (40%)';
+                        govBadge.classList.remove('bg-indigo-100', 'text-indigo-700');
+                        govBadge.classList.add('bg-green-100', 'text-green-700');
+                    }
+                    if (govStatus) govStatus.innerHTML = '✓ กำลังใช้งานส่วนลด 40% สำหรับหน่วยงานราชการ';
+                } else {
+                    if (govBadge) {
+                        govBadge.textContent = 'ไม่ใช้งาน';
+                        govBadge.classList.remove('bg-green-100', 'text-green-700');
+                        govBadge.classList.add('bg-indigo-100', 'text-indigo-700');
+                    }
+                    if (govStatus) govStatus.innerHTML = '✓ ระบบตรวจสอบอัตโนมัติเมื่อเลือกลูกค้าประเภทราชการ';
+                }
+            } else {
+                display.classList.add('hidden');
+                if (govBadge) {
+                    govBadge.textContent = 'ไม่ใช้งาน';
+                    govBadge.classList.remove('bg-green-100', 'text-green-700');
+                    govBadge.classList.add('bg-indigo-100', 'text-indigo-700');
+                }
+                if (govStatus) govStatus.innerHTML = '✓ ระบบตรวจสอบอัตโนมัติเมื่อเลือกลูกค้าประเภทราชการ';
+            }
+            calculateOrderTotal();
         }
         
         function updateSelectedSlotsCount() {
@@ -2240,180 +2844,688 @@
             if (el) el.textContent = `เลือกแล้ว: ${currentOrder.selectedSlots.length} ครั้ง/วัน`;
         }
         
-        function calculateOrder() {
-            const customer = systemData.customers.find(c => c.id === currentOrder.selectedCustomerId);
-            let item = null;
-            if (currentOrder.orderType === 'Package') item = systemData.packages.find(p => p.id === currentOrder.selectedItemId);
-            else item = systemData.products.find(p => p.id === currentOrder.selectedItemId);
-            if (!item || !currentOrder.startDate || !currentOrder.endDate) return null;
-            const start = new Date(currentOrder.startDate);
-            const end = new Date(currentOrder.endDate);
-            if (end < start) return null;
-            let totalDays = 0;
-            const cur = new Date(start);
-            while (cur <= end) {
-                if (currentOrder.selectedDays.includes(cur.getDay())) totalDays++;
-                cur.setDate(cur.getDate() + 1);
+        function toggleSpecialDiscount() {
+            const panel = document.getElementById('specialDiscountPanel');
+            const toggle = document.getElementById('specialDiscountToggle');
+            if (toggle.checked) {
+                panel.classList.remove('hidden');
+            } else {
+                panel.classList.add('hidden');
             }
-            const unitPrice = item.price || item.totalPrice || 0;
-            const timesPerDay = currentOrder.selectedSlots.length || 1;
-            const baseTotal = unitPrice * timesPerDay * totalDays;
-            let conditionDiscountPercent = 0, conditionDiscountReason = '';
-            const diffDays = Math.ceil(Math.abs(end.getTime() - start.getTime()) / (1000*60*60*24)) + 1;
-            const totalMonths = diffDays / 30;
-            const activeType = customer?.type || 'เอกชน';
-            if (activeType === 'ราชการ') { conditionDiscountPercent = 40; conditionDiscountReason = 'ส่วนลดสำหรับลูกค้าราชการ'; }
-            else {
-                if (totalMonths >= 6) { conditionDiscountPercent = 30; conditionDiscountReason = 'ส่วนลดระยะยาว (6 เดือนขึ้นไป)'; }
-                else if (totalMonths >= 3) { conditionDiscountPercent = 25; conditionDiscountReason = 'ส่วนลดระยะกลาง (3-6 เดือน)'; }
-                else if (totalMonths >= 2) { conditionDiscountPercent = 20; conditionDiscountReason = 'ส่วนลดระยะสั้น (2-3 เดือน)'; }
-            }
-            const paymentDiscountPercent = currentOrder.paymentType === 'ก่อนออกอากาศ' ? 5 : 0;
-            const paymentDiscountReason = paymentDiscountPercent > 0 ? 'ส่วนลดจ่ายล่วงหน้า' : '';
-            const conditionDiscountAmount = baseTotal * (conditionDiscountPercent / 100);
-            const paymentDiscountAmount = (baseTotal - conditionDiscountAmount) * (paymentDiscountPercent / 100);
-            const totalDiscountAmount = conditionDiscountAmount + paymentDiscountAmount;
-            const priceAfterDiscount = baseTotal - totalDiscountAmount;
-            const vatAmount = priceAfterDiscount * 0.07;
-            const netTotal = priceAfterDiscount + vatAmount;
-            return { totalDays, timesPerDay, baseTotal, conditionDiscountPercent, conditionDiscountReason, paymentDiscountPercent, paymentDiscountReason, totalDiscountAmount, priceAfterDiscount, vatAmount, netTotal, totalMonths };
+            calculateOrderTotal();
         }
         
-        function updateOrderCalculation() {
-            const result = calculateOrder();
-            const summaryElement = document.getElementById('calculation-summary');
-            if (!summaryElement) return;
-            if (!result) {
-                summaryElement.innerHTML = `<div class="py-8 lg:py-12 flex flex-col items-center justify-center text-slate-300 gap-3 text-center"><i class="fas fa-calculator text-3xl lg:text-4xl opacity-20"></i><p class="text-xs">ระบุข้อมูลลูกค้า วันออกอากาศ<br/>และเลือกสินค้าเพื่อคำนวณราคา</p></div>`;
-                return;
+        function toggleWHT() {
+            const panel = document.getElementById('whtPanel');
+            const toggle = document.getElementById('whtToggle');
+            if (toggle.checked) {
+                panel.classList.remove('hidden');
+            } else {
+                panel.classList.add('hidden');
             }
-            let discountExplanation = '';
-            if (result.conditionDiscountPercent > 0) discountExplanation += `<div class="text-xs text-emerald-700 bg-emerald-50 p-2 rounded-lg mb-2">${result.conditionDiscountReason}: ${result.conditionDiscountPercent}%</div>`;
-            if (result.paymentDiscountPercent > 0) discountExplanation += `<div class="text-xs text-blue-700 bg-blue-50 p-2 rounded-lg">${result.paymentDiscountReason}: ${result.paymentDiscountPercent}%</div>`;
-            summaryElement.innerHTML = `
-                <div class="space-y-3 pb-4 border-b border-slate-100">
-                    <div class="flex justify-between text-sm"><span class="text-slate-500">จำนวนวันออกอากาศ:</span><span class="font-bold">${result.totalDays} วัน</span></div>
-                    <div class="flex justify-between text-sm"><span class="text-slate-500">จำนวนครั้งต่อวัน:</span><span class="font-bold text-blue-600">${result.timesPerDay} ครั้ง</span></div>
-                    <div class="flex justify-between text-sm"><span class="text-slate-500">ระยะเวลาแคมเปญ:</span><span class="font-bold text-slate-900">${result.totalMonths.toFixed(1)} เดือน</span></div>
-                    <div class="flex justify-between text-sm"><span class="text-slate-500">ราคาก่อนหักส่วนลด:</span><span class="font-bold">${result.baseTotal.toLocaleString()} ฿</span></div>
-                </div>
-                <div class="space-y-3 pb-4 border-b border-slate-100">
-                    ${discountExplanation}
-                    <div class="flex justify-between text-sm text-emerald-600"><span class="flex items-center gap-1 font-bold"><i class="fas fa-tag text-xs"></i> ส่วนลดเงื่อนไข (${result.conditionDiscountPercent}%):</span><span class="font-bold">- ${(result.baseTotal * result.conditionDiscountPercent / 100).toLocaleString()} ฿</span></div>
-                    ${result.paymentDiscountPercent > 0 ? `<div class="flex justify-between text-sm text-emerald-600"><span class="flex items-center gap-1 font-bold"><i class="fas fa-credit-card text-xs"></i> ส่วนลดจ่ายล่วงหน้า (${result.paymentDiscountPercent}%):</span><span class="font-bold">- ${((result.baseTotal - (result.baseTotal * result.conditionDiscountPercent / 100)) * result.paymentDiscountPercent / 100).toLocaleString()} ฿</span></div>` : ''}
-                </div>
-                <div class="space-y-2 pt-2">
-                    <div class="flex justify-between text-sm"><span class="text-slate-500">ราคาหลังส่วนลด:</span><span class="font-bold text-slate-900">${result.priceAfterDiscount.toLocaleString()} ฿</span></div>
-                    <div class="flex justify-between text-sm"><span class="text-slate-500">VAT (7%):</span><span class="font-bold text-slate-900">${result.vatAmount.toLocaleString()} ฿</span></div>
-                    <div class="flex justify-between items-center pt-2"><span class="text-lg font-bold text-blue-900">ยอดสุทธิ:</span><span class="text-2xl font-black text-blue-600">${result.netTotal.toLocaleString()} ฿</span></div>
-                </div>`;
+            calculateOrderTotal();
+        }
+        
+        function showApproverInput() {
+            // ไม่ต้องทำอะไร
+        }
+        
+        function getApproverText() {
+            const selected = document.querySelector('input[name="approverType"]:checked');
+            if (!selected) return '';
+            
+            switch(selected.value) {
+                case 'marketing':
+                    const mName = document.getElementById('marketingName').value.trim();
+                    return mName ? `การตลาด: ${mName}` : '';
+                case 'station':
+                    const sName = document.getElementById('stationName').value.trim();
+                    return sName ? `นายสถานี: ${sName}` : '';
+                case 'director':
+                    const dName = document.getElementById('directorName').value.trim();
+                    return dName ? `ผู้อำนวยการ: ${dName}` : '';
+                case 'other':
+                    return document.getElementById('otherApprover').value.trim();
+                default:
+                    return '';
+            }
+        }
+        
+        function calculateOrderTotal() {
+            // ดึงข้อมูลจากฟอร์ม
+            const productSelect = document.getElementById('order-product');
+            const selectedOption = productSelect?.selectedOptions[0];
+            const unitPrice = parseFloat(selectedOption?.dataset.price) || 0;
+            const timesPerDay = currentOrder.selectedSlots.length || 1;
+            const startDate = new Date(currentOrder.startDate);
+            const endDate = new Date(currentOrder.endDate);
+            
+            // คำนวณจำนวนวัน
+            let totalDays = 0;
+            if (startDate && endDate && endDate >= startDate) {
+                const diffTime = Math.abs(endDate - startDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                totalDays = diffDays;
+            }
+            
+            const basePrice = unitPrice * timesPerDay * totalDays;
+            let currentPrice = basePrice;
+            
+            // ส่วนลดพิเศษ
+            let specialPercent = 0;
+            let specialAmount = 0;
+            if (document.getElementById('specialDiscountToggle')?.checked) {
+                specialPercent = parseFloat(document.getElementById('specialDiscountPercent')?.value) || 0;
+                specialAmount = currentPrice * (specialPercent / 100);
+                currentPrice -= specialAmount;
+            }
+            
+            // ส่วนลดหน่วยงานราชการ (40% อัตโนมัติถ้าลูกค้าเป็นราชการ)
+            let govPercent = 0;
+            let govAmount = 0;
+            const selectedCustomer = systemData.customers.find(c => c.id === currentOrder.selectedCustomerId);
+            if (selectedCustomer && selectedCustomer.type === 'ราชการ') {
+                govPercent = 40;
+                govAmount = currentPrice * (govPercent / 100);
+                currentPrice -= govAmount;
+            }
+            
+            // ส่วนลดเงื่อนไข
+            let conditionPercent = 0;
+            let conditionAmount = 0;
+            const conditionSelect = document.getElementById('conditionDiscount');
+            if (conditionSelect) {
+                conditionPercent = parseFloat(conditionSelect.value) || 0;
+                conditionAmount = currentPrice * (conditionPercent / 100);
+                currentPrice -= conditionAmount;
+            }
+            
+            // ส่วนลดจ่ายล่วงหน้า
+            let prepaymentAmount = 0;
+            if (document.getElementById('prepaymentDiscount')?.checked) {
+                prepaymentAmount = currentPrice * 0.05;
+                currentPrice -= prepaymentAmount;
+            }
+            
+            const afterDiscount = currentPrice;
+            const vat = afterDiscount * 0.07;
+            const afterVat = afterDiscount + vat;
+            
+            // ภาษีหัก ณ ที่จ่าย
+            let whtPercent = 0;
+            let whtAmount = 0;
+            if (document.getElementById('whtToggle')?.checked) {
+                whtPercent = parseFloat(document.getElementById('whtPercent')?.value) || 0;
+                whtAmount = afterDiscount * (whtPercent / 100);
+            }
+            
+            const netTotal = afterVat - whtAmount;
+            const totalDiscount = specialAmount + govAmount + conditionAmount + prepaymentAmount;
+            
+            // อัปเดต UI (ใช้ formatNumber)
+            document.getElementById('displayBasePrice').textContent = formatNumber(basePrice) + ' ฿';
+            document.getElementById('displaySpecialPercent').textContent = specialPercent;
+            document.getElementById('displaySpecialAmount').textContent = formatNumber(specialAmount) + ' ฿';
+            document.getElementById('displayGovAmount').textContent = formatNumber(govAmount) + ' ฿';
+            document.getElementById('displayConditionPercent').textContent = conditionPercent;
+            document.getElementById('displayConditionAmount').textContent = formatNumber(conditionAmount) + ' ฿';
+            document.getElementById('displayPrepaymentAmount').textContent = formatNumber(prepaymentAmount) + ' ฿';
+            document.getElementById('displayTotalDiscount').textContent = formatNumber(totalDiscount) + ' ฿';
+            document.getElementById('displayAfterDiscount').textContent = formatNumber(afterDiscount) + ' ฿';
+            document.getElementById('displayVat').textContent = formatNumber(vat) + ' ฿';
+            document.getElementById('displayTotalWithVat').textContent = formatNumber(afterVat) + ' ฿';
+            document.getElementById('displayWhtPercent').textContent = whtPercent;
+            document.getElementById('displayWhtAmount').textContent = formatNumber(whtAmount) + ' ฿';
+            document.getElementById('displayNetTotal').textContent = formatNumber(netTotal) + ' ฿';
+            
+            // แสดง/ซ่อน summary
+            document.getElementById('summarySpecialDiscount').classList.toggle('hidden', !document.getElementById('specialDiscountToggle')?.checked || specialAmount === 0);
+            document.getElementById('summaryGovDiscount').classList.toggle('hidden', govAmount === 0);
+            document.getElementById('summaryWHT').classList.toggle('hidden', !document.getElementById('whtToggle')?.checked || whtAmount === 0);
+            
+            // แสดงผู้อนุมัติ
+            const approverText = getApproverText();
+            document.getElementById('displayApprover').textContent = approverText ? 'อนุมัติโดย: ' + approverText : '';
+            
+            return {
+                basePrice,
+                specialPercent,
+                specialAmount,
+                govPercent,
+                govAmount,
+                conditionPercent,
+                conditionAmount,
+                prepaymentAmount,
+                totalDiscount,
+                afterDiscount,
+                vat,
+                afterVat,
+                whtPercent,
+                whtAmount,
+                netTotal,
+                totalDays
+            };
         }
         
         function addOrderToCampaign() {
-            const customer = systemData.customers.find(c => c.id === currentOrder.selectedCustomerId);
-            let item = null;
-            if (currentOrder.orderType === 'Package') item = systemData.packages.find(p => p.id === currentOrder.selectedItemId);
-            else item = systemData.products.find(p => p.id === currentOrder.selectedItemId);
-            if (!customer || !item) { showNotification('กรุณาเลือกลูกค้าและสินค้าก่อนเพิ่มรายการ', 'error'); return; }
-            const calc = calculateOrder();
-            if (!calc) return;
+            const customerId = document.getElementById('order-customer').value;
+            const customer = systemData.customers.find(c => c.id === customerId);
+            
+            if (!customer) {
+                showNotification('กรุณาเลือกลูกค้า', 'error');
+                return;
+            }
+            
+            const productSelect = document.getElementById('order-product');
+            const productId = productSelect?.value;
+            let product = null;
+            
+            if (currentOrder.orderType === 'Package') {
+                product = systemData.packages.find(p => p.id === productId);
+            } else {
+                product = systemData.products.find(p => p.id === productId);
+            }
+            
+            if (!product) {
+                showNotification('กรุณาเลือกสินค้า', 'error');
+                return;
+            }
+            
+            const calc = calculateOrderTotal();
+            
             const newOrder = {
-                id: `ORD-${Date.now()}`,
-                customerId: currentOrder.selectedCustomerId,
+                id: Date.now(),
+                date: new Date().toISOString(),
+                customerId: customer.id,
                 customerName: customer.company,
-                productType: currentOrder.orderType,
-                productId: item.id,
-                productCode: item.code || '',
-                productName: item.name,
-                unitPrice: item.price || item.totalPrice || 0,
-                timeSlots: [...currentOrder.selectedSlots],
-                startDate: currentOrder.startDate,
-                endDate: currentOrder.endDate,
-                daysOfWeek: [...currentOrder.selectedDays],
-                timesPerDay: calc.timesPerDay,
-                totalDays: calc.totalDays,
-                totalPrice: calc.baseTotal,
-                conditionDiscountPercent: calc.conditionDiscountPercent,
-                conditionDiscountReason: calc.conditionDiscountReason,
-                paymentDiscountPercent: calc.paymentDiscountPercent,
-                paymentDiscountReason: calc.paymentDiscountReason,
-                totalDiscountAmount: calc.totalDiscountAmount,
-                priceAfterDiscount: calc.priceAfterDiscount,
-                vatAmount: calc.vatAmount,
+                productName: product.name,
+                productCode: product.code || '',
+                unitPrice: product.price || 0,
+                timesPerDay: currentOrder.selectedSlots.length || 1,
+                totalDays: calc.totalDays || 0,
+                basePrice: calc.basePrice,
+                specialDiscount: {
+                    enabled: document.getElementById('specialDiscountToggle')?.checked || false,
+                    percent: calc.specialPercent,
+                    amount: calc.specialAmount,
+                    approver: getApproverText()
+                },
+                govDiscount: {
+                    enabled: customer.type === 'ราชการ',
+                    percent: calc.govPercent,
+                    amount: calc.govAmount
+                },
+                conditionDiscount: {
+                    percent: calc.conditionPercent,
+                    amount: calc.conditionAmount
+                },
+                prepaymentDiscount: document.getElementById('prepaymentDiscount')?.checked || false,
+                totalDiscount: calc.totalDiscount,
+                afterDiscount: calc.afterDiscount,
+                vat: calc.vat,
+                afterVat: calc.afterVat,
+                wht: {
+                    enabled: document.getElementById('whtToggle')?.checked || false,
+                    percent: calc.whtPercent,
+                    amount: calc.whtAmount
+                },
                 netTotal: calc.netTotal,
-                paymentType: currentOrder.paymentType,
-                note: currentOrder.note,
-                created: new Date().toISOString()
+                note: document.getElementById('order-note')?.value || ''
             };
+            
             systemData.orders.push(newOrder);
             saveData();
             updateOrdersTable();
             updateCampaignTotal();
+            updateReports();
             resetOrderForm();
-            showNotification('เพิ่มรายการสั่งซื้อเรียบร้อยแล้ว', 'success');
+            showNotification('บันทึกรายการสั่งซื้อสำเร็จ', 'success');
         }
         
         function deleteOrder(id) {
-            if (confirm('ต้องการลบรายการสั่งซื้อนี้หรือไม่?')) {
+            if (confirm('ต้องการลบรายการนี้?')) {
                 systemData.orders = systemData.orders.filter(o => o.id !== id);
                 saveData();
                 updateOrdersTable();
                 updateCampaignTotal();
-                showNotification('ลบรายการสั่งซื้อเรียบร้อยแล้ว', 'success');
+                updateReports();
+                showNotification('ลบรายการสำเร็จ', 'success');
             }
+        }
+        
+        function editOrder(id) {
+            const order = systemData.orders.find(o => o.id === id);
+            if (!order) return;
+            
+            // TODO: โหลดข้อมูลเข้าฟอร์ม
+            showNotification('กำลังพัฒนา แก้ไขรายการ', 'info');
         }
         
         function updateOrdersTable() {
             const tbody = document.getElementById('orders-table-body');
             const countElement = document.getElementById('orders-count');
             if (!tbody || !countElement) return;
+            
             countElement.textContent = systemData.orders.length;
-            if (systemData.orders.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="px-6 py-12 text-center text-slate-400">ยังไม่มีรายการสั่งซื้อในแคมเปญนี้</td></tr>`;
-                return;
-            }
             tbody.innerHTML = '';
+            
             systemData.orders.forEach(o => {
                 const row = document.createElement('tr');
-                row.className = 'hover:bg-slate-50 transition-colors';
                 row.innerHTML = `
-                    <td class="px-4 lg:px-6 py-3 lg:py-4"><div class="font-bold text-slate-800">${escapeHtml(o.productCode ? o.productCode + ' - ' : '')}${escapeHtml(o.productName)}</div><div class="text-[10px] text-slate-400 mt-1 font-mono">${formatDate(o.startDate)} - ${formatDate(o.endDate)}</div>${o.note ? `<div class="text-xs text-blue-600 mt-1">* ${escapeHtml(o.note)}</div>` : ''}</td>
-                    <td class="px-4 lg:px-6 py-3 lg:py-4 text-center font-medium">${o.totalDays} วัน</td>
-                    <td class="px-4 lg:px-6 py-3 lg:py-4 text-center font-medium">${o.timesPerDay} ครั้ง/วัน</td>
-                    <td class="px-4 lg:px-6 py-3 lg:py-4 text-right"><div class="text-emerald-600 font-bold">- ${o.totalDiscountAmount.toLocaleString()}</div><div class="text-[10px] text-slate-500 mt-1">${o.conditionDiscountReason || ''}${o.paymentDiscountReason ? (o.conditionDiscountReason ? ' + ' : '') + o.paymentDiscountReason : ''}</div></td>
-                    <td class="px-4 lg:px-6 py-3 lg:py-4 text-right font-black text-blue-600">${o.netTotal.toLocaleString()}</td>
-                    <td class="px-4 lg:px-6 py-3 lg:py-4 text-center"><button onclick="deleteOrder('${o.id}')" class="p-2 text-slate-300 hover:text-red-500 transition-colors"><i class="fas fa-trash"></i></button></td>
+                    <td class="px-2 py-2 text-xs">${escapeHtml(o.productName || o.customerName)}<br><small class="text-slate-400">${new Date(o.date).toLocaleDateString('th-TH')}</small></td>
+                    <td class="px-2 py-2 text-xs text-center">${o.totalDays || 0}</td>
+                    <td class="px-2 py-2 text-xs text-center">${o.timesPerDay || 1}</td>
+                    <td class="px-2 py-2 text-xs text-right">${o.specialDiscount?.enabled ? o.specialDiscount.percent + '%' : '-'}</td>
+                    <td class="px-2 py-2 text-xs text-right">${o.govDiscount?.enabled ? '40%' : '-'}</td>
+                    <td class="px-2 py-2 text-xs text-right">${o.conditionDiscount?.percent ? o.conditionDiscount.percent + '%' : '-'}</td>
+                    <td class="px-2 py-2 text-xs text-right">${o.wht?.enabled ? o.wht.percent + '%' : '-'}</td>
+                    <td class="px-2 py-2 text-xs text-right font-bold">${formatNumber(o.netTotal)} ฿</td>
+                    <td class="px-2 py-2 text-xs text-center">
+                        <button onclick="editOrder(${o.id})" class="text-blue-500 hover:text-blue-700 mr-1" title="แก้ไข">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="deleteOrder(${o.id})" class="text-red-500 hover:text-red-700" title="ลบ">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
                 `;
                 tbody.appendChild(row);
             });
         }
         
         function updateCampaignTotal() {
-            const total = systemData.orders.reduce((acc, curr) => ({ base: acc.base + curr.totalPrice, discount: acc.discount + curr.totalDiscountAmount, net: acc.net + curr.netTotal }), { base: 0, discount: 0, net: 0 });
-            const totalElement = document.getElementById('campaign-total');
-            const discountElement = document.getElementById('campaign-discount');
-            const netElement = document.getElementById('campaign-net');
-            if (totalElement) totalElement.textContent = `${total.base.toLocaleString()} ฿`;
-            if (discountElement) discountElement.textContent = `- ${total.discount.toLocaleString()} ฿`;
-            if (netElement) netElement.textContent = `${total.net.toLocaleString()} ฿`;
+            const total = systemData.orders.reduce((acc, o) => ({
+                base: acc.base + (o.afterDiscount || 0),
+                discount: acc.discount + (o.totalDiscount || 0),
+                wht: acc.wht + (o.wht?.amount || 0),
+                net: acc.net + (o.netTotal || 0)
+            }), { base: 0, discount: 0, wht: 0, net: 0 });
+            
+            document.getElementById('campaign-total').textContent = formatNumber(total.base) + ' ฿';
+            document.getElementById('campaign-discount').textContent = formatNumber(total.discount) + ' ฿';
+            document.getElementById('campaign-wht').textContent = formatNumber(total.wht) + ' ฿';
+            document.getElementById('campaign-net').textContent = formatNumber(total.net) + ' ฿';
         }
         
         function resetOrderForm() {
             currentOrder.selectedItemId = '';
             currentOrder.selectedSlots = [];
             currentOrder.note = '';
-            const productSelect = document.getElementById('order-product');
-            const orderNote = document.getElementById('order-note');
-            if (productSelect) productSelect.value = '';
-            if (orderNote) orderNote.value = '';
-            document.querySelectorAll('.time-slot-btn').forEach(btn => {
-                if (btn) {
-                    btn.classList.remove('selected', 'bg-blue-600', 'border-blue-600', 'text-white', 'shadow-md', 'scale-[1.02]');
-                    btn.classList.add('bg-slate-50', 'border-slate-200', 'text-slate-600');
-                }
+            
+            document.getElementById('specialDiscountToggle').checked = false;
+            document.getElementById('specialDiscountPanel').classList.add('hidden');
+            document.getElementById('specialDiscountPercent').value = 20;
+            
+            document.getElementById('whtToggle').checked = false;
+            document.getElementById('whtPanel').classList.add('hidden');
+            document.getElementById('whtPercent').value = 3;
+            
+            document.getElementById('conditionDiscount').value = 0;
+            document.getElementById('prepaymentDiscount').checked = false;
+            document.getElementById('order-note').value = '';
+            
+            document.querySelectorAll('input[name="approverType"]').forEach(r => r.checked = false);
+            document.getElementById('marketingName').value = '';
+            document.getElementById('stationName').value = '';
+            document.getElementById('directorName').value = '';
+            document.getElementById('otherApprover').value = '';
+            document.getElementById('specialDiscountNote').value = '';
+            
+            // รีเซ็ตการคำนวณเป็น 0.00
+            calculateOrderTotal();
+        }
+        
+        // ========== AI PACKAGE ==========
+        function generateAIPackage() {
+            const customerName = document.getElementById('aiCustomerName').value || 'ลูกค้า';
+            const budget = parseFloat(document.getElementById('aiBudget').value) || 0;
+            const objective = document.getElementById('aiObjective').value;
+            const target = document.getElementById('aiTarget').value;
+            const duration = parseInt(document.getElementById('aiDuration').value) || 1;
+            
+            let recommendation = '';
+            let totalCost = 0;
+            
+            // ตัวอย่างกฎการแนะนำ
+            if (target === 'government' || target === 'business') {
+                const onAirCount = Math.floor(budget * 0.7 / 1500);
+                const onlineCount = Math.floor(budget * 0.3 / 500);
+                totalCost = (onAirCount * 1500) + (onlineCount * 500);
+                
+                recommendation = `
+                    <div class="bg-white p-4 rounded-lg border border-purple-300">
+                        <h4 class="font-bold text-purple-800 mb-2">🏢 แพ็กเกจสำหรับองค์กร/ราชการ</h4>
+                        <p><span class="font-medium">ชื่อลูกค้า:</span> ${escapeHtml(customerName)}</p>
+                        <p>• สปอตโฆษณา On Air ${onAirCount} ครั้ง = ${formatNumber(onAirCount * 1500)} บาท</p>
+                        <p>• โพสต์ Online ${onlineCount} ครั้ง = ${formatNumber(onlineCount * 500)} บาท</p>
+                        <p class="font-bold mt-2">รวมทั้งสิ้น: ${formatNumber(totalCost)} บาท</p>
+                        <p class="text-sm text-slate-600 mt-2">💡 เหมาะกับลูกค้าองค์กร เน้นสร้างความน่าเชื่อถือ</p>
+                        <button class="mt-3 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg" onclick="printAIPackagePDF()">📄 พิมพ์รายงาน PDF</button>
+                    </div>
+                `;
+            } else if (target === 'youth' || target === 'working') {
+                const tiktokCount = Math.floor(budget * 0.6 / 800);
+                const fbCount = Math.floor(budget * 0.4 / 500);
+                totalCost = (tiktokCount * 800) + (fbCount * 500);
+                
+                recommendation = `
+                    <div class="bg-white p-4 rounded-lg border border-purple-300">
+                        <h4 class="font-bold text-purple-800 mb-2">📱 แพ็กเกจสำหรับวัยรุ่น/วัยทำงาน</h4>
+                        <p><span class="font-medium">ชื่อลูกค้า:</span> ${escapeHtml(customerName)}</p>
+                        <p>• TikTok/Facebook Reels ${tiktokCount} ครั้ง = ${formatNumber(tiktokCount * 800)} บาท</p>
+                        <p>• โพสต์ Facebook ${fbCount} ครั้ง = ${formatNumber(fbCount * 500)} บาท</p>
+                        <p class="font-bold mt-2">รวมทั้งสิ้น: ${formatNumber(totalCost)} บาท</p>
+                        <p class="text-sm text-slate-600 mt-2">💡 เข้าถึงกลุ่มเป้าหมายผ่าน Social Media</p>
+                        <button class="mt-3 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg" onclick="printAIPackagePDF()">📄 พิมพ์รายงาน PDF</button>
+                    </div>
+                `;
+            } else {
+                const onAirCount = Math.floor(budget * 0.5 / 1500);
+                const onlineCount = Math.floor(budget * 0.5 / 500);
+                totalCost = (onAirCount * 1500) + (onlineCount * 500);
+                
+                recommendation = `
+                    <div class="bg-white p-4 rounded-lg border border-purple-300">
+                        <h4 class="font-bold text-purple-800 mb-2">📻 แพ็กเกจทั่วไป</h4>
+                        <p><span class="font-medium">ชื่อลูกค้า:</span> ${escapeHtml(customerName)}</p>
+                        <p>• สปอตโฆษณา On Air ${onAirCount} ครั้ง = ${formatNumber(onAirCount * 1500)} บาท</p>
+                        <p>• โพสต์ Online ${onlineCount} ครั้ง = ${formatNumber(onlineCount * 500)} บาท</p>
+                        <p class="font-bold mt-2">รวมทั้งสิ้น: ${formatNumber(totalCost)} บาท</p>
+                        <p class="text-sm text-slate-600 mt-2">💡 ผสมผสานหลายช่องทางเพื่อประสิทธิภาพสูงสุด</p>
+                        <button class="mt-3 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg" onclick="printAIPackagePDF()">📄 พิมพ์รายงาน PDF</button>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('aiResult').innerHTML = recommendation;
+        }
+        
+        function printAIPackagePDF() {
+            const customerName = document.getElementById('aiCustomerName').value || 'ลูกค้า';
+            const budget = parseFloat(document.getElementById('aiBudget').value) || 0;
+            const objective = document.getElementById('aiObjective').value;
+            const target = document.getElementById('aiTarget').value;
+            const duration = parseInt(document.getElementById('aiDuration').value) || 1;
+            
+            const objectiveText = {
+                'sales': 'เพิ่มยอดขาย',
+                'brand': 'สร้างแบรนด์/ภาพลักษณ์',
+                'event': 'ประชาสัมพันธ์กิจกรรม',
+                'recruit': 'รับสมัครสมาชิก/พนักงาน',
+                'other': 'อื่นๆ'
+            }[objective] || objective;
+            
+            const targetText = {
+                'government': 'หน่วยงานราชการ/รัฐวิสาหกิจ',
+                'business': 'เจ้าของกิจการ',
+                'youth': 'วัยรุ่น/นักเรียน/นักศึกษา',
+                'working': 'วัยทำงาน',
+                'farmer': 'เกษตรกร',
+                'housewife': 'แม่บ้าน',
+                'general': 'ประชาชนทั่วไป',
+                'other': 'อื่นๆ'
+            }[target] || target;
+            
+            const printContainer = document.getElementById('print-report-container');
+            const today = new Date().toLocaleDateString('th-TH', { 
+                day: '2-digit', month: 'long', year: 'numeric',
+                hour: '2-digit', minute: '2-digit'
             });
-            updateSelectedSlotsCount();
-            updateOrderCalculation();
+            
+            const reportHtml = `
+                <div class="print-report p-8 bg-white" style="font-family: 'Sarabun', sans-serif;">
+                    <h1 class="text-2xl font-bold text-center text-purple-800 mb-4">รายงานการวิเคราะห์แพ็กเกจ (AI)</h1>
+                    <p class="text-center mb-2">MCOT Radio Network Phitsanulok</p>
+                    <p class="text-center text-sm mb-6">สถานีวิทยุกระจายเสียง อสมท จังหวัดพิษณุโลก F.M. 106.25 MHz.</p>
+                    
+                    <div class="mb-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                        <h2 class="font-bold text-lg mb-3">📋 ข้อมูลลูกค้า</h2>
+                        <table class="w-full border-collapse">
+                            <tr><td class="py-1"><span class="font-medium">ชื่อลูกค้า:</span></td><td>${escapeHtml(customerName)}</td></tr>
+                            <tr><td class="py-1"><span class="font-medium">งบประมาณ:</span></td><td>${formatNumber(budget)} บาท</td></tr>
+                            <tr><td class="py-1"><span class="font-medium">วัตถุประสงค์:</span></td><td>${objectiveText}</td></tr>
+                            <tr><td class="py-1"><span class="font-medium">กลุ่มเป้าหมาย:</span></td><td>${targetText}</td></tr>
+                            <tr><td class="py-1"><span class="font-medium">ระยะเวลา:</span></td><td>${duration} เดือน</td></tr>
+                        </table>
+                    </div>
+                    
+                    <div class="mb-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                        <h2 class="font-bold text-lg mb-3">🎯 แพ็กเกจที่แนะนำ</h2>
+                        ${document.getElementById('aiResult').innerHTML.replace(/<button[\s\S]*?<\/button>/, '')}
+                    </div>
+                    
+                    <div class="text-center text-xs text-slate-500 mt-8">
+                        <p>สร้างรายงานเมื่อ: ${today}</p>
+                        <p>By Suraphun Inopas @ 2026</p>
+                    </div>
+                </div>
+            `;
+            
+            printContainer.innerHTML = reportHtml;
+            printContainer.classList.add('print-active');
+            window.print();
+            printContainer.classList.remove('print-active');
+            printContainer.innerHTML = '';
+        }
+        
+        // ========== REPORTS ==========
+        function updateReports() {
+            // รายงานส่วนลดพิเศษ
+            const discountOrders = systemData.orders.filter(o => o.specialDiscount?.enabled);
+            let discountHtml = '';
+            discountOrders.forEach(o => {
+                discountHtml += `
+                    <div class="p-2 bg-white rounded border border-amber-200 text-sm">
+                        <div class="flex justify-between">
+                            <span>${new Date(o.date).toLocaleDateString('th-TH')}</span>
+                            <span class="font-bold text-amber-600">${o.specialDiscount.percent}%</span>
+                        </div>
+                        <div class="text-xs text-slate-500">${o.customerName} | ${o.specialDiscount.approver || '-'}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('discountReport').innerHTML = discountHtml || '<p class="text-slate-400 text-sm">ไม่มีข้อมูล</p>';
+            
+            // รายงานภาษีหัก ณ ที่จ่าย
+            const whtOrders = systemData.orders.filter(o => o.wht?.enabled);
+            let whtHtml = '';
+            whtOrders.forEach(o => {
+                whtHtml += `
+                    <div class="p-2 bg-white rounded border border-purple-200 text-sm">
+                        <div class="flex justify-between">
+                            <span>${new Date(o.date).toLocaleDateString('th-TH')}</span>
+                            <span class="font-bold text-purple-600">${o.wht.percent}%</span>
+                        </div>
+                        <div class="text-xs text-slate-500">${o.customerName} | ${formatNumber(o.wht.amount)} ฿</div>
+                    </div>
+                `;
+            });
+            document.getElementById('whtReport').innerHTML = whtHtml || '<p class="text-slate-400 text-sm">ไม่มีข้อมูล</p>';
+            
+            // อัปเดตสถิติ
+            document.getElementById('report-customer-count').textContent = systemData.customers.length;
+            document.getElementById('report-product-count').textContent = systemData.products.length;
+            document.getElementById('report-package-count').textContent = systemData.packages.length;
+            document.getElementById('report-order-count').textContent = systemData.orders.length;
+        }
+        
+        function renderReport() {
+            updateReports();
+        }
+        
+        function printReport(type) {
+            const printContainer = document.getElementById('print-report-container');
+            let reportHtml = '';
+            const today = new Date().toLocaleDateString('th-TH', { 
+                day: '2-digit', month: 'long', year: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+            
+            if (type === 'discount') {
+                reportHtml = `
+                    <div class="print-report p-8 bg-white">
+                        <h1 class="text-2xl font-bold text-center mb-4">รายงานส่วนลดพิเศษ</h1>
+                        <p class="text-center mb-4">MCOT Radio Network Phitsanulok</p>
+                        <p class="text-center text-sm mb-6">วันที่พิมพ์: ${today}</p>
+                        <table class="w-full border-collapse border border-slate-300">
+                            <thead>
+                                <tr class="bg-slate-200">
+                                    <th class="border p-2">วันที่</th>
+                                    <th class="border p-2">ลูกค้า</th>
+                                    <th class="border p-2">% ส่วนลด</th>
+                                    <th class="border p-2">จำนวนเงิน</th>
+                                    <th class="border p-2">ผู้อนุมัติ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${systemData.orders.filter(o => o.specialDiscount?.enabled).map(o => `
+                                    <tr>
+                                        <td class="border p-2">${new Date(o.date).toLocaleDateString('th-TH')}</td>
+                                        <td class="border p-2">${o.customerName || '-'}</td>
+                                        <td class="border p-2 text-right">${o.specialDiscount.percent}%</td>
+                                        <td class="border p-2 text-right">${formatNumber(o.specialDiscount.amount)} ฿</td>
+                                        <td class="border p-2">${o.specialDiscount.approver || '-'}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                        <div class="text-center text-xs text-slate-500 mt-4">By Suraphun Inopas @ 2026</div>
+                    </div>
+                `;
+            } else if (type === 'wht') {
+                reportHtml = `
+                    <div class="print-report p-8 bg-white">
+                        <h1 class="text-2xl font-bold text-center mb-4">รายงานภาษีหัก ณ ที่จ่าย</h1>
+                        <p class="text-center mb-4">MCOT Radio Network Phitsanulok</p>
+                        <p class="text-center text-sm mb-6">วันที่พิมพ์: ${today}</p>
+                        <table class="w-full border-collapse border border-slate-300">
+                            <thead>
+                                <tr class="bg-slate-200">
+                                    <th class="border p-2">วันที่</th>
+                                    <th class="border p-2">ลูกค้า</th>
+                                    <th class="border p-2">อัตรา</th>
+                                    <th class="border p-2">ยอดก่อน VAT</th>
+                                    <th class="border p-2">จำนวนเงินที่หัก</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${systemData.orders.filter(o => o.wht?.enabled).map(o => `
+                                    <tr>
+                                        <td class="border p-2">${new Date(o.date).toLocaleDateString('th-TH')}</td>
+                                        <td class="border p-2">${o.customerName || '-'}</td>
+                                        <td class="border p-2 text-right">${o.wht.percent}%</td>
+                                        <td class="border p-2 text-right">${formatNumber(o.afterDiscount || 0)} ฿</td>
+                                        <td class="border p-2 text-right">${formatNumber(o.wht.amount || 0)} ฿</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                        <div class="text-center text-xs text-slate-500 mt-4">By Suraphun Inopas @ 2026</div>
+                    </div>
+                `;
+            } else if (type === 'customer') {
+                reportHtml = `
+                    <div class="print-report p-8 bg-white">
+                        <h1 class="text-2xl font-bold text-center mb-4">รายงานลูกค้า</h1>
+                        <p class="text-center mb-4">MCOT Radio Network Phitsanulok</p>
+                        <p class="text-center text-sm mb-6">วันที่พิมพ์: ${today}</p>
+                        <table class="w-full border-collapse border border-slate-300">
+                            <thead>
+                                <tr class="bg-slate-200">
+                                    <th class="border p-2">ลำดับ</th>
+                                    <th class="border p-2">ชื่อองค์กร</th>
+                                    <th class="border p-2">ประเภท</th>
+                                    <th class="border p-2">ผู้ติดต่อ</th>
+                                    <th class="border p-2">เบอร์โทร</th>
+                                    <th class="border p-2">อีเมล</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${systemData.customers.map((c,i) => `
+                                    <tr>
+                                        <td class="border p-2 text-center">${i+1}</td>
+                                        <td class="border p-2">${escapeHtml(c.company)}</td>
+                                        <td class="border p-2">${c.type}</td>
+                                        <td class="border p-2">${escapeHtml(c.name)}</td>
+                                        <td class="border p-2">${escapeHtml(c.phone)}</td>
+                                        <td class="border p-2">${escapeHtml(c.email||'-')}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                        <div class="text-center text-xs text-slate-500 mt-4">By Suraphun Inopas @ 2026</div>
+                    </div>
+                `;
+            } else if (type === 'product') {
+                reportHtml = `
+                    <div class="print-report p-8 bg-white">
+                        <h1 class="text-2xl font-bold text-center mb-4">รายงานสินค้า</h1>
+                        <p class="text-center mb-4">MCOT Radio Network Phitsanulok</p>
+                        <p class="text-center text-sm mb-6">วันที่พิมพ์: ${today}</p>
+                        <table class="w-full border-collapse border border-slate-300">
+                            <thead>
+                                <tr class="bg-slate-200">
+                                    <th class="border p-2">ลำดับ</th>
+                                    <th class="border p-2">รหัสสินค้า</th>
+                                    <th class="border p-2">ชื่อสินค้า</th>
+                                    <th class="border p-2">ประเภท</th>
+                                    <th class="border p-2 text-right">ราคา</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${systemData.products.map((p,i) => `
+                                    <tr>
+                                        <td class="border p-2 text-center">${i+1}</td>
+                                        <td class="border p-2 font-mono">${escapeHtml(p.code)}</td>
+                                        <td class="border p-2">${escapeHtml(p.name)}</td>
+                                        <td class="border p-2">${p.type==='onAir'?'On Air':p.type==='online'?'Online':'Production'}</td>
+                                        <td class="border p-2 text-right">${formatNumber(p.price)} ฿</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                        <div class="text-center text-xs text-slate-500 mt-4">By Suraphun Inopas @ 2026</div>
+                    </div>
+                `;
+            } else if (type === 'package') {
+                reportHtml = `
+                    <div class="print-report p-8 bg-white">
+                        <h1 class="text-2xl font-bold text-center mb-4">รายงานแพ็กเกจ</h1>
+                        <p class="text-center mb-4">MCOT Radio Network Phitsanulok</p>
+                        <p class="text-center text-sm mb-6">วันที่พิมพ์: ${today}</p>
+                        <table class="w-full border-collapse border border-slate-300">
+                            <thead>
+                                <tr class="bg-slate-200">
+                                    <th class="border p-2">ลำดับ</th>
+                                    <th class="border p-2">รหัสแพ็กเกจ</th>
+                                    <th class="border p-2">ชื่อแพ็กเกจ</th>
+                                    <th class="border p-2 text-center">จำนวนสินค้า</th>
+                                    <th class="border p-2 text-right">ราคา</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${systemData.packages.map((p,i) => {
+                                    const totalProducts = p.products?.length||0;
+                                    return `<tr>
+                                        <td class="border p-2 text-center">${i+1}</td>
+                                        <td class="border p-2 font-mono">${escapeHtml(p.code)}</td>
+                                        <td class="border p-2">${escapeHtml(p.name)}</td>
+                                        <td class="border p-2 text-center">${totalProducts}</td>
+                                        <td class="border p-2 text-right">${formatNumber(p.price || 0)} ฿</td>
+                                    </tr>`;
+                                }).join('')}
+                            </tbody>
+                        </table>
+                        <div class="text-center text-xs text-slate-500 mt-4">By Suraphun Inopas @ 2026</div>
+                    </div>
+                `;
+            }
+            
+            printContainer.innerHTML = reportHtml;
+            printContainer.classList.add('print-active');
+            window.print();
+            printContainer.classList.remove('print-active');
+            printContainer.innerHTML = '';
         }
         
         // ========== QUOTATION ==========
@@ -2432,94 +3544,71 @@
         function loadCustomerQuotation() {
             const customerId = document.getElementById('quotation-customer').value;
             if (!customerId) {
-                const preview = document.getElementById('quotation-preview');
-                const empty = document.getElementById('quotation-empty');
-                if (preview) preview.classList.add('hidden');
-                if (empty) empty.classList.remove('hidden');
+                document.getElementById('quotation-preview').classList.add('hidden');
+                document.getElementById('quotation-empty').classList.remove('hidden');
                 return;
             }
+            
             const customer = systemData.customers.find(c => c.id === customerId);
             const customerOrders = systemData.orders.filter(o => o.customerId === customerId);
+            
             if (!customer || customerOrders.length === 0) {
-                const preview = document.getElementById('quotation-preview');
-                const empty = document.getElementById('quotation-empty');
-                if (preview) preview.classList.add('hidden');
-                if (empty) empty.classList.remove('hidden');
+                document.getElementById('quotation-preview').classList.add('hidden');
+                document.getElementById('quotation-empty').classList.remove('hidden');
                 return;
             }
-            let beforeVat = 0, vat = 0, total = 0;
-            customerOrders.forEach(o => { beforeVat += (o.netTotal - o.vatAmount); vat += o.vatAmount; total += o.netTotal; });
-            const companyEl = document.getElementById('quotation-company');
-            const addressEl = document.getElementById('quotation-address');
-            const phoneEl = document.getElementById('quotation-phone');
-            const dateEl = document.getElementById('quotation-date');
-            const staffEl = document.getElementById('quotation-staff-name');
-            const staffNameInput = document.getElementById('staff-name');
-            if (companyEl) companyEl.textContent = customer.company;
-            if (addressEl) addressEl.textContent = customer.address || '-';
-            if (phoneEl) phoneEl.textContent = customer.phone || '-';
-            if (dateEl) dateEl.textContent = new Date().toLocaleDateString('th-TH', { day: '2-digit', month: 'long', year: 'numeric' });
-            if (staffEl) staffEl.textContent = staffNameInput ? staffNameInput.value : 'ฝ่ายขาย';
+            
+            let beforeVat = 0, vat = 0, wht = 0, total = 0;
+            customerOrders.forEach(o => {
+                beforeVat += o.afterDiscount || 0;
+                vat += o.vat || 0;
+                wht += o.wht?.amount || 0;
+                total += o.netTotal || 0;
+            });
+            
+            document.getElementById('quotation-company').textContent = customer.company;
+            document.getElementById('quotation-address').textContent = customer.address || '-';
+            document.getElementById('quotation-phone').textContent = customer.phone || '-';
+            document.getElementById('quotation-date').textContent = new Date().toLocaleDateString('th-TH', { day: '2-digit', month: 'long', year: 'numeric' });
+            document.getElementById('quotation-staff-name').textContent = document.getElementById('staff-name').value || 'ฝ่ายขาย';
+            
             const itemsContainer = document.getElementById('quotation-items');
-            if (itemsContainer) {
-                itemsContainer.innerHTML = '';
-                customerOrders.forEach((o, i) => {
-                    const row = document.createElement('tr');
-                    row.className = 'border-b border-slate-200';
-                    row.innerHTML = `<td class="p-2 lg:p-3"><p class="font-bold text-slate-900">${i+1}. ${escapeHtml(o.productCode ? o.productCode + ' - ' : '')}${escapeHtml(o.productName)}</p>${o.note ? `<p class="text-[10px] text-blue-600 mt-0.5">* ${escapeHtml(o.note)}</p>` : ''}</td><td class="p-2 lg:p-3 text-center font-bold">${o.totalDays}</td><td class="p-2 lg:p-3 text-center font-bold">${o.timesPerDay}</td><td class="p-2 lg:p-3 text-right font-mono font-bold">${(o.totalDays * o.timesPerDay).toLocaleString()}</td><td class="p-2 lg:p-3 text-right font-black">${(o.netTotal - o.vatAmount).toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>`;
-                    itemsContainer.appendChild(row);
-                });
-            }
-            const beforeVatEl = document.getElementById('quotation-before-vat');
-            const vatEl = document.getElementById('quotation-vat');
-            const totalEl = document.getElementById('quotation-total');
-            if (beforeVatEl) beforeVatEl.textContent = `${beforeVat.toLocaleString(undefined, { minimumFractionDigits: 2 })} บาท`;
-            if (vatEl) vatEl.textContent = `${vat.toLocaleString(undefined, { minimumFractionDigits: 2 })} บาท`;
-            if (totalEl) totalEl.textContent = `${total.toLocaleString(undefined, { minimumFractionDigits: 2 })} บาท`;
-            const preview = document.getElementById('quotation-preview');
-            const empty = document.getElementById('quotation-empty');
-            if (preview) preview.classList.remove('hidden');
-            if (empty) empty.classList.add('hidden');
+            itemsContainer.innerHTML = '';
+            
+            customerOrders.forEach((o, i) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="p-2">${i+1}. ${escapeHtml(o.productName || 'รายการ')}<br><small class="text-slate-400">${new Date(o.date).toLocaleDateString('th-TH')}</small></td>
+                    <td class="p-2 text-center">${o.totalDays || 0}</td>
+                    <td class="p-2 text-center">${o.timesPerDay || 1}</td>
+                    <td class="p-2 text-right">${(o.totalDays * o.timesPerDay) || 0}</td>
+                    <td class="p-2 text-right">${formatNumber(o.afterDiscount || 0)} ฿</td>
+                    <td class="p-2 text-right">${formatNumber(o.wht?.amount || 0)} ฿</td>
+                    <td class="p-2 text-right font-bold">${formatNumber(o.netTotal || 0)} ฿</td>
+                `;
+                itemsContainer.appendChild(row);
+            });
+            
+            document.getElementById('quotation-before-vat').textContent = formatNumber(beforeVat) + ' บาท';
+            document.getElementById('quotation-vat').textContent = formatNumber(vat) + ' บาท';
+            document.getElementById('quotation-wht').textContent = formatNumber(wht) + ' บาท';
+            document.getElementById('quotation-total').textContent = formatNumber(total) + ' บาท';
+            
+            document.getElementById('quotation-preview').classList.remove('hidden');
+            document.getElementById('quotation-empty').classList.add('hidden');
         }
         
         function printQuotation() {
             const customerId = document.getElementById('quotation-customer').value;
-            if (!customerId) { showNotification('กรุณาเลือกลูกค้าก่อนพิมพ์', 'error'); return; }
-            window.print();
-        }
-        
-        function renderQuotations() { populateQuotationCustomerSelect(); }
-        
-        // ========== REPORT ==========
-        function renderReport() {
-            const customerCount = document.getElementById('report-customer-count');
-            const productCount = document.getElementById('report-product-count');
-            const packageCount = document.getElementById('report-package-count');
-            if (customerCount) customerCount.textContent = systemData.customers.length;
-            if (productCount) productCount.textContent = systemData.products.length;
-            if (packageCount) packageCount.textContent = systemData.packages.length;
-        }
-        
-        function printReport(type) {
-            const printContainer = document.getElementById('print-report-container');
-            if (!printContainer) return;
-            let reportHtml = '';
-            const today = new Date().toLocaleDateString('th-TH', { day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-            if (type === 'customer') {
-                reportHtml = `<div class="print-report p-8 bg-white" style="font-family: 'Sarabun', sans-serif;"><div class="text-center mb-6"><h1 class="text-2xl font-bold text-blue-900">รายงานข้อมูลลูกค้า</h1><p class="text-sm">MCOT Radio Network Phitsanulok</p><p class="text-xs">วันที่พิมพ์: ${today}</p></div><div class="mb-4"><p class="font-bold">จำนวนลูกค้าทั้งหมด: ${systemData.customers.length} ราย</p></div><table class="w-full border-collapse border border-slate-300"><thead><tr class="bg-slate-200"><th class="border border-slate-300 p-2 text-left">ลำดับ</th><th class="border border-slate-300 p-2 text-left">ชื่อองค์กร</th><th class="border border-slate-300 p-2 text-left">ประเภท</th><th class="border border-slate-300 p-2 text-left">ผู้ติดต่อ</th><th class="border border-slate-300 p-2 text-left">เบอร์โทร</th><th class="border border-slate-300 p-2 text-left">อีเมล</th></tr></thead><tbody>${systemData.customers.map((c,i)=>`<tr><td class="border border-slate-300 p-2 text-center">${i+1}</td><td class="border border-slate-300 p-2">${escapeHtml(c.company)}</td><td class="border border-slate-300 p-2">${c.type}</td><td class="border border-slate-300 p-2">${escapeHtml(c.name)}</td><td class="border border-slate-300 p-2">${escapeHtml(c.phone)}</td><td class="border border-slate-300 p-2">${escapeHtml(c.email||'-')}</td></tr>`).join('')}</tbody></table></div>`;
-            } else if (type === 'product') {
-                const onAirCount = systemData.products.filter(p=>p.type==='onAir').length;
-                const onlineCount = systemData.products.filter(p=>p.type==='online').length;
-                const productionCount = systemData.products.filter(p=>p.type==='production').length;
-                reportHtml = `<div class="print-report p-8 bg-white" style="font-family: 'Sarabun', sans-serif;"><div class="text-center mb-6"><h1 class="text-2xl font-bold text-blue-900">รายงานข้อมูลสินค้า</h1><p class="text-sm">MCOT Radio Network Phitsanulok</p><p class="text-xs">วันที่พิมพ์: ${today}</p></div><div class="mb-4 grid grid-cols-3 gap-4"><div class="bg-blue-50 p-3 rounded-lg text-center"><p class="font-bold">On Air</p><p class="text-2xl">${onAirCount}</p></div><div class="bg-emerald-50 p-3 rounded-lg text-center"><p class="font-bold">Online</p><p class="text-2xl">${onlineCount}</p></div><div class="bg-amber-50 p-3 rounded-lg text-center"><p class="font-bold">Production</p><p class="text-2xl">${productionCount}</p></div></div><table class="w-full border-collapse border border-slate-300"><thead><tr class="bg-slate-200"><th class="border border-slate-300 p-2 text-left">ลำดับ</th><th class="border border-slate-300 p-2 text-left">รหัสสินค้า</th><th class="border border-slate-300 p-2 text-left">ชื่อสินค้า</th><th class="border border-slate-300 p-2 text-left">ประเภท</th><th class="border border-slate-300 p-2 text-right">ราคา</th><th class="border border-slate-300 p-2 text-left">โปรโมชัน</th></tr></thead><tbody>${systemData.products.map((p,i)=>`<tr><td class="border border-slate-300 p-2 text-center">${i+1}</td><td class="border border-slate-300 p-2 font-mono">${escapeHtml(p.code)}</td><td class="border border-slate-300 p-2">${escapeHtml(p.name)}</td><td class="border border-slate-300 p-2">${p.type==='onAir'?'On Air':p.type==='online'?'Online':'Production'}</td><td class="border border-slate-300 p-2 text-right">${p.price.toLocaleString()} ฿</td><td class="border border-slate-300 p-2">${p.promotion==='มี'?escapeHtml(p.promotionDetail):'ไม่มี'}</td></tr>`).join('')}</tbody></table></div>`;
-            } else if (type === 'package') {
-                reportHtml = `<div class="print-report p-8 bg-white" style="font-family: 'Sarabun', sans-serif;"><div class="text-center mb-6"><h1 class="text-2xl font-bold text-blue-900">รายงานข้อมูลแพ็กเกจ</h1><p class="text-sm">MCOT Radio Network Phitsanulok</p><p class="text-xs">วันที่พิมพ์: ${today}</p></div><div class="mb-4"><p class="font-bold">จำนวนแพ็กเกจทั้งหมด: ${systemData.packages.length} แพ็กเกจ</p></div><table class="w-full border-collapse border border-slate-300"><thead><tr class="bg-slate-200"><th class="border border-slate-300 p-2 text-left">ลำดับ</th><th class="border border-slate-300 p-2 text-left">รหัสแพ็กเกจ</th><th class="border border-slate-300 p-2 text-left">ชื่อแพ็กเกจ</th><th class="border border-slate-300 p-2 text-center">จำนวนสินค้า</th><th class="border border-slate-300 p-2 text-right">ราคา</th><th class="border border-slate-300 p-2 text-right">ส่วนลด</th><th class="border border-slate-300 p-2 text-right">ราคาสุทธิ</th></tr></thead><tbody>${systemData.packages.map((p,i)=>{const totalProducts = p.products?.length||0; const discountAmount = p.price*(p.discount/100); const finalPrice = p.price - discountAmount; return `<tr><td class="border border-slate-300 p-2 text-center">${i+1}</td><td class="border border-slate-300 p-2 font-mono">${escapeHtml(p.code)}</td><td class="border border-slate-300 p-2">${escapeHtml(p.name)}</td><td class="border border-slate-300 p-2 text-center">${totalProducts}</td><td class="border border-slate-300 p-2 text-right">${p.price.toLocaleString()} ฿</td><td class="border border-slate-300 p-2 text-right">${p.discount>0?p.discount+'% ('+discountAmount.toLocaleString()+' ฿)':'-'}</td><td class="border border-slate-300 p-2 text-right font-bold">${finalPrice.toLocaleString()} ฿</td></tr>`}).join('')}</tbody></table></div>`;
+            if (!customerId) {
+                showNotification('กรุณาเลือกลูกค้าก่อนพิมพ์', 'error');
+                return;
             }
-            printContainer.innerHTML = reportHtml;
-            printContainer.classList.add('print-active');
             window.print();
-            printContainer.classList.remove('print-active');
-            printContainer.innerHTML = '';
+        }
+        
+        function renderQuotations() {
+            populateQuotationCustomerSelect();
         }
         
         // ========== UTILITY ==========
@@ -2563,6 +3652,7 @@
             renderReport();
             updateOrdersTable();
             updateCampaignTotal();
+            updateReports();
         }
         
         function updateBadges() {
@@ -2583,15 +3673,29 @@
         }
         
         function formatDate(d) { return new Date(d).toLocaleDateString('th-TH'); }
-        function escapeHtml(u) { if (!u) return ''; return u.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }
-        function showNotification(m,t) {
+        
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return String(unsafe)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+        
+        function showNotification(message, type) {
             const old = document.querySelector('.notification');
             if (old) old.remove();
             const n = document.createElement('div');
-            n.className = `notification fixed top-4 right-4 px-4 lg:px-6 py-2 lg:py-3 rounded-lg shadow-lg text-white font-medium z-50 animate-fadeIn ${t==='success'?'bg-emerald-500':t==='error'?'bg-red-500':'bg-blue-500'}`;
-            n.textContent = m;
+            n.className = `notification fixed top-4 right-4 px-4 lg:px-6 py-2 lg:py-3 rounded-lg shadow-lg text-white font-medium z-50 animate-fadeIn ${type === 'success' ? 'bg-emerald-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500'}`;
+            n.textContent = message;
             document.body.appendChild(n);
-            setTimeout(()=>{ n.style.opacity='0'; n.style.transition='opacity 0.3s'; setTimeout(()=>n.remove(),300); },3000);
+            setTimeout(() => {
+                n.style.opacity = '0';
+                n.style.transition = 'opacity 0.3s';
+                setTimeout(() => n.remove(), 300);
+            }, 3000);
         }
     </script>
 </body>
